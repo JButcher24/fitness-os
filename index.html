@@ -713,6 +713,13 @@ function avatarHTML(name, size) {
   const initials = String(name || '').split(' ').filter(Boolean).slice(0, 2).map((w) => (w[0] || '').toUpperCase()).join('') || '·';
   return '<span class="avatar" style="width:' + size + 'px;height:' + size + 'px;font-size:' + Math.round(size * 0.4) + 'px;">' + esc(initials) + '</span>';
 }
+function cliveAvatar(size) {
+  // Clive's actual portrait, zoomed to the face. Falls back to the "C" avatar if the image is missing.
+  return '<span class="avatar clive-av" style="width:' + size + 'px;height:' + size + 'px;">' +
+    '<img src="assets/clive.png?v=1" alt="Clive — your coach" ' +
+    'onerror="this.parentNode.textContent=\'C\'" ' +
+    'style="width:100%;height:100%;object-fit:cover;transform:scale(1.4);transform-origin:50% 26%;display:block;"></span>';
+}
 
 // ---------- shared fragments ----------
 function sessionRowHTML(s, D) {
@@ -910,7 +917,7 @@ function screenDashboard(D) {
     '</div>' +
 
     '<div class="rail">' +
-    '<div class="card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">' + avatarHTML('Clive', 38) +
+    '<div class="card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">' + cliveAvatar(72) +
     '<div><div style="font-size:13.5px;font-weight:700;color:var(--text-strong);">Clive</div><div style="font-size:11px;color:var(--text-muted);">Your coach · watching everything</div></div></div>' +
     '<div style="font-size:13px;line-height:1.6;color:var(--text-body);">' + (latestNote ? esc(latestNote.lines[latestNote.lines.length > 1 ? 1 : 0] || '') : 'No notes yet — Clive writes one after every session.') + '</div>' +
     gapNoteHTML(D) +
@@ -971,7 +978,7 @@ function screenWeight(D) {
 
     '<div class="split-2">' +
     '<div class="card"><div class="card-title" style="margin-bottom:6px;">Milestones</div>' + milestonesHTML(D) + '</div>' +
-    '<div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">' + avatarHTML('Clive', 26) +
+    '<div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">' + cliveAvatar(30) +
     '<div class="card-title">The maths, per Clive</div></div>' + maths +
     '<div class="quote" style="margin-top:14px;">“Two clean data points a week beat daily panic. The 7-day average is the only line I care about — and yours is pointing exactly where it should. Don’t chase the daily wobble.”<span class="sig">— Clive</span></div></div>' +
     '</div>';
@@ -1027,7 +1034,7 @@ function screenCoach(D) {
       '</div></div>';
   }).join('') || '<div class="empty-box" style="margin-left:-26px;">No coach notes yet — Clive writes one after every session.</div>';
 
-  return '<div style="display:flex;align-items:center;gap:16px;margin-bottom:26px;">' + avatarHTML('Clive', 56) +
+  return '<div style="display:flex;align-items:center;gap:16px;margin-bottom:26px;">' + cliveAvatar(104) +
     '<div><h1 style="margin:0 0 3px;font-size:24px;font-weight:800;letter-spacing:-0.02em;color:var(--text-strong);">Clive’s notes</h1>' +
     '<div style="font-size:13.5px;color:var(--text-secondary);">Evidence-based. Honest. Allergic to ego lifting. One entry per session — like commits, but for your body.</div></div></div>' +
     '<div class="timeline"><div class="timeline-bar"></div>' + notes + '</div>';
