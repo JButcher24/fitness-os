@@ -14,7 +14,7 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 6,120 steps" }
   ],
-  "today": { "date": "2026-07-08", "checklistDone": ["train"] },
+  "today": { "date": "2026-07-08", "checklistDone": ["train", "steps"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
@@ -53,16 +53,36 @@
       ]
     },
     {
-      "id": 3, "date": "2026-07-08", "type": "Full body", "fasted": true, "status": "in-progress",
-      "durationMin": null, "avgHr": 132, "kcalBurned": null,
+      "id": 3, "date": "2026-07-08", "type": "Full body", "fasted": true, "status": "complete",
+      "durationMin": 45, "avgHr": 132, "kcalBurned": 540,
       "exercises": [
         { "name": "Dumbbell bench press", "weightKg": 22, "sets": [12, 10, 13], "pb": true },
         { "name": "Goblet squat to box", "weightKg": 20, "sets": [12, 12, 12], "pb": true },
         { "name": "Plate-loaded lat pulldown", "weightKg": 50, "sets": [12, 12, 10], "pb": true }
+      ],
+      "cardio": [
+        { "type": "Indoor Walk", "phase": "warm-up", "start": "13:35", "end": "13:50", "durationMin": 15, "distanceM": 969, "kcalBurned": 148, "avgHr": 115, "pacePerKm": "15:22" },
+        { "type": "Indoor Walk", "phase": "cool-down", "start": "14:39", "end": "15:09", "durationMin": 30, "distanceM": 1550, "kcalBurned": 238, "avgHr": 130, "pacePerKm": "19:18", "note": "watch logged this as Outdoor Walk — corrected to Indoor" }
       ]
     }
   ],
   "coachNotes": [
+    {
+      "date": "2026-07-08", "title": "Session #3 complete — 45 minutes, two walks",
+      "note": "Strength done: 45 min, avg HR 132, 540 kcal. Bookended by two indoor walks — 15 min warm-up, 30 min cool-down. The cool-down logged on the watch as Outdoor; it was indoor, corrected. Fasted session — 40–50 g protein within the hour: did it land?",
+      "lines": [
+        "45:02 of strength at avg HR 132 for 540 kcal. That is a proper session — not a wander round the gym.",
+        "Warm-up: 15 min indoor walk, 969 m, HR 115. Cool-down: 30 min indoor walk, 1.55 km, HR 130. Both indoor — the watch mislabelled the second as Outdoor, now fixed.",
+        "Add it up: 926 kcal across the three pieces. Good day's work, and the walking is free deficit — keep bookending sessions like this.",
+        "You trained fasted. Protein floor is 180 g and the fasted rule is 40–50 g inside the hour. Tell me it went in."
+      ],
+      "tags": [
+        { "text": "Session #3 complete", "tone": "success" },
+        { "text": "45 min · HR 132", "tone": "info" },
+        { "text": "2 indoor walks", "tone": "info" },
+        { "text": "Fasted — protein?", "tone": "warn" }
+      ]
+    },
     {
       "date": "2026-07-08", "title": "Record cleared — real data only",
       "note": "Wiped eight weigh-ins that were never stood on. Two real numbers stand: 266.0 lb baseline on 29 June, 263.6 lb on 30 June (smart scale, 34.8% body fat, BMI 35.7). That 2.4 lb is mostly first-week water, not fat — don't over-read it. Weigh tomorrow and we start the real trend.",
