@@ -1,0 +1,7 @@
+# OS / editor cruft — nothing here is part of the site
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.log
+.vscode/
+.idea/

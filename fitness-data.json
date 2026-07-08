@@ -1,0 +1,132 @@
+{
+  "profile": { "firstName": "Jamie", "startDate": "2026-06-29", "startWeightLb": 266.0 },
+  "goal": { "targetWeightLb": 210, "weeklyLossPocketLb": [1, 2], "nextMilestoneLb": 260 },
+  "weighIns": [
+    { "date": "2026-06-29", "weightLb": 266.0, "time": "06:52" },
+    { "date": "2026-06-30", "weightLb": 265.5, "time": "06:47" },
+    { "date": "2026-07-01", "weightLb": 265.8, "time": "06:58" },
+    { "date": "2026-07-02", "weightLb": 265.0, "time": "06:44" },
+    { "date": "2026-07-03", "weightLb": 264.7, "time": "06:51" },
+    { "date": "2026-07-04", "weightLb": 264.9, "time": "07:12" },
+    { "date": "2026-07-05", "weightLb": 264.3, "time": "07:05" },
+    { "date": "2026-07-06", "weightLb": 264.5, "time": "06:49" },
+    { "date": "2026-07-07", "weightLb": 263.9, "time": "06:43" },
+    { "date": "2026-07-08", "weightLb": 263.6, "time": "06:41" }
+  ],
+  "nutritionTargets": { "kcal": 2500, "kcalTolerance": 100, "proteinG": 219, "proteinMinG": 180, "carbsG": 219, "fatG": 83, "waterL": [2.5, 3.5] },
+  "dailyChecklist": [
+    { "id": "weigh", "label": "Morning weigh-in" },
+    { "id": "train", "label": "Train (session days)" },
+    { "id": "kcal", "label": "Stay ≈ 2,500 kcal" },
+    { "id": "protein", "label": "Protein 219 g" },
+    { "id": "water", "label": "2.5–3.5 L water" },
+    { "id": "steps", "label": "Move every day — 6,120 steps" }
+  ],
+  "today": { "date": "2026-07-08", "kcalSoFar": 1640, "proteinSoFarG": 128, "waterSoFarL": 1.8, "checklistDone": ["weigh", "train"] },
+  "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
+  "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
+  "exerciseLibrary": [
+    { "name": "Goblet squat to box", "coachNext": "Hold 20 kg and build to 3×15. The tibia sets the pace, not your ego." },
+    { "name": "Dumbbell bench press", "coachNext": "Stay at 22 kg until all three sets hit 12 clean — then 24 kg." },
+    { "name": "Cable stack lat pulldown", "coachNext": "55 kg next session. The 50s moved well." },
+    { "name": "Plate-loaded lat pulldown", "coachNext": "Earn 50 kg × 3×12 first — the last set hit 10 today." },
+    { "name": "Wide-grip cable row", "coachNext": "45 kg next session." },
+    { "name": "Cable lateral raise", "coachNext": "Stay at 5 kg, build from 3×10 to 3×12. Delts grow on reps, not load." },
+    { "name": "Seated cable row (close grip)", "coachNext": "Retest — that number looks generous next to your wide-grip row.", "flag": "Needs retesting" },
+    { "name": "Tricep pushdown", "coachNext": "Set a baseline this week: pick a weight you can move for 3×12.", "flag": "Not established" }
+  ],
+  "sessions": [
+    {
+      "id": 1, "date": "2026-06-29", "type": "Full body", "label": "baseline day", "fasted": false, "status": "complete",
+      "durationMin": 95, "avgHr": 131, "kcalBurned": 1256,
+      "exercises": [
+        { "name": "Goblet squat to box", "weightKg": 12.5, "sets": [12, 12, 12] },
+        { "name": "Dumbbell bench press", "weightKg": 18, "sets": [10, 10, 10] },
+        { "name": "Cable stack lat pulldown", "weightKg": 40, "sets": [12, 12] },
+        { "name": "Plate-loaded lat pulldown", "weightKg": 40, "sets": [12] },
+        { "name": "Wide-grip cable row", "weightKg": 35, "sets": [8] },
+        { "name": "Seated cable row (close grip)", "weightKg": 60, "sets": [9] },
+        { "name": "Cable lateral raise", "weightKg": 5, "sets": [15, 15, 14, 14] }
+      ]
+    },
+    {
+      "id": 2, "date": "2026-07-02", "type": "Full body", "fasted": false, "status": "complete",
+      "durationMin": 49, "avgHr": 132, "kcalBurned": 594,
+      "exercises": [
+        { "name": "Goblet squat to box", "weightKg": 15, "sets": [12, 12, 12] },
+        { "name": "Dumbbell bench press", "weightKg": 20, "sets": [12, 12, 12] },
+        { "name": "Cable stack lat pulldown", "weightKg": 50, "sets": [12, 12, 12], "pb": true },
+        { "name": "Wide-grip cable row", "weightKg": 40, "sets": [12, 12, 12], "pb": true },
+        { "name": "Cable lateral raise", "weightKg": 5, "sets": [10, 10, 10] }
+      ]
+    },
+    {
+      "id": 3, "date": "2026-07-08", "type": "Full body", "fasted": true, "status": "in-progress",
+      "durationMin": null, "avgHr": 132, "kcalBurned": null,
+      "exercises": [
+        { "name": "Dumbbell bench press", "weightKg": 22, "sets": [12, 10, 13], "pb": true },
+        { "name": "Goblet squat to box", "weightKg": 20, "sets": [12, 12, 12], "pb": true },
+        { "name": "Plate-loaded lat pulldown", "weightKg": 50, "sets": [12, 12, 10], "pb": true }
+      ]
+    }
+  ],
+  "coachNotes": [
+    {
+      "date": "2026-07-08", "title": "Fasted session — PBs and one telling-off",
+      "note": "Bench 22 kg for 12, 10, 13 — set two wobbled, set three answered. Hold 22 until 3x12 is clean. You trained fasted: 40–50 g protein within the hour. No exceptions.",
+      "lines": [
+        "Goblet squat to box: 20 kg for 3×12 — that is +60% on baseline in ten days. We hold here and build to 3×15 before adding load. The tibia sets the pace, not your ego.",
+        "Bench: 22 kg for 12, 10, 13. Set two wobbled, set three answered. Keep 22 kg until all three sets hit 12 clean.",
+        "Plate pulldown: 50 kg × 12, × 12, then × 10 — the last set told the truth. Stay at 50.",
+        "You trained fasted. Fine — but 40–50 g protein within the hour. No exceptions.",
+        "Now the uncomfortable bit: six days between sessions #2 and #3. Life got busy — I know. Your rule is never more than three. Book the next one before you leave the building."
+      ],
+      "tags": [
+        { "text": "PB · Bench 22 kg × 13", "tone": "success" },
+        { "text": "PB · Squat 20 kg × 12", "tone": "success" },
+        { "text": "Fasted", "tone": "info" },
+        { "text": "Consistency flag", "tone": "warn" }
+      ]
+    },
+    {
+      "date": "2026-07-02", "title": "Good density, better decisions",
+      "note": "Row moved to 40 kg mid-session — right call. Pulldown ladder 40/45/50: 50 kg is the working weight now. 49 minutes at avg HR 132 is good density.",
+      "lines": [
+        "Row: 35 kg moved too fast, so you went to 40 mid-session. Right call — that is what auto-regulation looks like.",
+        "Pulldown ladder 40/45/50: 50 kg is your working weight now.",
+        "49 minutes, average HR 132. Good density for a strength session — you are not resting on your phone.",
+        "Protein was excellent this week. Keep the streak."
+      ],
+      "tags": [
+        { "text": "PB · Row 40 kg × 12", "tone": "success" },
+        { "text": "PB · Pulldown 50 kg × 12", "tone": "success" },
+        { "text": "Avg HR 132", "tone": "info" }
+      ]
+    },
+    {
+      "date": "2026-06-29", "title": "Baseline day",
+      "note": "Baselines set across the board. Squat starts light on purpose — technique before bravado. Weigh in every morning: the scale is data, not judgement.",
+      "lines": [
+        "We started the squat light at 12.5 kg on purpose. You are cleared to train, not cleared to be daft — lower body progresses on technique, not bravado.",
+        "Bench at 18 kg and seated row at 60 kg give us clean starting points. Everything here has room to climb quickly.",
+        "Weigh in every morning. The scale is data, not judgement."
+      ],
+      "tags": [
+        { "text": "Baseline", "tone": "brand" },
+        { "text": "Tibia protocol", "tone": "info" }
+      ]
+    }
+  ],
+  "milestones": [
+    { "label": "Under 265 lb", "weightLb": 265 },
+    { "label": "Under 260 lb", "weightLb": 260 },
+    { "label": "5% lost · 252.7 lb", "weightLb": 252.7 },
+    { "label": "18 stone · 252.0 lb", "weightLb": 252 },
+    { "label": "Under 250 lb", "weightLb": 250 },
+    { "label": "10% lost · 239.4 lb", "weightLb": 239.4 },
+    { "label": "17 stone · 238.0 lb", "weightLb": 238 },
+    { "label": "16 stone · 224.0 lb", "weightLb": 224 },
+    { "label": "Goal · 210 lb (15 st)", "weightLb": 210, "goal": true }
+  ],
+  "planned": { "sessionsPerBlock": 5, "maxDaysBetweenSessions": 3 }
+}

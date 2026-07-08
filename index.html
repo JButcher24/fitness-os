@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Fitness OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ============ Design tokens (DetailBook dark surface, resolved) ============ */
+  :root {
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Roboto, sans-serif;
+    --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+    --navy-950: #0F172A; --navy-900: #111C32; --navy-850: #18233D; --navy-800: #1E293B; --navy-700: #334155;
+    --slate-600: #475569; --slate-500: #64748B; --slate-400: #94A3B8; --slate-50: #F8FAFC;
+    --surface-card: var(--navy-800); --surface-raised: var(--navy-850); --surface-sunken: var(--navy-900); --surface-hover: var(--navy-700);
+    --text-strong: var(--slate-50); --text-body: #E8EDF5; --text-secondary: var(--slate-400); --text-muted: var(--slate-500);
+    --border-subtle: var(--navy-800); --border-default: var(--navy-700);
+    --brand: #818CF8; --brand-tint: rgba(129,140,248,0.14);
+    --indigo-400: #818CF8; --violet: #8B5CF6; --emerald: #34D399;
+    --gradient: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+    --success-soft: rgba(52,211,153,0.14); --success-text: #6EE7B7;
+    --warning: #FBBF24; --danger: #F87171; --info: #60A5FA;
+    --shadow-xs: 0 1px 2px rgba(0,0,0,0.30);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.40), 0 1px 2px rgba(0,0,0,0.30);
+    --shadow-md: 0 6px 18px rgba(0,0,0,0.45);
+    --shadow-lg: 0 16px 40px rgba(0,0,0,0.50);
+    --shadow-brand: 0 8px 28px rgba(99,102,241,0.38);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  html, body { margin: 0; padding: 0; background: #0F172A; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: var(--font-sans); color: var(--text-body); min-height: 100vh;
+    background:
+      radial-gradient(ellipse at top left, rgba(99,102,241,0.12) 0%, transparent 52%),
+      radial-gradient(ellipse at bottom right, rgba(139,92,246,0.10) 0%, transparent 55%),
+      linear-gradient(180deg, #0F172A 0%, #16213B 50%, #0F172A 100%);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: #818CF8; text-decoration: none; }
+  a:hover { color: #A5B4FC; }
+  ::selection { background: rgba(99,102,241,0.35); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 8px; border: 2px solid #0F172A; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  @keyframes db-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+  /* ============ Shell ============ */
+  .shell { display: flex; min-height: 100vh; }
+  .sidebar {
+    width: 236px; flex-shrink: 0; border-right: 1px solid var(--border-subtle);
+    background: rgba(15,23,42,0.55); display: flex; flex-direction: column;
+    padding: 20px 14px 16px; position: sticky; top: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  }
+  .logo-row { display: flex; align-items: center; gap: 10px; padding: 2px 8px 20px; }
+  .logo-mark {
+    width: 34px; height: 34px; border-radius: 10px; background: var(--gradient);
+    display: inline-flex; align-items: center; justify-content: center; box-shadow: var(--shadow-brand); flex-shrink: 0;
+  }
+  .logo-name { font-size: 15px; font-weight: 800; letter-spacing: -0.02em; color: var(--text-strong); line-height: 1.15; }
+  .logo-sub { font-size: 10.5px; font-weight: 600; color: var(--slate-500); letter-spacing: 0.04em; }
+  .nav-group { margin-bottom: 16px; }
+  .nav-group-title { font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate-500); padding: 0 12px 7px; }
+  .nav-items { display: flex; flex-direction: column; gap: 2px; }
+  .nav-item {
+    display: flex; align-items: center; gap: 11px; padding: 8px 12px; border-radius: 10px;
+    font-size: 13.5px; font-weight: 600; letter-spacing: -0.01em; cursor: pointer; user-select: none;
+    color: var(--text-secondary); background: transparent; min-height: 36px;
+    transition: all 0.15s var(--ease-out);
+  }
+  .nav-item:hover { color: var(--text-strong); background: rgba(51,65,85,0.35); }
+  .nav-item.active { color: #fff; background: var(--gradient); box-shadow: var(--shadow-brand); }
+  .nav-item svg { opacity: 0.9; flex-shrink: 0; }
+  .sidebar-foot { margin-top: auto; display: flex; flex-direction: column; gap: 12px; }
+  .kbd-hint { font-size: 11px; color: var(--slate-500); padding: 0 8px; line-height: 1.5; }
+  .kbd { font-family: var(--font-mono); background: var(--navy-800); border: 1px solid var(--navy-700); border-radius: 5px; padding: 1px 5px; font-size: 10px; }
+  .me-row { display: flex; align-items: center; gap: 10px; padding: 8px 8px 0; border-top: 1px solid var(--border-subtle); }
+
+  .avatar {
+    border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+    overflow: hidden; font-family: var(--font-sans); font-weight: 700; letter-spacing: 0.01em; color: #fff;
+    background: var(--gradient); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); user-select: none;
+  }
+
+  main { flex: 1; min-width: 0; padding: 26px 32px 56px; max-width: 1440px; }
+
+  /* ============ Topbar (mobile) ============ */
+  .topbar { display: none; }
+  .backdrop { display: none; }
+
+  /* ============ Cards / components ============ */
+  .card {
+    background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: 16px;
+    padding: 20px; box-shadow: var(--shadow-sm); color: var(--text-body); min-width: 0;
+  }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 36px; padding: 0 14px;
+    font-family: var(--font-sans); font-size: 13px; font-weight: 600; letter-spacing: -0.01em; line-height: 1;
+    border-radius: 8px; border: 1.5px solid transparent; cursor: pointer; white-space: nowrap;
+    transition: transform 0.15s var(--ease-out), box-shadow 0.25s var(--ease-out), filter 0.25s var(--ease-out);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { transform: translateY(0) scale(0.985); }
+  .btn-primary { color: #fff; background: var(--gradient); box-shadow: var(--shadow-brand); }
+  .btn-primary:hover { filter: brightness(1.04); }
+  .btn-secondary { color: var(--text-strong); background: var(--surface-card); border-color: var(--border-default); box-shadow: var(--shadow-xs); }
+  .pill {
+    display: inline-flex; align-items: center; font-size: 11px; font-weight: 700; line-height: 1;
+    padding: 4px 9px; border-radius: 999px; white-space: nowrap; flex-shrink: 0;
+  }
+  .t-brand { background: var(--brand-tint); color: var(--brand); }
+  .t-success { background: var(--success-soft); color: var(--success-text); }
+  .t-warn { background: rgba(245,158,11,0.14); color: var(--warning); }
+  .t-info { background: rgba(59,130,246,0.13); color: var(--info); }
+
+  .card-title { font-size: 14.5px; font-weight: 700; color: var(--text-strong); letter-spacing: -0.01em; }
+  .card-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
+  .stat-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 10px; }
+  .stat-num { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; color: var(--text-strong); line-height: 1.1; }
+  .stat-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 5px; }
+  .stat-note { display: flex; align-items: center; gap: 5px; margin-top: 8px; font-size: 12.5px; font-weight: 600; }
+  .link { font-size: 12px; font-weight: 600; color: var(--brand); cursor: pointer; white-space: nowrap; }
+  .bar { height: 6px; border-radius: 999px; background: var(--navy-700); overflow: hidden; }
+  .bar > div { height: 100%; border-radius: 999px; background: var(--gradient); }
+  .tile { background: var(--surface-sunken); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 12px 14px; }
+  .tile-label { font-size: 11px; font-weight: 600; color: var(--text-muted); }
+  .tile-num { font-size: 19px; font-weight: 800; color: var(--text-strong); letter-spacing: -0.02em; margin-top: 3px; }
+  .tile-sub { font-size: 10.5px; color: var(--text-muted); margin-top: 2px; }
+  .quote {
+    font-size: 12.5px; line-height: 1.6; color: var(--text-body); background: var(--surface-sunken);
+    border: 1px solid var(--border-subtle); border-radius: 12px; padding: 12px 14px;
+  }
+  .quote .sig { display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted); font-weight: 600; }
+  .kv { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border-subtle); font-size: 13px; }
+  .kv:last-child { border-bottom: none; }
+  .kv .k { color: var(--text-secondary); }
+  .kv .v { font-weight: 700; color: var(--text-strong); font-family: var(--font-mono); text-align: right; }
+  .empty-box {
+    border: 1px dashed var(--navy-700); border-radius: 12px; padding: 24px; text-align: center;
+    color: var(--slate-500); font-size: 12.5px; background: rgba(30,41,59,0.4);
+  }
+
+  /* ============ Page header ============ */
+  .page-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+  .page-head h1 { margin: 0 0 4px; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: var(--text-strong); }
+  .page-head .sub { font-size: 13.5px; color: var(--text-secondary); }
+  .head-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .live-pill {
+    display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600;
+    color: var(--brand); background: var(--brand-tint); border-radius: 999px; padding: 6px 12px;
+  }
+  .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--indigo-400); animation: db-pulse 1.8s ease-in-out infinite; }
+
+  /* ============ Grids ============ */
+  .hero-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-bottom: 18px; }
+  .main-rail { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 18px; align-items: start; }
+  .col { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+  .rail { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+  .charts-2 { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; }
+  .fuel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; }
+  .totals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px 18px; }
+  .stats-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 18px; }
+  .split-2 { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+  .strength-2 { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 18px; margin-bottom: 18px; align-items: stretch; }
+  .ex-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 16px; }
+
+  .session-row { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--border-subtle); }
+  .session-row:last-child { border-bottom: none; }
+  .session-num {
+    width: 38px; height: 38px; border-radius: 10px; background: var(--surface-sunken); border: 1px solid var(--border-subtle);
+    display: inline-flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 800;
+    color: var(--text-secondary); font-family: var(--font-mono); flex-shrink: 0;
+  }
+  .check-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; min-height: 44px; }
+  .tick {
+    width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px; font-size: 11px; font-weight: 800;
+  }
+  .tick.done { background: var(--success-soft); color: var(--success-text); border: 1px solid rgba(52,211,153,0.4); }
+  .tick.todo { background: transparent; color: transparent; border: 1.5px solid var(--navy-700); }
+  .pb-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border-subtle); }
+  .pb-row:last-child { border-bottom: none; }
+  .ms-row { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--border-subtle); }
+  .ms-row:last-child { border-bottom: none; }
+  .ms-dot { width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 11px; font-weight: 800; }
+
+  .legend { display: flex; gap: 12px; font-size: 11px; color: var(--text-secondary); flex-wrap: wrap; }
+  .legend .sw { width: 10px; height: 2.5px; border-radius: 2px; display: inline-block; }
+  .legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .chart-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+
+  .chartwrap { position: relative; width: 100%; }
+  .chartwrap svg { width: 100%; height: auto; display: block; overflow: visible; font-family: inherit; cursor: crosshair; }
+  .chart-tip {
+    position: absolute; top: 0; background: #18233D; border: 1px solid #334155; border-radius: 8px; padding: 7px 10px;
+    font-size: 11.5px; pointer-events: none; box-shadow: 0 6px 18px rgba(0,0,0,0.45); white-space: nowrap; z-index: 5; display: none;
+  }
+  .chart-tip .tl { font-weight: 700; color: #F8FAFC; margin-bottom: 3px; }
+  .chart-tip .tr { display: flex; align-items: center; gap: 6px; color: #94A3B8; }
+  .chart-tip .tr .sw { width: 8px; height: 2.5px; border-radius: 2px; display: inline-block; }
+  .chart-tip .tr b { color: #E8EDF5; font-weight: 600; }
+
+  .ex-card {
+    background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 18px 20px;
+    box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 12px; min-width: 0;
+  }
+  .coach-next { font-size: 12px; line-height: 1.55; color: var(--text-body); background: var(--surface-sunken); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 9px 12px; }
+  .coach-next b { font-weight: 700; color: var(--brand); }
+
+  .timeline { max-width: 780px; position: relative; padding-left: 26px; }
+  .timeline-bar { position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--navy-700); border-radius: 2px; }
+  .note-wrap { position: relative; margin-bottom: 22px; }
+  .note-node { position: absolute; left: -26px; top: 20px; width: 14px; height: 14px; border-radius: 50%; background: var(--navy-800); border: 2px solid var(--navy-700); }
+  .note-node.live { background: var(--gradient); border: none; box-shadow: var(--shadow-brand); }
+  .note-card { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 18px 22px; box-shadow: var(--shadow-sm); }
+  .note-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+  .note-id { font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--brand); background: var(--brand-tint); border-radius: 6px; padding: 3px 8px; }
+  .note-title { font-size: 14.5px; font-weight: 700; color: var(--text-strong); letter-spacing: -0.01em; }
+  .note-date { font-size: 11.5px; color: var(--text-muted); margin-left: auto; }
+  .note-line { font-size: 13px; line-height: 1.65; color: var(--text-body); padding: 3px 0 3px 14px; border-left: 2px solid var(--navy-700); margin: 6px 0; }
+  .note-tags { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 12px; }
+
+  .placeholder-wrap { display: flex; align-items: center; justify-content: center; min-height: 70vh; }
+  .placeholder-card { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: 20px; padding: 44px 52px; box-shadow: var(--shadow-md); text-align: center; max-width: 460px; }
+  .ph-icon { width: 48px; height: 48px; border-radius: 14px; background: var(--brand-tint); color: var(--brand); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+
+  .warn-box {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 11.5px; font-weight: 600;
+    color: var(--warning); background: rgba(245,158,11,0.14); border-radius: 8px; padding: 7px 10px; line-height: 1.45;
+  }
+  .ok-box {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 11.5px; font-weight: 600;
+    color: var(--success-text); background: var(--success-soft); border-radius: 8px; padding: 7px 10px; line-height: 1.45;
+  }
+
+  .exlist-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border-subtle); }
+  .exlist-row:last-child { border-bottom: none; }
+
+  /* ============ Responsive ============ */
+  @media (max-width: 1180px) {
+    .main-rail { grid-template-columns: 1fr; }
+    .charts-2 { grid-template-columns: 1fr; }
+    .strength-2 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 900px) {
+    .split-2 { grid-template-columns: 1fr; }
+    main { padding: 18px 16px 90px; }
+    .topbar {
+      display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 300;
+      background: rgba(15,23,42,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--navy-800);
+      padding: 10px 12px;
+    }
+    .burger {
+      width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--navy-700); background: rgba(30,41,59,0.6);
+      color: var(--text-strong); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;
+    }
+    .sidebar {
+      position: fixed; left: 0; top: 0; bottom: 0; height: 100dvh; transform: translateX(-105%);
+      transition: transform 0.25s var(--ease-out); z-index: 500; background: #101A30; box-shadow: var(--shadow-lg); width: 260px;
+    }
+    body.nav-open .sidebar { transform: translateX(0); }
+    .backdrop { position: fixed; inset: 0; background: rgba(2,6,18,0.6); z-index: 400; }
+    body.nav-open .backdrop { display: block; }
+    .nav-item { min-height: 44px; }
+    .kbd-hint { display: none; }
+    .page-head h1 { font-size: 21px; }
+    .ex-grid { grid-template-columns: 1fr; }
+    .placeholder-card { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <button class="burger" id="burger" aria-label="Open menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <span style="display:inline-flex;align-items:center;gap:8px;">
+    <span class="logo-mark" style="width:28px;height:28px;border-radius:8px;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><rect x="4" y="7" width="3" height="10" rx="1.2" fill="#fff" stroke="none"></rect><rect x="17" y="7" width="3" height="10" rx="1.2" fill="#fff" stroke="none"></rect></svg>
+    </span>
+    <span class="logo-name">Fitness OS</span>
+  </span>
+</div>
+<div class="backdrop" id="backdrop"></div>
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main id="main"></main>
+</div>
+<noscript><div style="padding:40px;font-family:sans-serif;color:#E8EDF5;">Fitness OS needs JavaScript — it computes everything from fitness-data.json in your browser.</div></noscript>
+
+<script>
+'use strict';
+/* ============================================================
+   Fitness OS — single-file dashboard.
+   Everything displayed is computed at load time from
+   fitness-data.json. Nothing display-worthy is hard-coded.
+   ============================================================ */
+
+// ---------- generic helpers ----------
+const LB_PER_KG = 2.20462;
+const DAY = 86400000;
+const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const parseD = (iso) => { const [y, m, d] = String(iso).split('-').map(Number); return new Date(y, m - 1, d); };
+const daysBetween = (a, b) => Math.round((b - a) / DAY);
+const addDays = (d, n) => new Date(d.getTime() + n * DAY);
+const fmtInt = (n) => Math.round(n).toLocaleString('en-GB');
+const fmtLb = (lb, dp) => (lb == null ? '—' : lb.toFixed(dp == null ? 1 : dp) + ' lb');
+const stoneTxt = (lb) => Math.floor(lb / 14) + ' st ' + (lb - Math.floor(lb / 14) * 14).toFixed(1);
+const kgTxt = (lb) => (lb / LB_PER_KG).toFixed(1) + ' kg';
+const fmtDate = (d, opts) => d.toLocaleDateString('en-GB', opts || { day: 'numeric', month: 'short' });
+const fmtTime = (hhmm) => {
+  if (!hhmm) return '';
+  const [h, m] = String(hhmm).split(':').map(Number);
+  const h12 = ((h + 11) % 12) + 1;
+  return h12 + ':' + String(m).padStart(2, '0') + (h < 12 ? ' am' : ' pm');
+};
+// "today" in Europe/London, regardless of device timezone
+function londonToday() {
+  try { return parseD(new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/London' })); }
+  catch (e) { return parseD(new Date().toISOString().slice(0, 10)); }
+}
+function londonHour() {
+  try { return Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', hour: 'numeric', hour12: false }).format(new Date())); }
+  catch (e) { return new Date().getHours(); }
+}
+
+// ---------- derive: every displayed number comes from here ----------
+function derive(data) {
+  const d = {};
+  const today = londonToday();
+  d.today = today;
+  d.profile = data.profile || {};
+  d.goalCfg = data.goal || {};
+  d.nutrition = data.nutritionTargets || {};
+  d.planned = data.planned || {};
+  d.progression = data.progressionRules || {};
+
+  // --- weigh-ins ---
+  const wis = (data.weighIns || []).slice().filter((w) => w && w.date && w.weightLb != null)
+    .sort((a, b) => parseD(a.date) - parseD(b.date));
+  d.weighIns = wis;
+  const startDate = d.profile.startDate ? parseD(d.profile.startDate) : (wis.length ? parseD(wis[0].date) : today);
+  d.startDate = startDate;
+  d.startW = d.profile.startWeightLb != null ? d.profile.startWeightLb : (wis.length ? wis[0].weightLb : null);
+  d.curW = wis.length ? wis[wis.length - 1].weightLb : null;
+  d.lastWeighDate = wis.length ? parseD(wis[wis.length - 1].date) : null;
+  d.goalW = d.goalCfg.targetWeightLb != null ? d.goalCfg.targetWeightLb : null;
+  d.lost = (d.startW != null && d.curW != null) ? d.startW - d.curW : null;
+  d.remaining = (d.curW != null && d.goalW != null) ? d.curW - d.goalW : null;
+  d.goalPct = (d.startW != null && d.curW != null && d.goalW != null && d.startW !== d.goalW)
+    ? Math.max(0, (d.startW - d.curW) / (d.startW - d.goalW)) * 100 : null;
+  d.dayN = daysBetween(startDate, today) + 1;
+
+  // 7-day moving average (over all weigh-ins, windowed by date)
+  d.ma = wis.map((w) => {
+    const end = parseD(w.date);
+    const win = wis.filter((x) => { const t = parseD(x.date); return t <= end && daysBetween(t, end) <= 6; });
+    return win.reduce((a, x) => a + x.weightLb, 0) / win.length;
+  });
+
+  // trend: linear regression (lb/day) over the last 28 days of weigh-ins
+  const windowStart = addDays(wis.length ? parseD(wis[wis.length - 1].date) : today, -28);
+  const pts = wis.filter((w) => parseD(w.date) >= windowStart)
+    .map((w) => ({ x: daysBetween(startDate, parseD(w.date)), y: w.weightLb }));
+  let slope = null;
+  if (pts.length >= 2) {
+    const mx = pts.reduce((a, p) => a + p.x, 0) / pts.length;
+    const my = pts.reduce((a, p) => a + p.y, 0) / pts.length;
+    const den = pts.reduce((a, p) => a + (p.x - mx) * (p.x - mx), 0);
+    if (den > 0) slope = pts.reduce((a, p) => a + (p.x - mx) * (p.y - my), 0) / den;
+  }
+  d.ratePerDay = slope != null ? -slope : null;           // +ve = losing
+  d.rateWk = d.ratePerDay != null ? d.ratePerDay * 7 : null;
+  d.losing = d.ratePerDay != null && d.ratePerDay > 0.02; // meaningful downward trend
+  d.rateTxt = d.rateWk != null ? '−' + Math.abs(d.rateWk).toFixed(1) + ' lb/wk' : '—';
+  const pocket = d.goalCfg.weeklyLossPocketLb || [1, 2];
+  d.pocket = pocket;
+  d.inPocket = d.rateWk != null && d.rateWk >= pocket[0] && d.rateWk <= pocket[1];
+  d.pocketTxt = d.rateWk == null ? 'need more data'
+    : d.inPocket ? 'In the ' + pocket[0] + '–' + pocket[1] + ' lb/wk pocket'
+    : d.rateWk > pocket[1] ? 'Faster than the ' + pocket[0] + '–' + pocket[1] + ' lb/wk pocket'
+    : 'Slower than the ' + pocket[0] + '–' + pocket[1] + ' lb/wk pocket';
+
+  // projected goal date
+  d.goalDate = null; d.goalWeeks = null;
+  if (d.losing && d.remaining != null && d.remaining > 0 && d.lastWeighDate) {
+    const days = d.remaining / d.ratePerDay;
+    if (days < 365 * 4) { d.goalDate = addDays(d.lastWeighDate, Math.round(days)); d.goalWeeks = Math.round(days / 7); }
+  }
+
+  // weekly averages (week 0 = first 7 days from start)
+  const wk = (n) => wis.filter((w) => { const i = Math.floor(daysBetween(startDate, parseD(w.date)) / 7); return i === n; });
+  const avg = (arr) => arr.length ? arr.reduce((a, w) => a + w.weightLb, 0) / arr.length : null;
+  const lastWkIdx = wis.length ? Math.floor(daysBetween(startDate, parseD(wis[wis.length - 1].date)) / 7) : 0;
+  d.wkCurAvg = avg(wk(lastWkIdx));
+  d.wkPrevAvg = avg(wk(lastWkIdx - 1));
+  d.wkChange = (d.wkCurAvg != null && d.wkPrevAvg != null) ? d.wkPrevAvg - d.wkCurAvg : null;
+  d.wkCurPartial = wis.length ? daysBetween(startDate, parseD(wis[wis.length - 1].date)) % 7 < 6 : false;
+  d.deficit = d.rateWk != null ? d.rateWk * 3500 / 7 : null;
+  d.maintenance = (d.deficit != null && d.nutrition.kcal != null) ? d.nutrition.kcal + d.deficit : null;
+
+  // weigh-in consistency
+  d.daysSinceStart = Math.max(1, daysBetween(startDate, today) + 1);
+  d.weighCount = wis.filter((w) => parseD(w.date) <= today).length;
+  d.weighRate = Math.min(1, d.weighCount / d.daysSinceStart);
+
+  // --- milestones ---
+  const msCfg = (data.milestones && data.milestones.length) ? data.milestones
+    : (d.goalCfg.nextMilestoneLb != null ? [{ label: 'Under ' + d.goalCfg.nextMilestoneLb + ' lb', weightLb: d.goalCfg.nextMilestoneLb }] : []);
+  d.milestones = msCfg.map((m) => {
+    const hit = wis.find((w) => w.weightLb < m.weightLb);
+    const out = { label: m.label, weightLb: m.weightLb, goal: !!m.goal, done: !!hit, doneDate: hit ? parseD(hit.date) : null };
+    if (!hit && d.curW != null) {
+      out.away = d.curW - m.weightLb;
+      if (d.losing) out.eta = addDays(d.lastWeighDate, Math.round(out.away / d.ratePerDay));
+    }
+    return out;
+  });
+  d.nextMs = d.milestones.find((m) => !m.done) || null;
+  if (d.nextMs) {
+    const prior = d.milestones.filter((m) => m.done).map((m) => m.weightLb).sort((a, b) => a - b)[0];
+    const from = prior != null ? prior : d.startW;
+    d.nextMsPct = (from != null && d.curW != null && from > d.nextMs.weightLb)
+      ? Math.min(100, Math.max(0, (from - d.curW) / (from - d.nextMs.weightLb) * 100)) : 0;
+  }
+
+  // --- sessions ---
+  const sessions = (data.sessions || []).slice().sort((a, b) => parseD(a.date) - parseD(b.date) || (a.id || 0) - (b.id || 0));
+  d.sessions = sessions;
+  d.totSessions = sessions.length;
+  d.totSets = sessions.reduce((a, s) => a + (s.exercises || []).reduce((x, e) => x + (e.sets || []).length, 0), 0);
+  d.totReps = sessions.reduce((a, s) => a + (s.exercises || []).reduce((x, e) => x + (e.sets || []).reduce((r, n) => r + n, 0), 0), 0);
+  d.totVolume = sessions.reduce((a, s) => a + (s.exercises || []).reduce((x, e) => x + (e.weightKg || 0) * (e.sets || []).reduce((r, n) => r + n, 0), 0), 0);
+  d.totMin = sessions.reduce((a, s) => a + (s.durationMin || 0), 0);
+  d.totKcal = sessions.reduce((a, s) => a + (s.kcalBurned || 0), 0);
+  const hrs = sessions.map((s) => s.avgHr).filter((h) => h != null);
+  d.avgHr = hrs.length ? Math.round(hrs.reduce((a, b) => a + b, 0) / hrs.length) : null;
+
+  const completed = sessions.filter((s) => s.status !== 'in-progress');
+  d.lastCompleted = completed.length ? completed[completed.length - 1] : null;
+  d.gapDays = d.lastCompleted ? daysBetween(parseD(d.lastCompleted.date), today) : null;
+  d.maxGap = d.planned.maxDaysBetweenSessions != null ? d.planned.maxDaysBetweenSessions : 3;
+  d.gapExceeded = d.gapDays != null && d.gapDays > d.maxGap;
+  d.sessionRate = d.planned.sessionsPerBlock ? Math.min(1, sessions.length / d.planned.sessionsPerBlock) : null;
+  d.consistency = d.sessionRate != null ? Math.round(((d.weighRate + d.sessionRate) / 2) * 100) : Math.round(d.weighRate * 100);
+  d.inProgress = sessions.find((s) => s.status === 'in-progress' && daysBetween(parseD(s.date), today) === 0) || null;
+  d.trainedToday = sessions.some((s) => daysBetween(parseD(s.date), today) === 0);
+
+  // --- per-exercise history & PBs (recomputed, pb flags in JSON are advisory) ---
+  const exNames = [];
+  const lib = data.exerciseLibrary || [];
+  lib.forEach((x) => { if (x && x.name && !exNames.includes(x.name)) exNames.push(x.name); });
+  sessions.forEach((s) => (s.exercises || []).forEach((e) => { if (e.name && !exNames.includes(e.name)) exNames.push(e.name); }));
+  const libByName = {}; lib.forEach((x) => { if (x && x.name) libByName[x.name] = x; });
+
+  d.pbEvents = [];   // { name, weightKg, bestReps, uniform, setCount, date, exIdx }
+  d.exercises = exNames.map((name) => {
+    const hist = []; // { date, weightKg, sets, sessionId }
+    sessions.forEach((s) => {
+      const entries = (s.exercises || []).filter((e) => e.name === name);
+      if (!entries.length) return;
+      const best = entries.reduce((a, b) => (b.weightKg > a.weightKg ? b : a));
+      hist.push({ date: parseD(s.date), weightKg: best.weightKg, sets: best.sets || [], sessionId: s.id });
+    });
+    // PB events: strictly heavier than every earlier entry, and not the first entry
+    hist.forEach((h, i) => {
+      if (i === 0) return;
+      if (hist.slice(0, i).every((p) => h.weightKg > p.weightKg)) {
+        const idx = sessions.findIndex((s) => s.id === h.sessionId);
+        const exIdx = idx >= 0 ? (sessions[idx].exercises || []).findIndex((e) => e.name === name) : 0;
+        d.pbEvents.push({
+          name, weightKg: h.weightKg, bestReps: h.sets.length ? Math.max.apply(null, h.sets) : null,
+          uniform: h.sets.length >= 3 && h.sets.every((r) => r === h.sets[0]) ? h.sets.length : null,
+          setCount: h.sets.length, date: h.date, exIdx,
+        });
+      }
+    });
+    const first = hist[0], last = hist[hist.length - 1];
+    const gainPct = (hist.length >= 2 && first.weightKg > 0 && last.weightKg !== first.weightKg)
+      ? (last.weightKg / first.weightKg - 1) * 100 : null;
+    // best-ever weight, with reps context
+    let pbTxt = '—';
+    if (hist.length === 1) pbTxt = last.weightKg + ' kg baseline';
+    else if (hist.length > 1) {
+      const bw = hist.reduce((a, b) => (b.weightKg >= a.weightKg ? b : a));
+      const reps = bw.sets.length ? Math.max.apply(null, bw.sets) : null;
+      const uni = bw.sets.length >= 3 && bw.sets.every((r) => r === bw.sets[0]) ? bw.sets.length : null;
+      pbTxt = bw.weightKg + ' kg' + (reps != null ? ' × ' + reps : '') + (uni ? ' · ×' + uni : '');
+    }
+    const cfg = libByName[name] || {};
+    return {
+      name, hist, gainPct,
+      cur: hist.length ? last.weightKg + ' kg' : '—',
+      gain: gainPct != null ? '+' + Math.round(gainPct) + '%' : '—',
+      pb: pbTxt,
+      prog: hist.length === 0 ? 'not established'
+        : hist.length === 1 ? hist[0].weightKg + ' (one session)'
+        : hist.map((h) => h.weightKg).join(' → '),
+      coachNext: cfg.coachNext || null,
+      flag: cfg.flag || (hist.length === 0 ? 'Not established' : hist.length === 1 ? 'Needs retesting' : null),
+      lastPB: d.pbEvents.filter((p) => p.name === name).slice(-1)[0] || null,
+    };
+  });
+
+  // strength index per session: avg( latest weight so far / first-ever weight ) across tracked lifts
+  const tracked = (data.trackedLifts && data.trackedLifts.length) ? data.trackedLifts : exNames;
+  d.tracked = tracked;
+  d.strengthIdx = sessions.map((s, i) => {
+    const upto = sessions.slice(0, i + 1);
+    const vals = [];
+    tracked.forEach((name) => {
+      let firstW = null, lastW = null;
+      upto.forEach((ss) => (ss.exercises || []).forEach((e) => {
+        if (e.name !== name) return;
+        if (firstW == null) firstW = e.weightKg;
+        lastW = e.weightKg;
+      }));
+      if (firstW != null && firstW > 0) vals.push((lastW / firstW) * 100);
+    });
+    return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+  });
+  const lastIdx = d.strengthIdx.filter((v) => v != null).slice(-1)[0];
+  d.strengthGain = lastIdx != null ? lastIdx - 100 : null;
+  d.strengthGainTxt = d.strengthGain != null ? (d.strengthGain >= 0 ? '+' : '−') + Math.abs(d.strengthGain).toFixed(1) + '%' : '—';
+  d.pbToday = d.pbEvents.filter((p) => daysBetween(p.date, today) === 0).length;
+  d.pbLifts = exNames.filter((n) => d.pbEvents.some((p) => p.name === n)).length;
+  const movers = d.exercises.filter((x) => x.gainPct != null);
+  d.biggestMover = movers.length ? movers.reduce((a, b) => (b.gainPct > a.gainPct ? b : a)) : null;
+  d.awaitingBaseline = d.exercises.filter((x) => x.hist.length <= 1).length;
+
+  // latest PBs, deduped per exercise (most recent event wins)
+  const seen = {};
+  d.latestPBs = d.pbEvents.slice().sort((a, b) => b.date - a.date || a.exIdx - b.exIdx)
+    .filter((p) => (seen[p.name] ? false : (seen[p.name] = true)));
+
+  // --- today / checklist ---
+  const t = data.today || {};
+  d.todayLive = (t.date && daysBetween(parseD(t.date), today) === 0) ? t : null;
+  d.todayWeighIn = wis.find((w) => daysBetween(parseD(w.date), today) === 0) || null;
+  d.checklistDone = d.todayLive ? (d.todayLive.checklistDone || []) : [];
+  d.checklist = (data.dailyChecklist || []).map((c) => {
+    const parts = String(c.label).split(' — ');
+    let sub = parts[1] || '';
+    const done = d.checklistDone.includes(c.id);
+    const nt = d.nutrition;
+    if (c.id === 'weigh') sub = d.todayWeighIn ? fmtLb(d.todayWeighIn.weightLb) + ' logged' + (d.todayWeighIn.time ? ' · ' + fmtTime(d.todayWeighIn.time) : '') : 'not logged yet';
+    if (c.id === 'train') sub = d.inProgress ? 'In progress right now'
+      : d.trainedToday ? 'Done — session #' + sessions[sessions.length - 1].id
+      : d.gapDays != null ? 'Last trained ' + d.gapDays + (d.gapDays === 1 ? ' day' : ' days') + ' ago' : 'No sessions logged yet';
+    if (c.id === 'kcal') sub = d.todayLive && d.todayLive.kcalSoFar != null ? fmtInt(d.todayLive.kcalSoFar) + ' kcal so far' : 'not logged yet';
+    if (c.id === 'protein') {
+      if (d.todayLive && d.todayLive.proteinSoFarG != null && nt.proteinG != null) {
+        const togo = nt.proteinG - d.todayLive.proteinSoFarG;
+        sub = d.todayLive.proteinSoFarG + ' g so far' + (togo > 0 ? ' — ' + togo + ' g to go' : ' — target hit');
+      } else sub = 'not logged yet';
+    }
+    if (c.id === 'water') sub = d.todayLive && d.todayLive.waterSoFarL != null
+      ? d.todayLive.waterSoFarL + ' L' + (d.inProgress && d.inProgress.fasted ? ' — fasted session, keep drinking' : ' so far')
+      : 'not logged yet';
+    return { id: c.id, label: parts[0], sub, done };
+  });
+
+  // --- coach notes ---
+  d.notes = (data.coachNotes || []).slice().sort((a, b) => parseD(b.date) - parseD(a.date)).map((n) => {
+    const s = sessions.find((x) => x.date === n.date);
+    const live = !!(s && s.status === 'in-progress');
+    return {
+      id: s ? '#' + s.id : '·',
+      date: parseD(n.date), live,
+      title: n.title || 'Coach note',
+      lines: (n.lines && n.lines.length) ? n.lines : [n.note].filter(Boolean),
+      tags: n.tags || [],
+    };
+  });
+
+  return d;
+}
+
+// ---------- SVG line chart (hand-rolled, interactive) ----------
+let chartSeq = 0;
+const chartReg = {};
+function chartHTML(cfg) {
+  const w = cfg.w || 640, h = cfg.h || 230;
+  const pad = Object.assign({ t: 16, r: 16, b: 28, l: 48 }, cfg.pad || {});
+  const labels = cfg.labels || [], n = labels.length;
+  const vis = (cfg.series || []).filter((s) => s && s.data && s.data.some((v) => v != null));
+  const all = [];
+  vis.forEach((s) => s.data.forEach((v) => { if (v != null) all.push(v); }));
+  if (!n || !all.length) {
+    return '<div class="empty-box" style="height:' + Math.round(h * 0.7) + 'px;display:flex;align-items:center;justify-content:center;">no data yet — log a weigh-in or a session and this chart draws itself</div>';
+  }
+  let min = Math.min.apply(null, all), max = Math.max.apply(null, all);
+  const span = (max - min) || 1;
+  min -= span * 0.12; max += span * 0.12;
+  const iw = w - pad.l - pad.r, ih = h - pad.t - pad.b;
+  const X = (i) => pad.l + (n === 1 ? iw / 2 : (i * iw) / (n - 1));
+  const Y = (v) => pad.t + ((max - v) * ih) / (max - min);
+  const yFmt = cfg.yFmt || ((x) => Math.round(x));
+  let out = '';
+  for (let t = 0; t <= 4; t++) {
+    const v = min + ((max - min) * t) / 4;
+    const y = Y(v);
+    out += '<line x1="' + pad.l + '" x2="' + (w - pad.r) + '" y1="' + y.toFixed(1) + '" y2="' + y.toFixed(1) + '" stroke="rgba(51,65,85,0.55)" stroke-width="1"/>';
+    out += '<text x="' + (pad.l - 8) + '" y="' + (y + 3.5).toFixed(1) + '" text-anchor="end" font-size="10.5" fill="#64748B">' + esc(yFmt(v)) + '</text>';
+  }
+  const every = cfg.xEvery || 1;
+  labels.forEach((l, i) => {
+    if (i % every === 0 || i === n - 1) out += '<text x="' + X(i).toFixed(1) + '" y="' + (h - 8) + '" text-anchor="middle" font-size="10.5" fill="#64748B">' + esc(l) + '</text>';
+  });
+  vis.forEach((s) => {
+    const pts = [];
+    s.data.forEach((v, i) => { if (v != null) pts.push([X(i), Y(v)]); });
+    if (!pts.length) return;
+    const dd = pts.map((p, j) => (j ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+    if (s.area) {
+      out += '<path d="' + dd + ' L ' + pts[pts.length - 1][0].toFixed(1) + ' ' + (h - pad.b).toFixed(1) + ' L ' + pts[0][0].toFixed(1) + ' ' + (h - pad.b).toFixed(1) + ' Z" fill="' + s.color + '" opacity="0.09"/>';
+    }
+    out += '<path d="' + dd + '" fill="none" stroke="' + s.color + '" stroke-width="' + (s.width || 2) + '"' + (s.dash ? ' stroke-dasharray="' + s.dash + '"' : '') + ' stroke-linecap="round" stroke-linejoin="round"/>';
+    if (s.dots) pts.forEach((p) => { out += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3" fill="' + s.color + '"/>'; });
+  });
+  // hover layer: crosshair + one marker per series, moved by JS
+  out += '<g class="hov" style="display:none"><line class="hov-line" y1="' + pad.t + '" y2="' + (h - pad.b) + '" stroke="rgba(148,163,184,0.35)" stroke-width="1"/>';
+  vis.forEach((s, si) => { if (!s.quiet) out += '<circle class="hov-c" data-si="' + si + '" r="4.5" fill="' + s.color + '" stroke="#0F172A" stroke-width="2" style="display:none"/>'; });
+  out += '</g>';
+  const id = 'ch' + (++chartSeq);
+  chartReg[id] = { w, h, pad, iw, n, labels, series: vis, X, Y, fmt: cfg.fmt || ((x) => x) };
+  return '<div class="chartwrap" data-chart="' + id + '"><svg viewBox="0 0 ' + w + ' ' + h + '" role="img">' + out + '</svg><div class="chart-tip"></div></div>';
+}
+function bindCharts(root) {
+  root.querySelectorAll('[data-chart]').forEach((el) => {
+    const reg = chartReg[el.dataset.chart];
+    if (!reg) return;
+    const svg = el.querySelector('svg');
+    const hov = svg.querySelector('.hov');
+    const line = svg.querySelector('.hov-line');
+    const tip = el.querySelector('.chart-tip');
+    const move = (ev) => {
+      const r = svg.getBoundingClientRect();
+      if (!r.width) return;
+      const cx = (ev.touches ? ev.touches[0].clientX : ev.clientX);
+      const px = ((cx - r.left) / r.width) * reg.w;
+      let i = Math.round((px - reg.pad.l) / (reg.iw / Math.max(1, reg.n - 1)));
+      i = Math.max(0, Math.min(reg.n - 1, i));
+      const x = reg.X(i);
+      hov.style.display = '';
+      line.setAttribute('x1', x); line.setAttribute('x2', x);
+      let rows = '';
+      svg.querySelectorAll('.hov-c').forEach((c) => {
+        const s = reg.series[Number(c.dataset.si)];
+        const v = s.data[i];
+        if (v == null) { c.style.display = 'none'; return; }
+        c.style.display = ''; c.setAttribute('cx', x); c.setAttribute('cy', reg.Y(v));
+      });
+      reg.series.forEach((s) => {
+        if (s.quiet || s.data[i] == null) return;
+        rows += '<div class="tr"><span class="sw" style="background:' + s.color + '"></span>' + esc(s.name) + ': <b>' + esc(reg.fmt(s.data[i])) + '</b></div>';
+      });
+      tip.innerHTML = '<div class="tl">' + esc(reg.labels[i]) + '</div>' + rows;
+      const fr = Math.min(0.86, Math.max(0.14, x / reg.w));
+      tip.style.left = (fr * 100) + '%';
+      tip.style.transform = 'translate(-50%, -6px)';
+      tip.style.display = 'block';
+    };
+    const leave = () => { hov.style.display = 'none'; tip.style.display = 'none'; };
+    svg.addEventListener('mousemove', move);
+    svg.addEventListener('touchstart', move, { passive: true });
+    svg.addEventListener('touchmove', move, { passive: true });
+    svg.addEventListener('mouseleave', leave);
+    svg.addEventListener('touchend', leave);
+  });
+}
+function sparkHTML(hist, color) {
+  const w = 260, h = 34;
+  if (!hist.length) return '<div style="height:' + h + 'px;border-radius:8px;background:rgba(30,41,59,0.6);border:1px dashed #334155;display:flex;align-items:center;justify-content:center;font-size:10.5px;color:#64748B;">no data yet</div>';
+  const data = hist.map((x) => x.weightKg);
+  let min = Math.min.apply(null, data), max = Math.max.apply(null, data);
+  if (min === max) { min -= 1; max += 1; }
+  const X = (i) => 6 + (data.length === 1 ? (w - 12) / 2 : (i * (w - 12)) / (data.length - 1));
+  const Y = (v) => 5 + ((max - v) * (h - 10)) / (max - min);
+  const dd = data.map((v, i) => (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(v).toFixed(1)).join(' ');
+  return '<svg viewBox="0 0 ' + w + ' ' + h + '" style="width:100%;height:' + h + 'px;display:block;" preserveAspectRatio="none">' +
+    '<path d="' + dd + '" fill="none" stroke="' + color + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+    '<circle cx="' + X(data.length - 1).toFixed(1) + '" cy="' + Y(data[data.length - 1]).toFixed(1) + '" r="3.2" fill="' + color + '"/></svg>';
+}
+
+// ---------- icons ----------
+function icon(kind, size) {
+  const s = size || 16;
+  const wrap = (inner) => '<svg width="' + s + '" height="' + s + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + inner + '</svg>';
+  const map = {
+    grid: '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>',
+    check: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',
+    activity: '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>',
+    clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+    book: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+    down: '<polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/>',
+    up: '<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>',
+    sliders: '<line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>',
+    pie: '<path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/>',
+    msg: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+    award: '<circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>',
+    target: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+    cog: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
+  };
+  return wrap(map[kind] || '<circle cx="12" cy="12" r="9"/>');
+}
+function avatarHTML(name, size) {
+  const initials = String(name || '').split(' ').filter(Boolean).slice(0, 2).map((w) => (w[0] || '').toUpperCase()).join('') || '·';
+  return '<span class="avatar" style="width:' + size + 'px;height:' + size + 'px;font-size:' + Math.round(size * 0.4) + 'px;">' + esc(initials) + '</span>';
+}
+
+// ---------- shared fragments ----------
+function sessionRowHTML(s, D) {
+  const exs = s.exercises || [];
+  const sets = exs.reduce((a, e) => a + (e.sets || []).length, 0);
+  const inProg = s.status === 'in-progress';
+  const dt = parseD(s.date);
+  const isToday = daysBetween(dt, D.today) === 0;
+  const title = esc(s.type || 'Session') + ' · ' + esc(s.label || (s.fasted ? 'fasted' : exs.length + ' lifts'));
+  const pbs = D.pbEvents.filter((p) => daysBetween(p.date, dt) === 0).length;
+  const stats = inProg
+    ? exs.length + ' lifts logged · ' + sets + ' sets so far' + (pbs ? ' · ' + pbs + ' PB' + (pbs > 1 ? 's' : '') : '')
+    : (s.durationMin != null ? s.durationMin + ' min' : sets + ' sets') + (s.kcalBurned != null ? ' · ' + fmtInt(s.kcalBurned) + ' kcal' : '') + (s.avgHr != null ? ' · avg HR ' + s.avgHr : '');
+  const dateTxt = (isToday ? 'Today · ' : fmtDate(dt, { weekday: 'short' }) + ' ') + fmtDate(dt);
+  const pill = inProg ? '<span class="pill t-brand">In progress</span>' : '<span class="pill t-success">Complete</span>';
+  return '<div class="session-row"><span class="session-num">#' + esc(s.id) + '</span>' +
+    '<div style="flex:1;min-width:0;"><div style="font-size:13.5px;font-weight:700;color:var(--text-strong);">' + title + '</div>' +
+    '<div style="font-size:11.5px;color:var(--text-muted);margin-top:2px;">' + esc(dateTxt) + ' · ' + esc(stats) + '</div></div>' + pill + '</div>';
+}
+function fuelTilesHTML(nt) {
+  const tiles = [];
+  if (nt.kcal != null) tiles.push({ l: 'Calories', v: fmtInt(nt.kcal), s: nt.kcalTolerance != null ? '±' + nt.kcalTolerance + ' kcal' : '' });
+  if (nt.proteinG != null) tiles.push({ l: 'Protein · priority', v: nt.proteinG + ' g', s: nt.proteinMinG != null ? 'min ' + nt.proteinMinG + ' g' : '', hi: true });
+  if (nt.carbsG != null) tiles.push({ l: 'Carbs', v: nt.carbsG + ' g', s: 'fuel the lifts' });
+  if (nt.fatG != null) tiles.push({ l: 'Fat', v: nt.fatG + ' g', s: 'healthy sources' });
+  if (nt.waterL) tiles.push({ l: 'Water', v: nt.waterL[0] + '–' + nt.waterL[1] + ' L', s: 'more on fasted days' });
+  if (!tiles.length) return '<div class="empty-box">No nutrition targets set — add them to fitness-data.json</div>';
+  return '<div class="fuel-grid">' + tiles.map((t) =>
+    '<div class="tile"' + (t.hi ? ' style="border-color:var(--indigo-400);"' : '') + '><div class="tile-label"' + (t.hi ? ' style="color:var(--brand);"' : '') + '>' + esc(t.l) + '</div>' +
+    '<div class="tile-num">' + esc(t.v) + '</div><div class="tile-sub">' + esc(t.s) + '</div></div>').join('') + '</div>';
+}
+function totalsGridHTML(D) {
+  const cells = [
+    [String(D.totSessions), 'workouts'],
+    [String(D.totSets), 'sets'],
+    [fmtInt(D.totReps), 'reps'],
+    [fmtInt(D.totVolume) + ' kg', 'volume lifted'],
+    [D.totMin ? Math.floor(D.totMin / 60) + ' h ' + (D.totMin % 60) + ' m' : '—', 'under the bar'],
+    [D.totKcal ? '≈ ' + fmtInt(D.totKcal) : '—', 'kcal burned'],
+    [D.avgHr != null ? D.avgHr + ' bpm' : '—', 'avg session HR'],
+  ];
+  return '<div class="totals-grid">' + cells.map((c) =>
+    '<div><div style="font-size:22px;font-weight:800;color:var(--text-strong);letter-spacing:-0.02em;">' + esc(c[0]) + '</div>' +
+    '<div style="font-size:11.5px;color:var(--text-muted);">' + esc(c[1]) + '</div></div>').join('') + '</div>';
+}
+function checklistHTML(D) {
+  if (!D.checklist.length) return '<div class="empty-box">No checklist configured</div>';
+  return D.checklist.map((c) =>
+    '<div class="check-row"><span class="tick ' + (c.done ? 'done' : 'todo') + '">' + (c.done ? '✓' : '') + '</span>' +
+    '<div style="min-width:0;"><div style="font-size:12.5px;font-weight:600;' + (c.done ? 'color:var(--text-muted);text-decoration:line-through;' : 'color:var(--text-strong);') + '">' + esc(c.label) + '</div>' +
+    '<div style="font-size:11px;color:var(--text-muted);margin-top:1px;">' + esc(c.sub) + '</div></div></div>').join('');
+}
+function milestonesHTML(D) {
+  if (!D.milestones.length) return '<div class="empty-box">No milestones configured — add a "milestones" list to fitness-data.json</div>';
+  return D.milestones.map((m) => {
+    if (m.done) {
+      return '<div class="ms-row"><span class="ms-dot" style="background:var(--success-soft);color:var(--success-text);border:1px solid rgba(52,211,153,0.4);">✓</span>' +
+        '<div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:600;color:var(--text-muted);text-decoration:line-through;">' + esc(m.label) + '</div></div>' +
+        '<span style="font-size:11.5px;font-weight:600;color:var(--success-text);white-space:nowrap;">done ' + esc(fmtDate(m.doneDate)) + '</span></div>';
+    }
+    const dot = m.goal ? 'background:var(--gradient);border:none;box-shadow:var(--shadow-brand);' : 'background:transparent;border:1.5px solid var(--navy-700);';
+    const meta = (m.away != null ? fmtLb(m.away) + ' away' : '') + (m.eta ? ' · ≈ ' + fmtDate(m.eta, m.eta.getFullYear() !== D.today.getFullYear() ? { day: 'numeric', month: 'short', year: 'numeric' } : { day: 'numeric', month: 'short' }) : '');
+    return '<div class="ms-row"><span class="ms-dot" style="' + dot + '"></span>' +
+      '<div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:' + (m.goal ? 800 : 600) + ';color:var(--text-strong);">' + esc(m.label) + '</div></div>' +
+      '<span style="font-size:11.5px;font-weight:600;color:var(--text-muted);white-space:nowrap;font-family:var(--font-mono);">' + esc(meta || '—') + '</span></div>';
+  }).join('');
+}
+function gapNoteHTML(D) {
+  if (D.gapDays == null) return '';
+  if (D.gapExceeded) {
+    return '<div class="warn-box">⚠ ' + (D.trainedToday
+      ? D.gapDays + ' days between sessions. Your rule is ' + D.maxGap + '. Book the next one before you leave the gym.'
+      : D.gapDays + ' days since your last session. Your rule is ' + D.maxGap + '. Book one today.') + '</div>';
+  }
+  return '<div class="ok-box">✓ ' + D.gapDays + (D.gapDays === 1 ? ' day' : ' days') + ' since last session — inside the ' + D.maxGap + '-day rule.</div>';
+}
+
+// ---------- charts built from derived data ----------
+function weightChart(D, opts) {
+  const wis = D.weighIns.slice(-(opts.points || 10));
+  const off = D.weighIns.length - wis.length;
+  const labels = wis.map((w) => fmtDate(parseD(w.date)));
+  const series = [
+    { name: 'Weight', data: wis.map((w) => w.weightLb), color: '#818CF8', width: 2.2, area: true, dots: true },
+    { name: '7-day avg', data: wis.map((_, i) => D.ma[off + i]), color: '#34D399', width: 1.8, dash: '5 4' },
+  ];
+  const vals = wis.map((w) => w.weightLb);
+  const span = vals.length ? Math.max.apply(null, vals) - Math.min.apply(null, vals) : 0;
+  const yFmt = span < 4 ? ((v) => v.toFixed(1)) : ((v) => Math.round(v));
+  return chartHTML({ w: opts.w, h: opts.h, labels, series, fmt: (v) => v.toFixed(1) + ' lb', yFmt, xEvery: opts.xEvery || Math.max(1, Math.ceil(labels.length / 6)) });
+}
+function projectionChart(D) {
+  if (!D.weighIns.length || D.goalW == null) return chartHTML({ labels: [], series: [] });
+  const labels = [fmtDate(D.startDate)];
+  const actual = [D.startW];
+  const proj = [null];
+  if (D.lastWeighDate && daysBetween(D.startDate, D.lastWeighDate) > 0) {
+    labels.push(fmtDate(D.lastWeighDate)); actual.push(D.curW); proj.push(D.curW);
+  }
+  if (D.goalDate) {
+    let m = new Date(D.lastWeighDate.getFullYear(), D.lastWeighDate.getMonth() + 1, 1);
+    let guard = 0;
+    while (m < D.goalDate && guard++ < 18) {
+      labels.push(fmtDate(m, { month: 'short' }));
+      actual.push(null);
+      proj.push(Math.max(D.goalW, D.curW - D.ratePerDay * daysBetween(D.lastWeighDate, m)));
+      m = new Date(m.getFullYear(), m.getMonth() + 1, 1);
+    }
+    labels.push(fmtDate(D.goalDate)); actual.push(null); proj.push(D.goalW);
+  }
+  const series = [
+    { name: 'Actual', data: actual, color: '#818CF8', width: 2.4, dots: true },
+    { name: 'Projection', data: proj, color: '#8B5CF6', width: 2, dash: '6 5', dots: true },
+    { name: 'Goal', data: labels.map(() => D.goalW), color: '#475569', width: 1.4, dash: '3 5', quiet: true },
+  ];
+  return chartHTML({ w: 980, h: 280, labels, series, fmt: (v) => v.toFixed(1) + ' lb' });
+}
+function strengthChart(D, w, h) {
+  const labels = [], data = [];
+  D.sessions.forEach((s, i) => {
+    if (D.strengthIdx[i] == null) return;
+    labels.push('#' + s.id + ' · ' + fmtDate(parseD(s.date)));
+    data.push(D.strengthIdx[i]);
+  });
+  return chartHTML({
+    w, h, labels,
+    series: [{ name: 'Index', data, color: '#34D399', width: 2.4, area: true, dots: true }],
+    fmt: (v) => String(Math.round(v)), yFmt: (v) => Math.round(v),
+  });
+}
+
+// ---------- screens ----------
+function screenDashboard(D) {
+  const name = esc(D.profile.firstName || 'there');
+  const hour = londonHour();
+  const greet = hour < 12 ? 'Morning' : hour < 18 ? 'Afternoon' : 'Evening';
+  const goalStone = D.goalW != null && D.goalW % 14 === 0 ? (D.goalW / 14) + ' stone' : (D.goalW != null ? stoneTxt(D.goalW) : 'goal');
+  const headBits = [fmtDate(D.today, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }), 'Day ' + D.dayN + ' of the build'];
+  if (D.remaining != null) headBits.push(D.remaining.toFixed(1) + ' lb between you and ' + goalStone);
+  const livePill = D.inProgress ? '<span class="live-pill"><span class="live-dot"></span>Workout #' + esc(D.inProgress.id) + ' in progress</span>' : '';
+  const workoutBtn = D.inProgress ? 'Continue workout →' : 'Start workout →';
+
+  // hero cards
+  let hero = '';
+  hero += '<div class="card"><div class="stat-label">Current weight</div><div class="stat-num">' + esc(fmtLb(D.curW)) + '</div>' +
+    '<div class="stat-sub">' + (D.curW != null ? esc(stoneTxt(D.curW) + ' · ' + kgTxt(D.curW)) : 'log your first weigh-in') + '</div>' +
+    (D.lost != null ? '<div class="stat-note" style="color:var(--success-text);">↓ ' + esc(fmtLb(D.lost)) + ' in ' + D.dayN + ' days</div>' : '') + '</div>';
+  hero += '<div class="card"><div class="stat-label">Goal progress</div><div class="stat-num">' + (D.goalPct != null ? D.goalPct.toFixed(1) + '%' : '—') + '</div>' +
+    '<div class="bar" style="margin-top:12px;"><div style="width:' + (D.goalPct != null ? Math.min(100, D.goalPct).toFixed(1) : 0) + '%;"></div></div>' +
+    '<div class="stat-sub" style="margin-top:8px;">' + (D.remaining != null ? esc(fmtLb(D.remaining)) + ' to go · goal ' + esc(fmtLb(D.goalW, 0)) : 'set a goal in fitness-data.json') + '</div></div>';
+  hero += '<div class="card"><div class="stat-label">Estimated goal date</div><div class="stat-num">' +
+    (D.goalDate ? esc(fmtDate(D.goalDate, { day: 'numeric', month: 'short', year: '2-digit' })) : '—') + '</div>' +
+    '<div class="stat-sub">' + (D.goalDate ? 'at current trend, ' + esc(D.rateTxt) : 'need a downward trend first') + '</div>' +
+    '<div class="stat-note" style="color:' + (D.inPocket ? 'var(--success-text)' : 'var(--warning)') + ';">' + esc(D.pocketTxt) + '</div></div>';
+  hero += '<div class="card"><div class="stat-label">Strength index</div><div class="stat-num" style="color:var(--success-text);">' + esc(D.strengthGainTxt) + '</div>' +
+    '<div class="stat-sub">avg gain across ' + D.tracked.length + ' tracked lifts</div>' +
+    (D.pbToday ? '<div class="stat-note" style="color:var(--success-text);">↑ ' + D.pbToday + ' PB' + (D.pbToday > 1 ? 's' : '') + ' set today</div>' : '') + '</div>';
+  hero += '<div class="card"><div class="stat-label">Consistency</div><div class="stat-num">' + D.consistency + '%</div>' +
+    '<div class="stat-sub">Weigh-ins ' + D.weighCount + '/' + D.daysSinceStart + (D.sessionRate != null ? ' · sessions ' + D.totSessions + ' of ' + D.planned.sessionsPerBlock + ' planned' : '') + '</div>' +
+    (D.gapDays != null ? '<div class="stat-note" style="color:' + (D.gapExceeded ? 'var(--warning)' : 'var(--success-text)') + ';">' + (D.gapExceeded ? '⚠ ' + D.gapDays + '-day training gap' : '✓ gap inside ' + D.maxGap + '-day rule') + '</div>' : '') + '</div>';
+
+  const recent = D.sessions.slice().reverse().slice(0, 3).map((s) => sessionRowHTML(s, D)).join('') || '<div class="empty-box">No sessions yet — tell Clive about your first workout</div>';
+  const latestNote = D.notes.length ? D.notes[0] : null;
+  const pbRows = D.latestPBs.slice(0, 4).map((p) => {
+    const dtx = daysBetween(p.date, D.today) === 0 ? 'Today' : fmtDate(p.date);
+    const val = p.weightKg + ' kg' + (p.bestReps != null ? ' × ' + p.bestReps : '') + (p.uniform ? ' · ×' + p.uniform : '');
+    return '<div class="pb-row"><div style="flex:1;min-width:0;"><div style="font-size:12.5px;font-weight:600;color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + esc(p.name) + '</div>' +
+      '<div style="font-size:11px;color:var(--text-muted);margin-top:1px;">' + esc(dtx) + '</div></div>' +
+      '<span style="font-size:12px;font-weight:700;color:var(--success-text);font-family:var(--font-mono);white-space:nowrap;">' + esc(val) + '</span></div>';
+  }).join('') || '<div class="empty-box">No PBs yet — they land here automatically</div>';
+
+  return '<div class="page-head"><div><h1>' + greet + ', ' + name + ' 👋</h1><div class="sub">' + esc(headBits.join(' · ')) + '</div></div>' +
+    '<div class="head-actions">' + livePill +
+    '<button class="btn btn-secondary" data-nav="checkin">Log weigh-in</button>' +
+    '<button class="btn btn-primary" data-nav="workout">' + workoutBtn + '</button></div></div>' +
+
+    '<div class="hero-grid">' + hero + '</div>' +
+    '<div class="main-rail"><div class="col">' +
+
+    '<div class="charts-2">' +
+    '<div class="card"><div class="chart-head"><div><div class="card-title">Weight trend</div><div class="card-sub">Daily weigh-ins · last ' + Math.min(10, D.weighIns.length) + ' days</div></div>' +
+    '<div class="legend"><span><span class="sw" style="background:var(--indigo-400);"></span>Actual</span><span><span class="sw" style="background:var(--emerald);"></span>7-day avg</span></div></div>' +
+    weightChart(D, { w: 620, h: 218, points: 10, xEvery: 2 }) + '</div>' +
+    '<div class="card"><div class="chart-head"><div><div class="card-title">Strength index</div><div class="card-sub">Session #1 = 100</div></div>' +
+    (D.strengthGain != null ? '<span class="pill t-success">↑ ' + Math.abs(D.strengthGain).toFixed(1) + '%</span>' : '') + '</div>' +
+    strengthChart(D, 420, 218) + '</div></div>' +
+
+    '<div class="card"><div class="chart-head"><div class="card-title">Today’s fuel targets</div><span class="link" data-nav="nutrition">Nutrition →</span></div>' +
+    fuelTilesHTML(D.nutrition) + '</div>' +
+
+    '<div class="card"><div class="card-title" style="margin-bottom:14px;">The numbers so far</div>' + totalsGridHTML(D) + '</div>' +
+
+    '<div class="card"><div class="chart-head" style="margin-bottom:6px;"><div class="card-title">Recent sessions</div><span class="link" data-nav="history">All history →</span></div>' +
+    recent + '</div>' +
+    '</div>' +
+
+    '<div class="rail">' +
+    '<div class="card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">' + avatarHTML('Clive', 38) +
+    '<div><div style="font-size:13.5px;font-weight:700;color:var(--text-strong);">Clive</div><div style="font-size:11px;color:var(--text-muted);">Your coach · watching everything</div></div></div>' +
+    '<div style="font-size:13px;line-height:1.6;color:var(--text-body);">' + (latestNote ? esc(latestNote.lines[latestNote.lines.length > 1 ? 1 : 0] || '') : 'No notes yet — Clive writes one after every session.') + '</div>' +
+    gapNoteHTML(D) +
+    '<div class="link" style="margin-top:12px;font-size:12.5px;" data-nav="coach">All coach notes →</div></div>' +
+
+    '<div class="card"><div class="card-title" style="font-size:14px;margin-bottom:10px;">Today’s non-negotiables</div>' + checklistHTML(D) + '</div>' +
+
+    (D.nextMs ? '<div class="card"><div class="stat-label" style="margin-bottom:8px;">Next milestone</div>' +
+      '<div style="font-size:22px;font-weight:800;letter-spacing:-0.02em;color:var(--text-strong);">' + esc(D.nextMs.label.split(' · ')[0]) + '</div>' +
+      '<div class="bar" style="margin-top:12px;"><div style="width:' + D.nextMsPct.toFixed(0) + '%;"></div></div>' +
+      '<div class="stat-sub" style="margin-top:8px;">' + esc((D.nextMs.away != null ? fmtLb(D.nextMs.away) + ' away' : '') + (D.nextMs.eta ? ' · on trend ≈ ' + fmtDate(D.nextMs.eta) : '')) + '</div></div>' : '') +
+
+    '<div class="card"><div class="chart-head" style="margin-bottom:8px;"><div class="card-title" style="font-size:14px;">Latest PBs</div><span class="link" data-nav="strength">Strength →</span></div>' +
+    pbRows + '</div>' +
+    '</div></div>';
+}
+
+function screenWeight(D) {
+  const sub = (D.startW != null && D.goalW != null)
+    ? fmtLb(D.startW) + ' → ' + fmtLb(D.goalW, 0) + ' · morning weigh-ins, ' + D.weighCount + ' for ' + D.daysSinceStart + ' so far'
+    : 'log weigh-ins to start the trend';
+  let cards = '';
+  cards += '<div class="card"><div class="stat-label" style="margin-bottom:8px;">Current</div><div class="stat-num" style="font-size:26px;">' + esc(fmtLb(D.curW)) + '</div>' +
+    '<div class="stat-sub" style="margin-top:4px;">' + (D.curW != null ? esc(stoneTxt(D.curW) + ' · ' + kgTxt(D.curW)) : '—') + '</div></div>';
+  cards += '<div class="card"><div class="stat-label" style="margin-bottom:8px;">This week’s average</div><div class="stat-num" style="font-size:26px;">' + esc(fmtLb(D.wkCurAvg)) + '</div>' +
+    '<div class="stat-sub" style="margin-top:4px;' + (D.wkChange != null && D.wkChange > 0 ? 'color:var(--success-text);font-weight:600;' : '') + '">' +
+    (D.wkChange != null ? (D.wkChange > 0 ? '↓ ' + fmtLb(D.wkChange) : '↑ ' + fmtLb(-D.wkChange)) + ' vs last week' : 'first week — no comparison yet') + '</div></div>';
+  cards += '<div class="card"><div class="stat-label" style="margin-bottom:8px;">Loss rate</div><div class="stat-num" style="font-size:26px;">' + esc(D.rateTxt) + '</div>' +
+    '<div class="stat-sub" style="margin-top:4px;' + (D.inPocket ? 'color:var(--success-text);font-weight:600;' : 'color:var(--warning);font-weight:600;') + '">' +
+    esc(D.rateWk == null ? 'need more weigh-ins' : D.inPocket ? 'inside the ' + D.pocket[0] + '–' + D.pocket[1] + ' lb/wk target' : D.pocketTxt.toLowerCase()) + '</div></div>';
+  cards += '<div class="card"><div class="stat-label" style="margin-bottom:8px;">Estimated completion</div><div class="stat-num" style="font-size:26px;">' +
+    (D.goalDate ? esc(fmtDate(D.goalDate, { day: 'numeric', month: 'short', year: 'numeric' })) : '—') + '</div>' +
+    '<div class="stat-sub" style="margin-top:4px;">' + (D.goalWeeks != null ? D.goalWeeks + ' weeks at current trend' : 'no downward trend yet') + '</div></div>';
+
+  const maths =
+    '<div class="kv"><span class="k">Trend</span><span class="v">' + esc(D.rateTxt) + '</span></div>' +
+    '<div class="kv"><span class="k">Implied daily deficit</span><span class="v">' + (D.deficit != null ? '≈ ' + fmtInt(Math.round(D.deficit / 10) * 10) + ' kcal' : '—') + '</span></div>' +
+    '<div class="kv"><span class="k">Implied maintenance</span><span class="v">' + (D.maintenance != null ? '≈ ' + fmtInt(Math.round(D.maintenance / 10) * 10) + ' kcal' : '—') + '</span></div>' +
+    '<div class="kv"><span class="k">Last week’s average</span><span class="v">' + esc(fmtLb(D.wkPrevAvg)) + '</span></div>' +
+    '<div class="kv"><span class="k">This week’s average' + (D.wkCurPartial ? ' (partial)' : '') + '</span><span class="v">' + esc(fmtLb(D.wkCurAvg)) + '</span></div>' +
+    '<div class="kv"><span class="k">Week-on-week change</span><span class="v" style="color:var(--success-text);">' + (D.wkChange != null ? (D.wkChange > 0 ? '↓ ' : '↑ ') + fmtLb(Math.abs(D.wkChange)) : '—') + '</span></div>';
+
+  return '<div class="page-head"><div><h1>Weight</h1><div class="sub">' + esc(sub) + '</div></div>' +
+    '<div class="head-actions"><button class="btn btn-primary" data-nav="checkin">Log weigh-in</button></div></div>' +
+    '<div class="stats-4">' + cards + '</div>' +
+
+    '<div class="card" style="margin-bottom:18px;"><div class="chart-head"><div><div class="card-title">' +
+    (D.weighIns.length ? 'Last ' + Math.min(30, D.weighIns.length) + ' days' : 'Weigh-ins') + '</div>' +
+    '<div class="card-sub">Every morning weigh-in since ' + esc(fmtDate(D.startDate)) + '</div></div>' +
+    '<div class="legend"><span><span class="sw" style="background:var(--indigo-400);"></span>Actual</span><span><span class="sw" style="background:var(--emerald);"></span>7-day average</span></div></div>' +
+    weightChart(D, { w: 980, h: 260, points: 30 }) + '</div>' +
+
+    '<div class="card" style="margin-bottom:18px;"><div class="chart-head"><div><div class="card-title">Road to ' + (D.goalW != null ? esc(fmtLb(D.goalW, 0)) : 'goal') + '</div>' +
+    '<div class="card-sub">' + (D.goalDate ? 'Projection at your current trend — arrives ≈ ' + esc(fmtDate(D.goalDate, { day: 'numeric', month: 'long', year: 'numeric' })) : 'Projection appears once there’s a downward trend') + '</div></div>' +
+    '<div class="legend"><span><span class="sw" style="background:var(--indigo-400);"></span>Actual</span><span><span class="sw" style="background:var(--violet);opacity:0.8;"></span>Projection</span>' +
+    (D.goalW != null ? '<span><span class="sw" style="background:var(--slate-600);"></span>Goal · ' + esc(fmtLb(D.goalW, 0)) + '</span>' : '') + '</div></div>' +
+    projectionChart(D) + '</div>' +
+
+    '<div class="split-2">' +
+    '<div class="card"><div class="card-title" style="margin-bottom:6px;">Milestones</div>' + milestonesHTML(D) + '</div>' +
+    '<div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">' + avatarHTML('Clive', 26) +
+    '<div class="card-title">The maths, per Clive</div></div>' + maths +
+    '<div class="quote" style="margin-top:14px;">“Two clean data points a week beat daily panic. The 7-day average is the only line I care about — and yours is pointing exactly where it should. Don’t chase the daily wobble.”<span class="sig">— Clive</span></div></div>' +
+    '</div>';
+}
+
+function screenStrength(D) {
+  const headlines =
+    '<div class="kv"><span class="k">Biggest mover</span><span class="v" style="color:var(--success-text);font-family:var(--font-sans);">' +
+    (D.biggestMover ? esc(D.biggestMover.name.replace(/ to box| \(close grip\)/g, '') + ' ' + D.biggestMover.gain) : '—') + '</span></div>' +
+    '<div class="kv"><span class="k">Lifts with personal bests</span><span class="v">' + D.pbLifts + '</span></div>' +
+    '<div class="kv"><span class="k">Average gain per lift</span><span class="v">' + esc(D.strengthGainTxt) + '</span></div>' +
+    '<div class="kv"><span class="k">Volume lifted (' + D.totSessions + ' sessions)</span><span class="v">' + fmtInt(D.totVolume) + ' kg</span></div>' +
+    '<div class="kv"><span class="k">Lifts awaiting a baseline</span><span class="v" style="color:var(--warning);">' + D.awaitingBaseline + '</span></div>';
+
+  const cards = D.exercises.map((x) => {
+    const pill = x.lastPB
+      ? '<span class="pill t-success">PB ' + (daysBetween(x.lastPB.date, D.today) === 0 ? 'today' : esc(fmtDate(x.lastPB.date))) + '</span>'
+      : x.flag ? '<span class="pill t-warn">' + esc(x.flag) + '</span>' : '';
+    return '<div class="ex-card">' +
+      '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">' +
+      '<div style="font-size:14px;font-weight:700;color:var(--text-strong);letter-spacing:-0.01em;line-height:1.3;">' + esc(x.name) + '</div>' + pill + '</div>' +
+      '<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;">' +
+      '<div><div style="font-size:26px;font-weight:800;letter-spacing:-0.02em;color:var(--text-strong);line-height:1;">' + esc(x.cur) + '</div>' +
+      '<div style="font-size:11px;color:var(--text-muted);margin-top:4px;">current working weight</div></div>' +
+      '<div style="text-align:right;"><div style="font-size:22px;font-weight:800;letter-spacing:-0.02em;line-height:1;color:' + (x.gain === '—' ? 'var(--slate-500)' : 'var(--success-text)') + ';">' + esc(x.gain) + '</div>' +
+      '<div style="font-size:11px;color:var(--text-muted);margin-top:4px;">since baseline</div></div></div>' +
+      sparkHTML(x.hist, x.gain === '—' ? '#64748B' : '#818CF8') +
+      '<div style="display:flex;flex-direction:column;gap:6px;font-size:12.5px;">' +
+      '<div style="display:flex;justify-content:space-between;gap:10px;"><span style="color:var(--text-muted);">Personal best</span><span style="font-weight:700;color:var(--text-strong);font-family:var(--font-mono);">' + esc(x.pb) + '</span></div>' +
+      '<div style="display:flex;justify-content:space-between;gap:10px;"><span style="color:var(--text-muted);">Progression</span><span style="font-weight:600;color:var(--text-secondary);font-family:var(--font-mono);">' + esc(x.prog) + '</span></div></div>' +
+      (x.coachNext ? '<div class="coach-next"><b>Clive’s next step:</b> ' + esc(x.coachNext) + '</div>' : '') +
+      '</div>';
+  }).join('') || '<div class="empty-box">No lifts logged yet — your first session sets the baselines</div>';
+
+  return '<div class="page-head"><div><h1>Strength</h1><div class="sub">Every tracked lift, every session · progressive overload, honestly measured</div></div></div>' +
+    '<div class="strength-2">' +
+    '<div class="card"><div class="chart-head"><div><div class="card-title">Overall strength index</div>' +
+    '<div class="card-sub">Average working weight vs your session #1 baseline (= 100)</div></div>' +
+    (D.strengthGain != null ? '<span class="pill t-success">↑ ' + Math.abs(D.strengthGain).toFixed(1) + '% in ' + D.dayN + ' days</span>' : '') + '</div>' +
+    strengthChart(D, 640, 240) + '</div>' +
+    '<div class="card"><div class="card-title" style="margin-bottom:14px;">Headlines</div>' + headlines +
+    '<div class="quote" style="margin-top:12px;">“Early gains are neurological — enjoy them, but don’t extrapolate. The plan works if we’re still adding weight in week 12, not week 2.”<span class="sig">— Clive</span></div></div></div>' +
+    '<div class="ex-grid">' + cards + '</div>';
+}
+
+function screenCoach(D) {
+  const notes = D.notes.map((n) => {
+    const dateTxt = fmtDate(n.date, { day: 'numeric', month: 'short', year: 'numeric' }) + (n.live ? ' · in progress' : '');
+    return '<div class="note-wrap"><span class="note-node' + (n.live ? ' live' : '') + '"></span><div class="note-card">' +
+      '<div class="note-head"><span class="note-id">' + esc(n.id) + '</span><span class="note-title">' + esc(n.title) + '</span><span class="note-date">' + esc(dateTxt) + '</span></div>' +
+      n.lines.map((l) => '<div class="note-line">' + esc(l) + '</div>').join('') +
+      (n.tags.length ? '<div class="note-tags">' + n.tags.map((t) => '<span class="pill t-' + esc(t.tone || 'brand') + '">' + esc(t.text) + '</span>').join('') + '</div>' : '') +
+      '</div></div>';
+  }).join('') || '<div class="empty-box" style="margin-left:-26px;">No coach notes yet — Clive writes one after every session.</div>';
+
+  return '<div style="display:flex;align-items:center;gap:16px;margin-bottom:26px;">' + avatarHTML('Clive', 56) +
+    '<div><h1 style="margin:0 0 3px;font-size:24px;font-weight:800;letter-spacing:-0.02em;color:var(--text-strong);">Clive’s notes</h1>' +
+    '<div style="font-size:13.5px;color:var(--text-secondary);">Evidence-based. Honest. Allergic to ego lifting. One entry per session — like commits, but for your body.</div></div></div>' +
+    '<div class="timeline"><div class="timeline-bar"></div>' + notes + '</div>';
+}
+
+// ----- simple JSON-rendered stub screens -----
+function screenCheckin(D) {
+  const t = D.todayLive;
+  const nt = D.nutrition;
+  const bars = [];
+  if (t && nt.kcal != null) bars.push(['Calories', t.kcalSoFar || 0, nt.kcal, ' kcal']);
+  if (t && nt.proteinG != null) bars.push(['Protein', t.proteinSoFarG || 0, nt.proteinG, ' g']);
+  if (t && nt.waterL) bars.push(['Water', t.waterSoFarL || 0, nt.waterL[1], ' L']);
+  return '<div class="page-head"><div><h1>Today’s check-in</h1><div class="sub">' + esc(fmtDate(D.today, { weekday: 'long', day: 'numeric', month: 'long' })) + ' · everything below comes straight from fitness-data.json</div></div></div>' +
+    '<div class="split-2"><div class="card"><div class="card-title" style="margin-bottom:10px;">Non-negotiables</div>' + checklistHTML(D) + '</div>' +
+    '<div class="col"><div class="card"><div class="card-title" style="margin-bottom:14px;">Intake so far</div>' +
+    (bars.length ? bars.map((b) => {
+      const pct = Math.min(100, (b[1] / b[2]) * 100);
+      return '<div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:6px;"><span style="color:var(--text-secondary);font-weight:600;">' + esc(b[0]) + '</span>' +
+        '<span style="font-family:var(--font-mono);color:var(--text-strong);font-weight:700;">' + esc(b[1] + ' / ' + b[2] + b[3]) + '</span></div><div class="bar"><div style="width:' + pct.toFixed(0) + '%;"></div></div></div>';
+    }).join('') : '<div class="empty-box">Nothing logged for today yet — tell Clive what you’ve eaten and it lands here.</div>') + '</div>' +
+    '<div class="card"><div class="card-title" style="margin-bottom:10px;">How to log</div>' +
+    '<div style="font-size:13px;line-height:1.7;color:var(--text-body);">Tell Clive in plain English — <i>“weighed 263.1 this morning, 1,900 kcal, 160 g protein”</i> — and this page updates on the next refresh. No forms, no apps.</div></div></div></div>';
+}
+function screenWorkout(D) {
+  const s = D.inProgress || (D.sessions.length ? D.sessions[D.sessions.length - 1] : null);
+  if (!s) return '<div class="page-head"><div><h1>Workout</h1><div class="sub">No sessions yet</div></div></div><div class="card"><div class="empty-box">Session #1 sets your baselines. Tell Clive when you’re at the gym.</div></div>';
+  const exs = (s.exercises || []);
+  const rows = exs.map((e) => {
+    const vol = (e.weightKg || 0) * (e.sets || []).reduce((a, b) => a + b, 0);
+    const isPB = D.pbEvents.some((p) => p.name === e.name && daysBetween(p.date, parseD(s.date)) === 0 && p.weightKg === e.weightKg);
+    return '<div class="exlist-row"><div style="flex:1;min-width:0;"><div style="font-size:13.5px;font-weight:700;color:var(--text-strong);">' + esc(e.name) + (isPB ? ' <span class="pill t-success" style="margin-left:6px;">PB</span>' : '') + '</div>' +
+      '<div style="font-size:11.5px;color:var(--text-muted);margin-top:2px;">' + esc((e.sets || []).join(' / ') + ' reps · ' + fmtInt(vol) + ' kg volume') + '</div></div>' +
+      '<span style="font-size:15px;font-weight:800;color:var(--text-strong);font-family:var(--font-mono);white-space:nowrap;">' + esc(e.weightKg + ' kg') + '</span></div>';
+  }).join('') || '<div class="empty-box">No lifts logged in this session yet</div>';
+  const sets = exs.reduce((a, e) => a + (e.sets || []).length, 0);
+  const reps = exs.reduce((a, e) => a + (e.sets || []).reduce((x, y) => x + y, 0), 0);
+  const vol = exs.reduce((a, e) => a + (e.weightKg || 0) * (e.sets || []).reduce((x, y) => x + y, 0), 0);
+  return '<div class="page-head"><div><h1>Workout</h1><div class="sub">Session #' + esc(s.id) + ' · ' + esc(s.type || '') + ' · ' + esc(fmtDate(parseD(s.date), { weekday: 'long', day: 'numeric', month: 'long' })) + (s.fasted ? ' · fasted' : '') + '</div></div>' +
+    '<div class="head-actions">' + (s.status === 'in-progress' ? '<span class="live-pill"><span class="live-dot"></span>In progress</span>' : '<span class="pill t-success">Complete</span>') + '</div></div>' +
+    '<div class="split-2"><div class="card">' + rows + '</div>' +
+    '<div class="col"><div class="card"><div class="card-title" style="margin-bottom:14px;">This session</div>' +
+    '<div class="kv"><span class="k">Sets</span><span class="v">' + sets + '</span></div>' +
+    '<div class="kv"><span class="k">Reps</span><span class="v">' + reps + '</span></div>' +
+    '<div class="kv"><span class="k">Volume</span><span class="v">' + fmtInt(vol) + ' kg</span></div>' +
+    (s.avgHr != null ? '<div class="kv"><span class="k">Avg HR</span><span class="v">' + s.avgHr + ' bpm</span></div>' : '') +
+    (s.durationMin != null ? '<div class="kv"><span class="k">Duration</span><span class="v">' + s.durationMin + ' min</span></div>' : '') + '</div>' +
+    (D.progression.rule ? '<div class="card"><div class="card-title" style="margin-bottom:10px;">The progression rule</div><div style="font-size:13px;line-height:1.7;color:var(--text-body);">' + esc(D.progression.rule) + '</div></div>' : '') +
+    '</div></div>';
+}
+function screenHistory(D) {
+  const rows = D.sessions.slice().reverse().map((s) => sessionRowHTML(s, D)).join('') || '<div class="empty-box">No sessions yet</div>';
+  return '<div class="page-head"><div><h1>Workout history</h1><div class="sub">Every session, straight from the log</div></div></div>' +
+    '<div class="card" style="margin-bottom:18px;"><div class="card-title" style="margin-bottom:14px;">The numbers so far</div>' + totalsGridHTML(D) + '</div>' +
+    '<div class="card">' + rows + '</div>';
+}
+function screenLibrary(D) {
+  const rows = D.exercises.map((x) =>
+    '<div class="exlist-row"><div style="flex:1;min-width:0;"><div style="font-size:13.5px;font-weight:700;color:var(--text-strong);">' + esc(x.name) + '</div>' +
+    '<div style="font-size:11.5px;color:var(--text-muted);margin-top:2px;">' + esc(x.prog) + ' · PB ' + esc(x.pb) + '</div></div>' +
+    (x.lastPB ? '<span class="pill t-success">PB ' + (daysBetween(x.lastPB.date, D.today) === 0 ? 'today' : esc(fmtDate(x.lastPB.date))) + '</span>' : x.flag ? '<span class="pill t-warn">' + esc(x.flag) + '</span>' : '') +
+    '<span style="font-size:14px;font-weight:800;color:var(--text-strong);font-family:var(--font-mono);white-space:nowrap;min-width:64px;text-align:right;">' + esc(x.cur) + '</span></div>').join('') ||
+    '<div class="empty-box">No exercises yet</div>';
+  return '<div class="page-head"><div><h1>Exercise library</h1><div class="sub">' + D.exercises.length + ' movements known to the system</div></div></div>' +
+    '<div class="card">' + rows + '</div>';
+}
+function screenNutrition(D) {
+  const t = D.todayLive;
+  return '<div class="page-head"><div><h1>Nutrition</h1><div class="sub">Targets from the plan · intake from today’s log</div></div></div>' +
+    '<div class="card" style="margin-bottom:18px;"><div class="card-title" style="margin-bottom:14px;">Daily targets</div>' + fuelTilesHTML(D.nutrition) + '</div>' +
+    '<div class="card"><div class="card-title" style="margin-bottom:14px;">Today so far</div>' +
+    (t ? '<div class="kv"><span class="k">Calories</span><span class="v">' + fmtInt(t.kcalSoFar || 0) + ' / ' + fmtInt(D.nutrition.kcal || 0) + ' kcal</span></div>' +
+      '<div class="kv"><span class="k">Protein</span><span class="v">' + (t.proteinSoFarG || 0) + ' / ' + (D.nutrition.proteinG || 0) + ' g</span></div>' +
+      '<div class="kv"><span class="k">Water</span><span class="v">' + (t.waterSoFarL || 0) + ' L</span></div>'
+      : '<div class="empty-box">Nothing logged for today yet — tell Clive and it appears here.</div>') + '</div>';
+}
+function screenMeasurements() {
+  return '<div class="page-head"><div><h1>Measurements</h1><div class="sub">Tape measurements — chest, waist, arms</div></div></div>' +
+    '<div class="card"><div class="empty-box">No measurements tracked yet. Tell Clive a set of tape measurements and this page will start charting them.</div></div>';
+}
+function screenAchievements(D) {
+  const pbs = D.pbEvents.slice().sort((a, b) => b.date - a.date).map((p) =>
+    '<div class="pb-row"><div style="flex:1;min-width:0;"><div style="font-size:12.5px;font-weight:600;color:var(--text-strong);">' + esc(p.name) + '</div>' +
+    '<div style="font-size:11px;color:var(--text-muted);margin-top:1px;">' + esc(daysBetween(p.date, D.today) === 0 ? 'Today' : fmtDate(p.date, { day: 'numeric', month: 'short', year: 'numeric' })) + '</div></div>' +
+    '<span style="font-size:12px;font-weight:700;color:var(--success-text);font-family:var(--font-mono);">' + esc(p.weightKg + ' kg' + (p.bestReps != null ? ' × ' + p.bestReps : '')) + '</span></div>').join('') ||
+    '<div class="empty-box">No PBs yet — they’re detected automatically from your sessions.</div>';
+  const done = D.milestones.filter((m) => m.done).map((m) =>
+    '<div class="ms-row"><span class="ms-dot" style="background:var(--success-soft);color:var(--success-text);border:1px solid rgba(52,211,153,0.4);">✓</span>' +
+    '<div style="flex:1;"><div style="font-size:13px;font-weight:600;color:var(--text-strong);">' + esc(m.label) + '</div></div>' +
+    '<span style="font-size:11.5px;font-weight:600;color:var(--success-text);">' + esc(fmtDate(m.doneDate)) + '</span></div>').join('') ||
+    '<div class="empty-box">First milestone still cooking.</div>';
+  return '<div class="page-head"><div><h1>Achievements</h1><div class="sub">Personal bests and milestones, automatically detected</div></div></div>' +
+    '<div class="split-2"><div class="card"><div class="card-title" style="margin-bottom:8px;">Personal bests</div>' + pbs + '</div>' +
+    '<div class="card"><div class="card-title" style="margin-bottom:8px;">Milestones hit</div>' + done + '</div></div>';
+}
+function screenGoals(D) {
+  return '<div class="page-head"><div><h1>Goals</h1><div class="sub">The target, the pocket, and the road there</div></div></div>' +
+    '<div class="stats-4">' +
+    '<div class="card"><div class="stat-label">Start</div><div class="stat-num" style="font-size:26px;">' + esc(fmtLb(D.startW)) + '</div><div class="stat-sub">' + esc(fmtDate(D.startDate, { day: 'numeric', month: 'long', year: 'numeric' })) + '</div></div>' +
+    '<div class="card"><div class="stat-label">Goal</div><div class="stat-num" style="font-size:26px;">' + esc(fmtLb(D.goalW, 0)) + '</div><div class="stat-sub">' + (D.goalW != null ? esc(stoneTxt(D.goalW)) : '—') + '</div></div>' +
+    '<div class="card"><div class="stat-label">Target rate</div><div class="stat-num" style="font-size:26px;">' + esc(D.pocket[0] + '–' + D.pocket[1] + ' lb/wk') + '</div><div class="stat-sub">currently ' + esc(D.rateTxt) + '</div></div>' +
+    '<div class="card"><div class="stat-label">Arrival</div><div class="stat-num" style="font-size:26px;">' + (D.goalDate ? esc(fmtDate(D.goalDate, { day: 'numeric', month: 'short', year: 'numeric' })) : '—') + '</div><div class="stat-sub">' + (D.goalWeeks != null ? '≈ ' + D.goalWeeks + ' weeks away' : 'projection needs a trend') + '</div></div>' +
+    '</div><div class="card"><div class="card-title" style="margin-bottom:6px;">Milestones</div>' + milestonesHTML(D) + '</div>';
+}
+function screenSettings(D) {
+  return '<div class="page-head"><div><h1>Settings</h1><div class="sub">There is no settings panel — the JSON is the settings</div></div></div>' +
+    '<div class="split-2"><div class="card"><div class="card-title" style="margin-bottom:10px;">How this thing works</div>' +
+    '<div style="font-size:13px;line-height:1.75;color:var(--text-body);">Everything on every screen is computed from <span style="font-family:var(--font-mono);color:var(--brand);">fitness-data.json</span> when the page loads. To change a target, a rule or fix a typo: edit the file, push, refresh. To log training or weigh-ins, tell Clive in plain English and he does it for you. The workflow lives in the repo README.</div></div>' +
+    '<div class="card"><div class="card-title" style="margin-bottom:14px;">Current configuration</div>' +
+    (D.progression.repTarget ? '<div class="kv"><span class="k">Rep target</span><span class="v">' + esc(D.progression.repTarget) + '</span></div>' : '') +
+    (D.progression.incrementKg != null ? '<div class="kv"><span class="k">Progression increment</span><span class="v">+' + esc(D.progression.incrementKg) + ' kg</span></div>' : '') +
+    (D.planned.sessionsPerBlock != null ? '<div class="kv"><span class="k">Sessions per block</span><span class="v">' + esc(D.planned.sessionsPerBlock) + '</span></div>' : '') +
+    (D.planned.maxDaysBetweenSessions != null ? '<div class="kv"><span class="k">Max days between sessions</span><span class="v">' + esc(D.planned.maxDaysBetweenSessions) + '</span></div>' : '') +
+    '<div class="kv"><span class="k">Weight-loss pocket</span><span class="v">' + esc(D.pocket[0] + '–' + D.pocket[1] + ' lb/wk') + '</span></div>' +
+    '</div></div>';
+}
+function screenPlaceholder(title) {
+  return '<div class="placeholder-wrap"><div class="placeholder-card">' +
+    '<span class="ph-icon">' + icon('clock', 22) + '</span>' +
+    '<div style="font-size:20px;font-weight:800;letter-spacing:-0.02em;color:var(--text-strong);margin-bottom:8px;">' + esc(title) + '</div>' +
+    '<div style="font-size:13.5px;line-height:1.65;color:var(--text-secondary);">Not designed yet — this screen lands in the next iteration.</div>' +
+    '<div class="link" style="margin-top:18px;font-size:13px;" data-nav="dashboard">← Back to dashboard</div></div></div>';
+}
+
+// ---------- shell / router ----------
+const NAV = [
+  { title: 'Overview', items: [['dashboard', 'Dashboard', 'grid'], ['checkin', "Today's check-in", 'check']] },
+  { title: 'Training', items: [['workout', 'Workout', 'activity'], ['history', 'Workout history', 'clock'], ['library', 'Exercise library', 'book']] },
+  { title: 'Progress', items: [['weight', 'Weight', 'down'], ['strength', 'Strength', 'up'], ['measurements', 'Measurements', 'sliders'], ['nutrition', 'Nutrition', 'pie']] },
+  { title: 'Coach', items: [['coach', 'Coach notes', 'msg'], ['achievements', 'Achievements', 'award'], ['goals', 'Goals', 'target'], ['settings', 'Settings', 'cog']] },
+];
+const SCREENS = {
+  dashboard: screenDashboard, weight: screenWeight, strength: screenStrength, coach: screenCoach,
+  checkin: screenCheckin, workout: screenWorkout, history: screenHistory, library: screenLibrary,
+  nutrition: screenNutrition, measurements: screenMeasurements, achievements: screenAchievements,
+  goals: screenGoals, settings: screenSettings,
+};
+let DATA = null;
+let CURRENT = 'dashboard';
+
+function renderSidebar(D) {
+  const el = document.getElementById('sidebar');
+  el.innerHTML =
+    '<div class="logo-row"><span class="logo-mark">' +
+    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><rect x="4" y="7" width="3" height="10" rx="1.2" fill="#fff" stroke="none"></rect><rect x="17" y="7" width="3" height="10" rx="1.2" fill="#fff" stroke="none"></rect></svg>' +
+    '</span><span style="display:flex;flex-direction:column;min-width:0;"><span class="logo-name">Fitness OS</span>' +
+    '<span class="logo-sub">' + esc((D.profile.firstName || '').toUpperCase()) + '’S BUILD</span></span></div>' +
+    NAV.map((g) =>
+      '<div class="nav-group"><div class="nav-group-title">' + esc(g.title) + '</div><div class="nav-items">' +
+      g.items.map((it) => '<div class="nav-item' + (CURRENT === it[0] ? ' active' : '') + '" data-nav="' + it[0] + '">' + icon(it[2]) + '<span>' + esc(it[1]) + '</span></div>').join('') +
+      '</div></div>').join('') +
+    '<div class="sidebar-foot"><div class="kbd-hint">Press <span class="kbd">1–6</span> to switch screens</div>' +
+    '<div class="me-row">' + avatarHTML(D.profile.firstName || '·', 34) +
+    '<div style="min-width:0;"><div style="font-size:13px;font-weight:700;color:var(--text-strong);">' + esc(D.profile.firstName || '') + '</div>' +
+    '<div style="font-size:11px;color:var(--text-muted);">Body recomposition</div></div></div></div>';
+}
+function render() {
+  const D = derive(DATA);
+  renderSidebar(D);
+  const main = document.getElementById('main');
+  const fn = SCREENS[CURRENT];
+  const NAMES = { checkin: "Today's check-in", workout: 'Workout', history: 'Workout history', library: 'Exercise library', measurements: 'Measurements', nutrition: 'Nutrition', achievements: 'Achievements', goals: 'Goals', settings: 'Settings' };
+  main.innerHTML = fn ? fn(D) : screenPlaceholder(NAMES[CURRENT] || CURRENT);
+  bindCharts(main);
+  main.focus && main.focus({ preventScroll: true });
+  window.scrollTo(0, 0);
+}
+function go(screen) {
+  CURRENT = SCREENS[screen] ? screen : 'dashboard';
+  if (location.hash !== '#' + CURRENT) { try { history.replaceState(null, '', '#' + CURRENT); } catch (e) {} }
+  document.body.classList.remove('nav-open');
+  render();
+}
+document.addEventListener('click', (e) => {
+  const t = e.target.closest('[data-nav]');
+  if (t) { go(t.dataset.nav); return; }
+});
+window.addEventListener('hashchange', () => {
+  const h = location.hash.replace('#', '');
+  if (h && h !== CURRENT) go(h);
+});
+window.addEventListener('keydown', (e) => {
+  if (/INPUT|TEXTAREA|SELECT/.test((e.target && e.target.tagName) || '')) return;
+  const map = { 1: 'dashboard', 2: 'workout', 3: 'weight', 4: 'strength', 5: 'nutrition', 6: 'coach' };
+  if (map[e.key] && DATA) go(map[e.key]);
+});
+document.getElementById('burger').addEventListener('click', () => document.body.classList.toggle('nav-open'));
+document.getElementById('backdrop').addEventListener('click', () => document.body.classList.remove('nav-open'));
+
+function renderError(err) {
+  document.getElementById('main').innerHTML =
+    '<div class="placeholder-wrap"><div class="placeholder-card">' +
+    '<span class="ph-icon">' + icon('activity', 22) + '</span>' +
+    '<div style="font-size:20px;font-weight:800;color:var(--text-strong);margin-bottom:8px;">Couldn’t load fitness-data.json</div>' +
+    '<div style="font-size:13.5px;line-height:1.7;color:var(--text-secondary);text-align:left;">' +
+    'The dashboard reads everything from <span style="font-family:var(--font-mono);color:var(--brand);">fitness-data.json</span> next to this file.<br><br>' +
+    '• If you opened index.html directly (file://), browsers block the fetch — serve the folder instead:<br>' +
+    '<span style="font-family:var(--font-mono);font-size:12px;background:var(--surface-sunken);border-radius:6px;padding:2px 6px;">python3 -m http.server</span> then open <span style="font-family:var(--font-mono);font-size:12px;">http://localhost:8000</span><br><br>' +
+    '• If the file exists, check it’s valid JSON.<br><br>' +
+    '<span style="color:var(--text-muted);font-size:12px;">' + esc(err && err.message ? err.message : err) + '</span></div></div></div>';
+}
+
+// ---------- boot ----------
+(function boot() {
+  const h = location.hash.replace('#', '');
+  if (h) CURRENT = h;
+  fetch('fitness-data.json?t=' + Date.now())
+    .then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status + ' fetching fitness-data.json'); return r.json(); })
+    .then((json) => { DATA = json; go(CURRENT); })
+    .catch((err) => renderError(err));
+})();
+</script>
+</body>
+</html>
