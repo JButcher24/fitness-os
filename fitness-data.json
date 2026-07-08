@@ -2,16 +2,8 @@
   "profile": { "firstName": "Jamie", "startDate": "2026-06-29", "startWeightLb": 266.0 },
   "goal": { "targetWeightLb": 210, "weeklyLossPocketLb": [1, 2], "nextMilestoneLb": 260 },
   "weighIns": [
-    { "date": "2026-06-29", "weightLb": 266.0, "time": "06:52" },
-    { "date": "2026-06-30", "weightLb": 265.5, "time": "06:47" },
-    { "date": "2026-07-01", "weightLb": 265.8, "time": "06:58" },
-    { "date": "2026-07-02", "weightLb": 265.0, "time": "06:44" },
-    { "date": "2026-07-03", "weightLb": 264.7, "time": "06:51" },
-    { "date": "2026-07-04", "weightLb": 264.9, "time": "07:12" },
-    { "date": "2026-07-05", "weightLb": 264.3, "time": "07:05" },
-    { "date": "2026-07-06", "weightLb": 264.5, "time": "06:49" },
-    { "date": "2026-07-07", "weightLb": 263.9, "time": "06:43" },
-    { "date": "2026-07-08", "weightLb": 263.6, "time": "06:41" }
+    { "date": "2026-06-29", "weightLb": 266.0, "note": "Baseline starting weight" },
+    { "date": "2026-06-30", "weightLb": 263.6, "source": "smart scale", "bodyFatPct": 34.8, "bmi": 35.7 }
   ],
   "nutritionTargets": { "kcal": 2500, "kcalTolerance": 100, "proteinG": 219, "proteinMinG": 180, "carbsG": 219, "fatG": 83, "waterL": [2.5, 3.5] },
   "dailyChecklist": [
@@ -22,7 +14,7 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 6,120 steps" }
   ],
-  "today": { "date": "2026-07-08", "kcalSoFar": 1640, "proteinSoFarG": 128, "waterSoFarL": 1.8, "checklistDone": ["weigh", "train"] },
+  "today": { "date": "2026-07-08", "kcalSoFar": 1640, "proteinSoFarG": 128, "waterSoFarL": 1.8, "checklistDone": ["train"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
@@ -71,6 +63,21 @@
     }
   ],
   "coachNotes": [
+    {
+      "date": "2026-07-08", "title": "Record cleared — real data only",
+      "note": "Wiped eight weigh-ins that were never stood on. Two real numbers stand: 266.0 lb baseline on 29 June, 263.6 lb on 30 June (smart scale, 34.8% body fat, BMI 35.7). That 2.4 lb is mostly first-week water, not fat — don't over-read it. Weigh tomorrow and we start the real trend.",
+      "lines": [
+        "The log had ten daily weigh-ins. You stood on the scale twice. The eight fakes are gone — I coach off data, so the data gets honest first.",
+        "What's real: 266.0 lb baseline (29 June), 263.6 lb (30 June) with 34.8% body fat and BMI 35.7 off the smart scale. That composition number is the one worth watching.",
+        "Two points is not a trend. I'm calling nothing on rate of loss until we've got a week of real mornings.",
+        "Weigh in tomorrow. Then every morning you can manage. The scale is data, not judgement — but it only helps if you actually stand on it."
+      ],
+      "tags": [
+        { "text": "Record corrected", "tone": "warn" },
+        { "text": "Body fat 34.8%", "tone": "info" },
+        { "text": "Baseline 266.0 lb", "tone": "brand" }
+      ]
+    },
     {
       "date": "2026-07-08", "title": "Fasted session — PBs and one telling-off",
       "note": "Bench 22 kg for 12, 10, 13 — set two wobbled, set three answered. Hold 22 until 3x12 is clean. You trained fasted: 40–50 g protein within the hour. No exceptions.",
