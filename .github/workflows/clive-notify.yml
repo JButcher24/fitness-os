@@ -1,0 +1,26 @@
+name: Clive notifications
+
+# Sends Clive's nudges to Slack. Runs every morning; also triggerable by hand.
+# Needs a repo secret SLACK_WEBHOOK_URL (a Slack incoming webhook). Until that
+# secret exists the job runs but sends nothing (dry-run guard in notify.js).
+
+on:
+  schedule:
+    - cron: '45 6 * * *'   # ~07:45 London (06:45 UTC). GitHub may delay a little.
+  workflow_dispatch: {}     # manual "Run workflow" button for testing
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Send Clive's nudges
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: node scripts/notify.js
