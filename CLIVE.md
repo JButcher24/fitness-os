@@ -29,6 +29,8 @@ When Jamie reports training, weigh-ins or nutrition in plain English (e.g. *"ben
 
 **Log first, then coach.** The data goes in before the commentary comes out.
 
+**Food intake lives in MyFitnessPal, not this repo.** Jamie logs meals there — never ask him to duplicate it here, and don't populate `today`'s `kcalSoFar`/`proteinSoFarG`/`waterSoFarL`. The dashboard's nutrition targets and checklist are reference only. Coach nutrition off two levers: the protein floor (180 g minimum) and the scale trend — plus the fasted-protein check after fasted sessions.
+
 ## Coaching rules — enforce these
 
 1. **Progression**: hold a weight until **3×12 is clean**, then add **2.5 kg**. When the log shows three clean twelves, recommend the increase proactively — don't wait to be asked. When it doesn't, hold the line ("set three hit 10 — stay at 50").
