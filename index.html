@@ -39,7 +39,7 @@
     --shadow-brand: 0 8px 28px rgba(99,102,241,0.38);
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   }
-  html, body { margin: 0; padding: 0; background: #0F172A; }
+  html, body { margin: 0; padding: 0; background: #0F172A; overscroll-behavior-y: contain; }
   * { box-sizing: border-box; }
   body {
     font-family: var(--font-sans); color: var(--text-body); min-height: 100vh;
@@ -282,6 +282,58 @@
     .ex-grid { grid-template-columns: 1fr; }
     .placeholder-card { padding: 32px 24px; }
   }
+
+  /* ============ Live refresh: pull-to-refresh, sync pill, toast ============ */
+  @keyframes db-spin { to { transform: rotate(360deg); } }
+
+  #ptr {
+    position: fixed; top: 0; left: 0; right: 0; height: 0; z-index: 600;
+    display: flex; align-items: flex-end; justify-content: center;
+    pointer-events: none; overflow: visible;
+  }
+  #ptr .ptr-inner {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 999px; color: var(--brand);
+    background: rgba(30,41,59,0.94); border: 1px solid var(--navy-700);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-52px); opacity: 0; will-change: transform, opacity;
+  }
+  #ptr .ptr-spin { width: 20px; height: 20px; display: block; }
+  body.ptr-refreshing #ptr .ptr-spin { animation: db-spin 0.7s linear infinite; }
+
+  .topbar-refresh {
+    margin-left: auto; width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+    border: 1px solid var(--navy-700); background: rgba(30,41,59,0.6);
+    color: var(--text-strong); display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+  }
+  .topbar-refresh:active { background: rgba(51,65,85,0.85); }
+  body.ptr-refreshing .topbar-refresh svg { animation: db-spin 0.7s linear infinite; }
+
+  #syncpill {
+    position: fixed; right: 18px; bottom: 18px; z-index: 550;
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px;
+    border-radius: 999px; cursor: pointer; font-family: var(--font-sans);
+    font-size: 12px; font-weight: 600; color: var(--text-secondary);
+    background: rgba(15,23,42,0.9); border: 1px solid var(--navy-700); box-shadow: var(--shadow-lg);
+    transition: color 0.15s, border-color 0.15s;
+  }
+  #syncpill:hover { color: var(--text-strong); border-color: var(--brand); }
+  #syncpill svg { color: var(--brand); display: block; }
+  body.ptr-refreshing #syncpill svg { animation: db-spin 0.7s linear infinite; }
+  @media (max-width: 900px) { #syncpill { display: none; } }
+
+  #synctoast {
+    position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 18px); z-index: 650;
+    display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px;
+    font-family: var(--font-sans); font-size: 13px; font-weight: 600; color: var(--text-strong);
+    background: rgba(15,23,42,0.96); border: 1px solid var(--navy-700); box-shadow: var(--shadow-lg);
+    opacity: 0; pointer-events: none; transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+  }
+  #synctoast.show { opacity: 1; transform: translate(-50%, 0); }
+  #synctoast .dot { width: 7px; height: 7px; border-radius: 999px; background: var(--brand); flex-shrink: 0; }
+  #synctoast.ok .dot { background: var(--emerald); }
+  #synctoast.warn .dot { background: var(--warning); }
+  @media (max-width: 900px) { #synctoast { bottom: 78px; } }
 </style>
 </head>
 <body>
@@ -295,12 +347,21 @@
     </span>
     <span class="logo-name">CLIVE</span>
   </span>
+  <button class="topbar-refresh" id="topRefresh" type="button" aria-label="Refresh data">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+  </button>
 </div>
 <div class="backdrop" id="backdrop"></div>
 <div class="shell">
   <aside class="sidebar" id="sidebar"></aside>
   <main id="main"></main>
 </div>
+<div id="ptr" aria-hidden="true"><div class="ptr-inner"><svg class="ptr-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div></div>
+<button id="syncpill" type="button" aria-label="Refresh data — reads the latest fitness-data.json">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+  <span id="syncpill-text">Sync</span>
+</button>
+<div id="synctoast" role="status" aria-live="polite"><span class="dot"></span><span id="synctoast-text">Up to date</span></div>
 <noscript><div style="padding:40px;font-family:sans-serif;color:#E8EDF5;">CLIVE needs JavaScript — it computes everything from fitness-data.json in your browser.</div></noscript>
 
 <script>
@@ -1201,7 +1262,8 @@ function renderSidebar(D) {
     '<div style="min-width:0;"><div style="font-size:13px;font-weight:700;color:var(--text-strong);">' + esc(D.profile.firstName || '') + '</div>' +
     '<div style="font-size:11px;color:var(--text-muted);">Body recomposition</div></div></div></div>';
 }
-function render() {
+function render(opts) {
+  opts = opts || {};
   const D = derive(DATA);
   renderSidebar(D);
   const main = document.getElementById('main');
@@ -1209,8 +1271,10 @@ function render() {
   const NAMES = { checkin: "Today's check-in", workout: 'Workout', history: 'Workout history', library: 'Exercise library', measurements: 'Measurements', nutrition: 'Nutrition', achievements: 'Achievements', goals: 'Goals', settings: 'Settings' };
   main.innerHTML = fn ? fn(D) : screenPlaceholder(NAMES[CURRENT] || CURRENT);
   bindCharts(main);
-  main.focus && main.focus({ preventScroll: true });
-  window.scrollTo(0, 0);
+  if (!opts.keepScroll) {
+    main.focus && main.focus({ preventScroll: true });
+    window.scrollTo(0, 0);
+  }
 }
 function go(screen) {
   CURRENT = SCREENS[screen] ? screen : 'dashboard';
@@ -1247,13 +1311,137 @@ function renderError(err) {
     '<span style="color:var(--text-muted);font-size:12px;">' + esc(err && err.message ? err.message : err) + '</span></div></div></div>';
 }
 
+// ---------- live refresh ----------
+// The dashboard derives everything from fitness-data.json, so "refresh" just means
+// re-fetch that file and re-render. Triggered by pull-to-refresh, tab focus /
+// visibility, and the manual controls. Note: GitHub Pages takes ~20-60s to publish
+// a push, so a refresh in that window may still show old data — pull again once live.
+let LAST_RAW = null;     // raw JSON text of the last successful fetch (change detection)
+let LAST_SYNC = null;    // Date of the last successful fetch
+let REFRESHING = false;
+let LAST_REFRESH_AT = 0;
+
+function fetchData() {
+  return fetch('fitness-data.json?t=' + Date.now(), { cache: 'no-store' })
+    .then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status + ' fetching fitness-data.json'); return r.text(); });
+}
+function applyData(raw) {
+  const changed = raw !== LAST_RAW;
+  let json;
+  try { json = JSON.parse(raw); }
+  catch (e) { throw new Error('fitness-data.json is not valid JSON — ' + e.message); }
+  LAST_RAW = raw;
+  LAST_SYNC = new Date();
+  if (changed || DATA === null) DATA = json;
+  updateSyncPill();
+  return { changed: changed };
+}
+function pad2(n) { return (n < 10 ? '0' : '') + n; }
+function fmtClock(d) {
+  try { return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false }); }
+  catch (e) { return pad2(d.getHours()) + ':' + pad2(d.getMinutes()); }
+}
+function updateSyncPill() {
+  const t = document.getElementById('syncpill-text');
+  if (t) t.textContent = LAST_SYNC ? 'Synced ' + fmtClock(LAST_SYNC) : 'Sync';
+}
+let TOAST_TIMER = null;
+function showToast(msg, kind) {
+  const el = document.getElementById('synctoast');
+  const tx = document.getElementById('synctoast-text');
+  if (!el || !tx) return;
+  tx.textContent = msg;
+  el.className = 'show' + (kind ? ' ' + kind : '');
+  if (TOAST_TIMER) clearTimeout(TOAST_TIMER);
+  TOAST_TIMER = setTimeout(() => { el.classList.remove('show'); }, 1900);
+}
+
+// Re-fetch and re-render in place. opts.auto = event-driven (quieter + throttled).
+function refresh(opts) {
+  opts = opts || {};
+  if (REFRESHING) return Promise.resolve();
+  const now = Date.now();
+  if (opts.auto && now - LAST_REFRESH_AT < 4000) return Promise.resolve();
+  LAST_REFRESH_AT = now;
+  REFRESHING = true;
+  document.body.classList.add('ptr-refreshing');
+  return fetchData()
+    .then((raw) => {
+      const res = applyData(raw);
+      if (res.changed && DATA) render({ keepScroll: true });
+      if (!opts.auto || res.changed) showToast(res.changed ? 'Updated' : 'Up to date', res.changed ? 'ok' : null);
+    })
+    .catch(() => { if (!opts.auto) showToast('Refresh failed — still deploying?', 'warn'); })
+    .then(() => { REFRESHING = false; document.body.classList.remove('ptr-refreshing'); });
+}
+
+// Manual controls: topbar button (mobile), floating pill (desktop), and the "R" key.
+(function wireRefreshControls() {
+  const top = document.getElementById('topRefresh');
+  if (top) top.addEventListener('click', () => refresh({ manual: true }));
+  const pill = document.getElementById('syncpill');
+  if (pill) pill.addEventListener('click', () => refresh({ manual: true }));
+  window.addEventListener('keydown', (e) => {
+    if (/INPUT|TEXTAREA|SELECT/.test((e.target && e.target.tagName) || '')) return;
+    if ((e.key === 'r' || e.key === 'R') && !e.metaKey && !e.ctrlKey && !e.altKey) refresh({ manual: true });
+  });
+})();
+
+// Auto-refresh when the user returns to the page/app (the "told Clive, glanced back" flow).
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') refresh({ auto: true }); });
+window.addEventListener('focus', () => refresh({ auto: true }));
+window.addEventListener('pageshow', (e) => { if (e.persisted) refresh({ auto: true }); });
+
+// Pull-to-refresh (touch). The page scrolls at window level, so gate on scrollY === 0.
+(function pullToRefresh() {
+  const ptr = document.getElementById('ptr');
+  if (!ptr) return;
+  const inner = ptr.querySelector('.ptr-inner');
+  const THRESHOLD = 72, MAX = 120;
+  let startY = 0, dist = 0, pulling = false;
+  const atTop = () => (window.scrollY || document.documentElement.scrollTop || 0) <= 0;
+  function draw(d) {
+    const eff = Math.min(MAX, d);
+    const y = -52 + Math.min(58, eff * 0.62);
+    inner.style.transform = 'translateY(' + y + 'px) rotate(' + (eff * 2.2) + 'deg)';
+    inner.style.opacity = String(Math.min(1, eff / THRESHOLD));
+  }
+  function reset() {
+    inner.style.transition = 'transform 0.25s var(--ease-out), opacity 0.25s';
+    inner.style.transform = 'translateY(-52px)';
+    inner.style.opacity = '0';
+  }
+  window.addEventListener('touchstart', (e) => {
+    if (REFRESHING || document.body.classList.contains('nav-open') || !atTop()) { pulling = false; return; }
+    startY = e.touches[0].clientY; dist = 0; pulling = true;
+    inner.style.transition = 'none';
+  }, { passive: true });
+  window.addEventListener('touchmove', (e) => {
+    if (!pulling || REFRESHING) return;
+    dist = e.touches[0].clientY - startY;
+    if (dist <= 0 || !atTop()) { pulling = false; reset(); return; }
+    draw(dist);
+  }, { passive: true });
+  window.addEventListener('touchend', () => {
+    if (!pulling) return;
+    pulling = false;
+    if (dist >= THRESHOLD) {
+      inner.style.transition = 'transform 0.2s var(--ease-out), opacity 0.2s';
+      inner.style.transform = 'translateY(6px)';
+      inner.style.opacity = '1';
+      refresh({ manual: true }).then(reset);
+    } else {
+      reset();
+    }
+  }, { passive: true });
+})();
+
 // ---------- boot ----------
 (function boot() {
   const h = location.hash.replace('#', '');
   if (h) CURRENT = h;
-  fetch('fitness-data.json?t=' + Date.now())
-    .then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status + ' fetching fitness-data.json'); return r.json(); })
-    .then((json) => { DATA = json; go(CURRENT); })
+  fetchData()
+    .then((raw) => { applyData(raw); go(CURRENT); })
     .catch((err) => renderError(err));
 })();
 </script>
