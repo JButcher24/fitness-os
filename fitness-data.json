@@ -15,7 +15,7 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 6,120 steps" }
   ],
-  "today": { "date": "2026-07-09", "checklistDone": ["weigh"] },
+  "today": { "date": "2026-07-09", "checklistDone": ["weigh", "steps"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
@@ -68,6 +68,22 @@
     }
   ],
   "coachNotes": [
+    {
+      "date": "2026-07-09", "title": "Recovery day done right — treadmill + swim",
+      "note": "No bar today, and that was the plan. 30 min treadmill (1.55 km, HR 122) then a 31 min pool swim — 720 m breaststroke, HR 122. Both bang in Zone 2, exactly the easy I asked for. ~1,000 kcal of free deficit without touching tomorrow's recovery. Lift tomorrow.",
+      "lines": [
+        "Treadmill: 30 min, 1.55 km, 322 kcal, avg HR 122. Steady and honest — no ego, just movement.",
+        "Pool: 31 min, 720 m breaststroke, 36 lengths, 678 kcal, avg HR 122. That heart rate is textbook Zone 2 — you kept it easy like I asked, so it widens the deficit without stealing from tomorrow's session.",
+        "Roughly 1,000 kcal across the two, and neither adds recovery debt. This is how you bookend a rest day.",
+        "Protein floor still stands — 180 g today. Weigh in tomorrow morning, then hit the full-body work fresh."
+      ],
+      "tags": [
+        { "text": "Recovery day", "tone": "info" },
+        { "text": "Swim · 720 m", "tone": "success" },
+        { "text": "Zone 2 · HR 122", "tone": "info" },
+        { "text": "Move ticked", "tone": "success" }
+      ]
+    },
     {
       "date": "2026-07-08", "title": "Session #3 complete — 45 minutes, two walks",
       "note": "Strength done: 45 min, avg HR 132, 540 kcal. Bookended by two indoor walks — 15 min warm-up, 30 min cool-down. The cool-down logged on the watch as Outdoor; it was indoor, corrected. Fasted session — 40–50 g protein within the hour: did it land?",
