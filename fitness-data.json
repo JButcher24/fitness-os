@@ -78,7 +78,8 @@
         { "name": "Tricep pushdown", "weightKg": 40, "sets": [12], "note": "baseline established; ramp-ups 30 kg×15, 35 kg×15, then working set 40 kg×12 (hard at end)" }
       ],
       "cardio": [
-        { "type": "Outdoor Walk", "phase": "to gym", "start": "12:06", "end": "12:21", "durationMin": 15, "distanceM": 1150, "kcalBurned": 159, "avgHr": 128, "pacePerKm": "12:45" }
+        { "type": "Outdoor Walk", "phase": "to gym", "start": "12:06", "end": "12:21", "durationMin": 15, "distanceM": 1150, "kcalBurned": 159, "avgHr": 128, "pacePerKm": "12:45" },
+        { "type": "Outdoor Walk", "phase": "from gym", "start": "13:23", "end": "13:42", "durationMin": 19, "distanceM": 1260, "kcalBurned": 143, "avgHr": 134, "pacePerKm": "14:57" }
       ]
     }
   ],
