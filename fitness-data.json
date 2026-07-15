@@ -66,6 +66,13 @@
         { "type": "Indoor Walk", "phase": "warm-up", "start": "13:35", "end": "13:50", "durationMin": 15, "distanceM": 969, "kcalBurned": 148, "avgHr": 115, "pacePerKm": "15:22" },
         { "type": "Indoor Walk", "phase": "cool-down", "start": "14:39", "end": "15:09", "durationMin": 30, "distanceM": 1550, "kcalBurned": 238, "avgHr": 130, "pacePerKm": "19:18", "note": "watch logged this as Outdoor Walk — corrected to Indoor" }
       ]
+    },
+    {
+      "id": 4, "date": "2026-07-15", "type": "Full body", "fasted": false, "status": "in-progress",
+      "durationMin": null, "avgHr": null, "kcalBurned": null,
+      "exercises": [
+        { "name": "Dumbbell bench press", "weightKg": 22, "sets": [12, 12, 12], "pb": true }
+      ]
     }
   ],
   "coachNotes": [
