@@ -16,7 +16,7 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 6,120 steps" }
   ],
-  "today": { "date": "2026-07-15", "checklistDone": ["weigh", "train"] },
+  "today": { "date": "2026-07-15", "checklistDone": ["weigh", "train", "steps"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
@@ -69,13 +69,16 @@
     },
     {
       "id": 4, "date": "2026-07-15", "type": "Full body", "fasted": false, "status": "complete",
-      "durationMin": 60, "avgHr": null, "kcalBurned": null,
+      "durationMin": 57, "avgHr": 136, "kcalBurned": 702,
       "exercises": [
         { "name": "Dumbbell bench press", "weightKg": 22, "sets": [12, 12, 12], "pb": true },
         { "name": "Plate-loaded lat pulldown", "weightKg": 90, "sets": [10, 10, 10], "note": "45 kg per side (plate-loaded, total plate weight); clean baseline for this machine" },
         { "name": "Goblet squat to box", "weightKg": 20, "sets": [15, 15, 15], "pb": true, "note": "cardio/breathing the limiter, not the legs" },
         { "name": "Cable lateral raise", "weightKg": 5, "sets": [12, 12, 12] },
         { "name": "Tricep pushdown", "weightKg": 40, "sets": [12], "note": "baseline established; ramp-ups 30 kg×15, 35 kg×15, then working set 40 kg×12 (hard at end)" }
+      ],
+      "cardio": [
+        { "type": "Outdoor Walk", "phase": "to gym", "start": "12:06", "end": "12:21", "durationMin": 15, "distanceM": 1150, "kcalBurned": 159, "avgHr": 128, "pacePerKm": "12:45" }
       ]
     }
   ],
