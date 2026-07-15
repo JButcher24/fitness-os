@@ -20,7 +20,7 @@
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
-    { "name": "Goblet squat to box", "coachNext": "Hold 20 kg and build to 3×15. The tibia sets the pace, not your ego." },
+    { "name": "Goblet squat to box", "coachNext": "3×15 at 20 kg done (15 Jul) — legs out-lasting the lungs. Next step: move to leg press (or barbell box squat) to load the legs properly, since the goblet gasses you before it challenges them. Still controlled, still box depth." },
     { "name": "Dumbbell bench press", "coachNext": "Stay at 22 kg until all three sets hit 12 clean — then 24 kg." },
     { "name": "Cable stack lat pulldown", "coachNext": "55 kg next session. The 50s moved well." },
     { "name": "Plate-loaded lat pulldown", "coachNext": "Hold 90 kg total (45 kg/side) until 3×12 is clean — hit 3×10 on 15 Jul. Then add the smallest plate per side. Log by total plate weight, labelled." },
@@ -72,7 +72,8 @@
       "durationMin": null, "avgHr": null, "kcalBurned": null,
       "exercises": [
         { "name": "Dumbbell bench press", "weightKg": 22, "sets": [12, 12, 12], "pb": true },
-        { "name": "Plate-loaded lat pulldown", "weightKg": 90, "sets": [10, 10, 10], "note": "45 kg per side (plate-loaded, total plate weight); clean baseline for this machine" }
+        { "name": "Plate-loaded lat pulldown", "weightKg": 90, "sets": [10, 10, 10], "note": "45 kg per side (plate-loaded, total plate weight); clean baseline for this machine" },
+        { "name": "Goblet squat to box", "weightKg": 20, "sets": [15, 15, 15], "pb": true, "note": "cardio/breathing the limiter, not the legs" }
       ]
     }
   ],
