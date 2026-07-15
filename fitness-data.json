@@ -25,7 +25,7 @@
     { "name": "Cable stack lat pulldown", "coachNext": "55 kg next session. The 50s moved well." },
     { "name": "Plate-loaded lat pulldown", "coachNext": "Hold 90 kg total (45 kg/side) until 3×12 is clean — hit 3×10 on 15 Jul. Then add the smallest plate per side. Log by total plate weight, labelled." },
     { "name": "Wide-grip cable row", "coachNext": "45 kg next session." },
-    { "name": "Cable lateral raise", "coachNext": "Stay at 5 kg, build from 3×10 to 3×12. Delts grow on reps, not load." },
+    { "name": "Cable lateral raise", "coachNext": "3×12 at 5 kg done (15 Jul). Build to 3×15 strict, or nudge to 6–7 kg only if form stays clean — no swinging. Delts grow on reps, not load." },
     { "name": "Seated cable row (close grip)", "coachNext": "Retest — that number looks generous next to your wide-grip row.", "flag": "Needs retesting" },
     { "name": "Tricep pushdown", "coachNext": "Set a baseline this week: pick a weight you can move for 3×12.", "flag": "Not established" }
   ],
@@ -73,7 +73,8 @@
       "exercises": [
         { "name": "Dumbbell bench press", "weightKg": 22, "sets": [12, 12, 12], "pb": true },
         { "name": "Plate-loaded lat pulldown", "weightKg": 90, "sets": [10, 10, 10], "note": "45 kg per side (plate-loaded, total plate weight); clean baseline for this machine" },
-        { "name": "Goblet squat to box", "weightKg": 20, "sets": [15, 15, 15], "pb": true, "note": "cardio/breathing the limiter, not the legs" }
+        { "name": "Goblet squat to box", "weightKg": 20, "sets": [15, 15, 15], "pb": true, "note": "cardio/breathing the limiter, not the legs" },
+        { "name": "Cable lateral raise", "weightKg": 5, "sets": [12, 12, 12] }
       ]
     }
   ],
