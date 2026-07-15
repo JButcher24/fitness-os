@@ -1,10 +1,11 @@
 {
   "profile": { "firstName": "Jamie", "startDate": "2026-06-29", "startWeightLb": 266.0 },
-  "goal": { "targetWeightLb": 210, "weeklyLossPocketLb": [1, 2], "nextMilestoneLb": 260 },
+  "goal": { "targetWeightLb": 210, "weeklyLossPocketLb": [1, 2], "nextMilestoneLb": 252.7 },
   "weighIns": [
     { "date": "2026-06-29", "weightLb": 266.0, "note": "Baseline starting weight" },
     { "date": "2026-06-30", "weightLb": 263.6, "source": "smart scale", "bodyFatPct": 34.8, "bmi": 35.7 },
-    { "date": "2026-07-09", "weightLb": 263.2, "time": "08:33", "source": "smart scale", "bodyFatPct": 34.8, "bmi": 35.7 }
+    { "date": "2026-07-09", "weightLb": 263.2, "time": "08:33", "source": "smart scale", "bodyFatPct": 34.8, "bmi": 35.7 },
+    { "date": "2026-07-15", "weightLb": 259.8, "source": "Apple Health" }
   ],
   "nutritionTargets": { "kcal": 2500, "kcalTolerance": 100, "proteinG": 219, "proteinMinG": 180, "carbsG": 219, "fatG": 83, "waterL": [2.5, 3.5] },
   "dailyChecklist": [
@@ -15,7 +16,7 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 6,120 steps" }
   ],
-  "today": { "date": "2026-07-09", "checklistDone": ["weigh", "steps"] },
+  "today": { "date": "2026-07-15", "checklistDone": ["weigh"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
@@ -68,6 +69,39 @@
     }
   ],
   "coachNotes": [
+    {
+      "date": "2026-07-15", "title": "Under 260 — milestone down, now get back under the bar",
+      "note": "259.8 lb this morning. That is the Under 260 milestone gone — from 266.0 on 29 June, real numbers only. Credit where it's due: you kept the walks going through four days flat out at work. But two honest flags: the scale's dropping fast (protect the muscle), and it's seven days since you lifted. Book a session today or tomorrow — the walking holds the deficit, the lifting holds the muscle.",
+      "lines": [
+        "259.8 lb — Under 260 is down. Next flag on the board: 5% lost at 252.7 lb, then 18 stone. Mark this one, it's real.",
+        "The walks were the win of the week — a lunch walk every day while slammed at work is exactly the adherence that keeps this going. That NEAT is why the scale moved.",
+        "But it's moving quick: 263.2 on the 9th to 259.8 today is over 3 lb in six days — hotter than our 1–2 lb/week pocket. Some of that is water, but it's the point where we start protecting muscle.",
+        "The real problem: seven days since session #3. Your rule is three. Walking is not lifting — without the resistance signal, fast weight loss starts eating muscle, not just fat. Full-body session today or tomorrow, no later.",
+        "Weigh in every morning this week. If the daily numbers confirm 3+ lb/week, we add ~250 kcal of protein-dense food to guard the muscle. One lever at a time — but the bar comes first."
+      ],
+      "tags": [
+        { "text": "MILESTONE · Under 260", "tone": "success" },
+        { "text": "259.8 lb", "tone": "success" },
+        { "text": "Loss running hot", "tone": "warn" },
+        { "text": "7 days since a lift", "tone": "warn" }
+      ]
+    },
+    {
+      "date": "2026-07-14", "title": "Four lunch walks — the deficit's quiet workhorse",
+      "note": "Slammed at work but got a lunch walk in every day, 11–14 July. Four outdoor walks in Doncaster, ~3.8 km each, ~500 kcal apiece — near 2,000 kcal of free deficit across the week without denting recovery. This is exactly how you hold progress through a busy stretch.",
+      "lines": [
+        "Sat 11: 49 min, 3.82 km, 499 kcal, avg HR 124.",
+        "Sun 12: 48 min, 3.78 km, 483 kcal, avg HR 121.",
+        "Mon 13: 48 min, 3.76 km, 491 kcal, avg HR 138.",
+        "Tue 14: 50 min, 3.89 km, 510 kcal, avg HR 132.",
+        "Consistent around 12'50\"/km, heart rate mostly Zone 2. Steps are the quiet workhorse of fat loss and you leaned on them when you couldn't get to the gym — right instinct."
+      ],
+      "tags": [
+        { "text": "4 walks · ~15 km", "tone": "success" },
+        { "text": "~2,000 kcal", "tone": "info" },
+        { "text": "Busy-week adherence", "tone": "brand" }
+      ]
+    },
     {
       "date": "2026-07-09", "title": "Recovery day done right — treadmill + swim",
       "note": "No bar today, and that was the plan. 30 min treadmill (1.55 km, HR 122) then a 31 min pool swim — 720 m breaststroke, HR 122. Both bang in Zone 2, exactly the easy I asked for. ~1,000 kcal of free deficit without touching tomorrow's recovery. Lift tomorrow.",
