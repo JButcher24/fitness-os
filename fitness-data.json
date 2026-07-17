@@ -85,18 +85,42 @@
       ]
     },
     {
-      "id": 5, "date": "2026-07-17", "type": "Full body", "status": "in-progress",
-      "durationMin": null, "avgHr": null, "kcalBurned": null,
+      "id": 5, "date": "2026-07-17", "type": "Full body", "status": "complete",
+      "durationMin": 63, "avgHr": 123, "kcalBurned": 724,
       "exercises": [
         { "name": "Wide-grip cable row", "weightKg": 45, "sets": [12, 12, 12], "pb": true, "note": "up from 40; last set scrappy near failure — consolidate at 45 clean before 47.5" },
         { "name": "Dumbbell bench press", "weightKg": 24, "sets": [10, 10, 10], "pb": true, "note": "up from 22; consistent 3x10 first outing at 24 — build to 3x12 then 26" },
         { "name": "Plate-loaded lat pulldown", "weightKg": 90, "sets": [12, 12, 12], "pb": true, "note": "45 kg per side (total plate weight); clean 3x12 — earned the jump, add smallest plate per side next" },
         { "name": "Cable leg press", "weightKg": 70, "sets": [15], "note": "new baseline (cable/pin leg press); warm-up 60 kg×15 too light; a second working set at 70 done, reps not captured; quads burning, left slightly dominant" },
         { "name": "Leg curl", "weightKg": 35, "sets": [12, 12, 12], "note": "hamstring baseline established 17 Jul; balances the quad-dominant leg work" }
+      ],
+      "cardio": [
+        { "type": "Outdoor Walk", "phase": "to gym", "start": "15:05", "end": "15:20", "durationMin": 15, "distanceM": 1100, "kcalBurned": 151, "avgHr": 120, "pacePerKm": "13:49" },
+        { "type": "Indoor Walk", "phase": "cool-down", "start": "16:29", "end": "16:49", "durationMin": 20, "distanceM": 1030, "kcalBurned": 217, "avgHr": 122, "pacePerKm": "19:28" },
+        { "type": "Outdoor Walk", "phase": "from gym", "start": "16:53", "end": "17:07", "durationMin": 15, "distanceM": 1080, "kcalBurned": 140, "avgHr": 122, "pacePerKm": "13:39" }
       ]
     }
   ],
   "coachNotes": [
+    {
+      "date": "2026-07-17", "title": "Session #5 — three PBs and a new lower body",
+      "note": "63 min, avg HR 123, 724 kcal, bookended by three walks. Row 45 kg 3×12 (PB), bench 24 kg 3×10 (PB), pulldown 90 kg clean 3×12 (PB — jump earned). Goblet retired: cable leg press baseline 70 kg, plus a leg curl baseline 35 kg to balance the quads. Row led like it should. Two days off #4 — consistency bang on.",
+      "lines": [
+        "Row 45 kg 3×12 — PB, up from 40. Scrappy on the last set, so own it clean before 47.5.",
+        "Bench 24 kg 3×10 — PB and the jump you earned. Reps dropped as expected; build back to 3×12, then 26.",
+        "Plate pulldown 90 kg, clean 3×12 — jump earned, smallest plate per side next.",
+        "Legs rebuilt: goblet retired, cable leg press baseline at 70 kg (60 was too light), and you added a leg curl — 35 kg 3×12 — to balance all the quad work. Good instinct.",
+        "Bookended with walks: 15 min in, 20 on the treadmill, 15 home — roughly 1,230 kcal across the whole day.",
+        "Two days since #4. That's the consistency I've been chasing you for — keep it there."
+      ],
+      "tags": [
+        { "text": "Session #5 complete", "tone": "success" },
+        { "text": "3 PBs · Row 45 · Bench 24 · Pulldown 90", "tone": "success" },
+        { "text": "Leg press + curl baselines", "tone": "info" },
+        { "text": "Goblet retired", "tone": "brand" },
+        { "text": "≈1,230 kcal day", "tone": "info" }
+      ]
+    },
     {
       "date": "2026-07-15", "title": "Session #4 — back under the bar, and it counted",
       "note": "Seven days off, then a full-body session that mattered. Bench 22 kg finally clean 3×12 — 24 kg next time, earned. Squat 20 kg 3×15 (PB) — goblet's near its ceiling, leg press next. Plate pulldown honest baseline at 90 kg total. Tricep pushdown baseline set at 40 kg. Kept it to the hour and skipped the row to protect consistency — right call. Row leads next session.",
