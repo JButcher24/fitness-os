@@ -21,7 +21,7 @@
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
     { "name": "Goblet squat to box", "coachNext": "3×15 at 20 kg done (15 Jul) — legs out-lasting the lungs. Next step: move to leg press (or barbell box squat) to load the legs properly, since the goblet gasses you before it challenges them. Still controlled, still box depth." },
-    { "name": "Dumbbell bench press", "coachNext": "Stay at 22 kg until all three sets hit 12 clean — then 24 kg." },
+    { "name": "Dumbbell bench press", "coachNext": "24 kg 3×10 on 17 Jul (up from 22). Hold 24 kg, build to 3×12 clean, then 26 kg." },
     { "name": "Cable stack lat pulldown", "coachNext": "55 kg next session. The 50s moved well." },
     { "name": "Plate-loaded lat pulldown", "coachNext": "Hold 90 kg total (45 kg/side) until 3×12 is clean — hit 3×10 on 15 Jul. Then add the smallest plate per side. Log by total plate weight, labelled." },
     { "name": "Wide-grip cable row", "coachNext": "45 kg 3×12 done 17 Jul (up from 40) but last set scrappy. Own all three clean at 45 before jumping to 47.5. Strict — lats not lower back." },
@@ -86,7 +86,8 @@
       "id": 5, "date": "2026-07-17", "type": "Full body", "status": "in-progress",
       "durationMin": null, "avgHr": null, "kcalBurned": null,
       "exercises": [
-        { "name": "Wide-grip cable row", "weightKg": 45, "sets": [12, 12, 12], "pb": true, "note": "up from 40; last set scrappy near failure — consolidate at 45 clean before 47.5" }
+        { "name": "Wide-grip cable row", "weightKg": 45, "sets": [12, 12, 12], "pb": true, "note": "up from 40; last set scrappy near failure — consolidate at 45 clean before 47.5" },
+        { "name": "Dumbbell bench press", "weightKg": 24, "sets": [10, 10, 10], "pb": true, "note": "up from 22; consistent 3x10 first outing at 24 — build to 3x12 then 26" }
       ]
     }
   ],
