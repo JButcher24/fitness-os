@@ -16,7 +16,7 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 6,120 steps" }
   ],
-  "today": { "date": "2026-07-15", "checklistDone": ["weigh", "train", "steps"] },
+  "today": { "date": "2026-07-17", "checklistDone": ["train", "steps"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
@@ -24,7 +24,7 @@
     { "name": "Dumbbell bench press", "coachNext": "Stay at 22 kg until all three sets hit 12 clean — then 24 kg." },
     { "name": "Cable stack lat pulldown", "coachNext": "55 kg next session. The 50s moved well." },
     { "name": "Plate-loaded lat pulldown", "coachNext": "Hold 90 kg total (45 kg/side) until 3×12 is clean — hit 3×10 on 15 Jul. Then add the smallest plate per side. Log by total plate weight, labelled." },
-    { "name": "Wide-grip cable row", "coachNext": "LEAD with this next session — skipped 15 Jul to keep under the hour. 40 kg, own 3×12, then 42.5. Your main horizontal pull; don't let it keep dropping off the end." },
+    { "name": "Wide-grip cable row", "coachNext": "45 kg 3×12 done 17 Jul (up from 40) but last set scrappy. Own all three clean at 45 before jumping to 47.5. Strict — lats not lower back." },
     { "name": "Cable lateral raise", "coachNext": "3×12 at 5 kg done (15 Jul). Build to 3×15 strict, or nudge to 6–7 kg only if form stays clean — no swinging. Delts grow on reps, not load." },
     { "name": "Seated cable row (close grip)", "coachNext": "Retest — that number looks generous next to your wide-grip row.", "flag": "Needs retesting" },
     { "name": "Tricep pushdown", "coachNext": "Baseline set 15 Jul: working weight 40 kg × 12 (hard). Next: one warm-up, then 3×12 at 40 kg near failure. Then climb." }
@@ -80,6 +80,13 @@
       "cardio": [
         { "type": "Outdoor Walk", "phase": "to gym", "start": "12:06", "end": "12:21", "durationMin": 15, "distanceM": 1150, "kcalBurned": 159, "avgHr": 128, "pacePerKm": "12:45" },
         { "type": "Outdoor Walk", "phase": "from gym", "start": "13:23", "end": "13:42", "durationMin": 19, "distanceM": 1260, "kcalBurned": 143, "avgHr": 134, "pacePerKm": "14:57" }
+      ]
+    },
+    {
+      "id": 5, "date": "2026-07-17", "type": "Full body", "status": "in-progress",
+      "durationMin": null, "avgHr": null, "kcalBurned": null,
+      "exercises": [
+        { "name": "Wide-grip cable row", "weightKg": 45, "sets": [12, 12, 12], "pb": true, "note": "up from 40; last set scrappy near failure — consolidate at 45 clean before 47.5" }
       ]
     }
   ],
