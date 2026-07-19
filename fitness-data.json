@@ -17,20 +17,21 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 6,120 steps" }
   ],
-  "today": { "date": "2026-07-18", "checklistDone": ["weigh"] },
+  "today": { "date": "2026-07-19", "checklistDone": ["train", "steps"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
     { "name": "Goblet squat to box", "coachNext": "Retired 17 Jul — replaced by the cable leg press (baseline 70 kg). Did its job: 12.5→20 kg, built to 3×15. Kept for the record." },
-    { "name": "Dumbbell bench press", "coachNext": "24 kg 3×10 on 17 Jul (up from 22). Hold 24 kg, build to 3×12 clean, then 26 kg." },
+    { "name": "Dumbbell bench press", "coachNext": "24 kg to 12/12 on 19 Jul (3rd set near failure) — up from 3×10. One more session to nail a clean 3×12, then 26 kg." },
     { "name": "Cable stack lat pulldown", "coachNext": "55 kg next session. The 50s moved well." },
     { "name": "Plate-loaded lat pulldown", "coachNext": "3×12 clean at 90 kg total on 17 Jul (up from 3×10) — earned the jump. Next: add smallest plate per side (→ ~95 kg total). Log by total plate weight, labelled." },
     { "name": "Wide-grip cable row", "coachNext": "45 kg 3×12 done 17 Jul (up from 40) but last set scrappy. Own all three clean at 45 before jumping to 47.5. Strict — lats not lower back." },
     { "name": "Cable lateral raise", "coachNext": "3×12 at 5 kg done (15 Jul). Build to 3×15 strict, or nudge to 6–7 kg only if form stays clean — no swinging. Delts grow on reps, not load." },
     { "name": "Seated cable row (close grip)", "coachNext": "Retest — that number looks generous next to your wide-grip row.", "flag": "Needs retesting" },
     { "name": "Tricep pushdown", "coachNext": "Baseline set 15 Jul: working weight 40 kg × 12 (hard). Next: one warm-up, then 3×12 at 40 kg near failure. Then climb." },
-    { "name": "Cable leg press", "coachNext": "Baseline 70 kg × 15 on 17 Jul (60 was too light). Build to a hard 3×12, then climb. Drive evenly through both heels — left quad dominant. Depth without the hips tucking off the pad." },
-    { "name": "Leg curl", "coachNext": "Baseline 35 kg × 3×12 on 17 Jul. Slow negatives, squeeze at the top. Build reps then load; balances the quad-dominant leg work." }
+    { "name": "Cable leg press", "coachNext": "Worked up to 110 kg × 12 on 19 Jul (70 was too light). Aim a hard 3×12 at 110, then load higher. Drive evenly through both heels — left lags. Depth without the hips tucking off the pad." },
+    { "name": "Leg curl", "coachNext": "Baseline 35 kg × 3×12 on 17 Jul. Slow negatives, squeeze at the top. Build reps then load; balances the quad-dominant leg work." },
+    { "name": "Dumbbell curl", "coachNext": "Baseline 7.5 kg (15, 12) on 19 Jul as a finisher. Build reps then load; strict, no swing. Biceps also get worked by every row and pulldown, so this is seasoning." }
   ],
   "sessions": [
     {
@@ -100,9 +101,40 @@
         { "type": "Indoor Walk", "phase": "cool-down", "start": "16:29", "end": "16:49", "durationMin": 20, "distanceM": 1030, "kcalBurned": 217, "avgHr": 122, "pacePerKm": "19:28" },
         { "type": "Outdoor Walk", "phase": "from gym", "start": "16:53", "end": "17:07", "durationMin": 15, "distanceM": 1080, "kcalBurned": 140, "avgHr": 122, "pacePerKm": "13:39" }
       ]
+    },
+    {
+      "id": 6, "date": "2026-07-19", "type": "Full body", "status": "complete",
+      "durationMin": 48, "avgHr": 121, "kcalBurned": 550,
+      "exercises": [
+        { "name": "Cable leg press", "weightKg": 110, "sets": [12], "pb": true, "note": "worked up 60/90/100 to 110 (up from 70 baseline); 3 working sets at 110, first 12, further sets' reps not captured — big jump, load higher next" },
+        { "name": "Dumbbell bench press", "weightKg": 24, "sets": [12, 12], "pb": true, "note": "set 2 near failure; a third set followed near failure, reps not captured; up from 3x10 — one more session to nail clean 3x12, then 26" },
+        { "name": "Wide-grip cable row", "weightKg": 45, "sets": [12, 12, 12], "note": "warm-up 35 kg; 3x12 at 45 — own clean (no lower-back rock) before 47.5" },
+        { "name": "Dumbbell curl", "weightKg": 7.5, "sets": [15, 12], "note": "biceps finisher after the compounds; strict, arms pre-fatigued from all the pulling" }
+      ],
+      "cardio": [
+        { "type": "Indoor Walk", "phase": "warm-up", "start": "17:59", "end": "18:09", "durationMin": 10, "distanceM": 567, "kcalBurned": 100, "avgHr": 107, "pacePerKm": "17:39" },
+        { "type": "Indoor Walk", "phase": "cool-down", "start": "19:00", "end": "19:20", "durationMin": 20, "distanceM": 1030, "kcalBurned": 243, "avgHr": 121, "pacePerKm": "19:24" }
+      ]
     }
   ],
   "coachNotes": [
+    {
+      "date": "2026-07-19", "title": "Session #6 — leg press finds its level, bench climbs",
+      "note": "48 min, avg HR 121, 550 kcal, bookended by two treadmill walks (~890 kcal on the day). Leg press up from 70 to a proper 110 kg — that machine's finally loaded. Bench 24 kg to 12/12 near failure — one more session and it's 26. Row 45 3x12, biceps finisher to end. Two days since #5.",
+      "lines": [
+        "Cable leg press: 70 was miles too light — worked up to 110 kg for 12s. That's the machine earning its keep. Load higher again next time, and keep the left leg driving as hard as the right.",
+        "Bench 24 kg: 12 and 12, second near failure — up from 3x10 last time. One more session at 24 to nail a clean 3x12, then 26.",
+        "Row 45 kg 3x12 — own it clean, no lower-back rock, and it's 47.5.",
+        "Finished with dumbbell curls, 7.5 kg — fair enough after all those compounds. Biceps were already cooked from the pulling.",
+        "Two days off #5 — consistency holding nicely. Next by the 22nd."
+      ],
+      "tags": [
+        { "text": "Session #6 complete", "tone": "success" },
+        { "text": "Leg press 70 → 110", "tone": "success" },
+        { "text": "Bench 24 → 12/12", "tone": "success" },
+        { "text": "≈890 kcal day", "tone": "info" }
+      ]
+    },
     {
       "date": "2026-07-17", "title": "Session #5 — three PBs and a new lower body",
       "note": "63 min, avg HR 123, 724 kcal, bookended by three walks. Row 45 kg 3×12 (PB), bench 24 kg 3×10 (PB), pulldown 90 kg clean 3×12 (PB — jump earned). Goblet retired: cable leg press baseline 70 kg, plus a leg curl baseline 35 kg to balance the quads. Row led like it should. Two days off #4 — consistency bang on.",
