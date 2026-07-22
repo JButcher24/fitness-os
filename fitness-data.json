@@ -7,7 +7,8 @@
     { "date": "2026-07-09", "weightLb": 263.2, "time": "08:33", "source": "smart scale", "bodyFatPct": 34.8, "bmi": 35.7 },
     { "date": "2026-07-15", "weightLb": 259.8, "source": "Apple Health" },
     { "date": "2026-07-18", "weightLb": 259.4, "source": "Apple Health" },
-    { "date": "2026-07-20", "weightLb": 259.0, "source": "Apple Health" }
+    { "date": "2026-07-20", "weightLb": 259.0, "source": "Apple Health" },
+    { "date": "2026-07-21", "weightLb": 258.4, "source": "Apple Health" }
   ],
   "nutritionTargets": { "kcal": 2500, "kcalTolerance": 100, "proteinG": 219, "proteinMinG": 180, "carbsG": 219, "fatG": 83, "waterL": [2.5, 3.5] },
   "dailyChecklist": [
@@ -18,7 +19,7 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 6,120 steps" }
   ],
-  "today": { "date": "2026-07-20", "checklistDone": ["weigh"] },
+  "today": { "date": "2026-07-21", "checklistDone": ["weigh"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
