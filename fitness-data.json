@@ -19,12 +19,12 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 6,120 steps" }
   ],
-  "today": { "date": "2026-07-21", "checklistDone": ["weigh"] },
+  "today": { "date": "2026-07-21", "checklistDone": ["weigh", "train"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
     { "name": "Goblet squat to box", "coachNext": "Retired 17 Jul — replaced by the cable leg press (baseline 70 kg). Did its job: 12.5→20 kg, built to 3×15. Kept for the record." },
-    { "name": "Dumbbell bench press", "coachNext": "Clean 3×12 at 24 kg on 19 Jul — jump earned. Next: 26 kg, reps will dip, rebuild to 3×12." },
+    { "name": "Dumbbell bench press", "coachNext": "26 kg 3×10 on 21 Jul (up from 24). Hold 26 kg, build to 3×12, then 28." },
     { "name": "Cable stack lat pulldown", "coachNext": "55 kg next session. The 50s moved well." },
     { "name": "Plate-loaded lat pulldown", "coachNext": "3×12 clean at 90 kg total on 17 Jul (up from 3×10) — earned the jump. Next: add smallest plate per side (→ ~95 kg total). Log by total plate weight, labelled." },
     { "name": "Wide-grip cable row", "coachNext": "45 kg 3×12 done 17 Jul (up from 40) but last set scrappy. Own all three clean at 45 before jumping to 47.5. Strict — lats not lower back." },
@@ -116,6 +116,13 @@
       "cardio": [
         { "type": "Indoor Walk", "phase": "warm-up", "start": "17:59", "end": "18:09", "durationMin": 10, "distanceM": 567, "kcalBurned": 100, "avgHr": 107, "pacePerKm": "17:39" },
         { "type": "Indoor Walk", "phase": "cool-down", "start": "19:00", "end": "19:20", "durationMin": 20, "distanceM": 1030, "kcalBurned": 243, "avgHr": 121, "pacePerKm": "19:24" }
+      ]
+    },
+    {
+      "id": 7, "date": "2026-07-21", "type": "Full body", "fasted": true, "status": "in-progress",
+      "durationMin": null, "avgHr": null, "kcalBurned": null,
+      "exercises": [
+        { "name": "Dumbbell bench press", "weightKg": 26, "sets": [10, 10, 10], "pb": true, "note": "up from 24; consistent 3x10 first outing at 26 — build to 3x12" }
       ]
     }
   ],
