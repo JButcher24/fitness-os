@@ -31,7 +31,7 @@
     { "name": "Cable lateral raise", "coachNext": "3×12 at 5 kg done (15 Jul). Build to 3×15 strict, or nudge to 6–7 kg only if form stays clean — no swinging. Delts grow on reps, not load." },
     { "name": "Seated cable row (close grip)", "coachNext": "Retest — that number looks generous next to your wide-grip row.", "flag": "Needs retesting" },
     { "name": "Tricep pushdown", "coachNext": "Baseline set 15 Jul: working weight 40 kg × 12 (hard). Next: one warm-up, then 3×12 at 40 kg near failure. Then climb." },
-    { "name": "Cable leg press", "coachNext": "Clean 3×12 at 110 kg on 19 Jul (70 was too light). Load up next — 115–120, aim a hard 3×12. Drive evenly through both heels — left lags. Depth without the hips tucking off the pad." },
+    { "name": "Cable leg press", "coachNext": "~3×10 at 120 kg on 21 Jul (up from 110 3×12). Hold 120, build to 3×12, then climb. Drive evenly through both heels — left lags. Depth without the hips tucking off the pad." },
     { "name": "Leg curl", "coachNext": "Baseline 35 kg × 3×12 on 17 Jul. Slow negatives, squeeze at the top. Build reps then load; balances the quad-dominant leg work." },
     { "name": "Dumbbell curl", "coachNext": "Baseline 7.5 kg (15, 12) on 19 Jul as a finisher. Build reps then load; strict, no swing. Biceps also get worked by every row and pulldown, so this is seasoning." }
   ],
@@ -122,7 +122,8 @@
       "id": 7, "date": "2026-07-21", "type": "Full body", "fasted": true, "status": "in-progress",
       "durationMin": null, "avgHr": null, "kcalBurned": null,
       "exercises": [
-        { "name": "Dumbbell bench press", "weightKg": 26, "sets": [10, 10, 10], "pb": true, "note": "up from 24; consistent 3x10 first outing at 26 — build to 3x12" }
+        { "name": "Dumbbell bench press", "weightKg": 26, "sets": [10, 10, 10], "pb": true, "note": "up from 24; consistent 3x10 first outing at 26 — build to 3x12" },
+        { "name": "Cable leg press", "weightKg": 120, "sets": [10, 10, 10], "pb": true, "note": "up from 110; reps ~10/set (from memory) — hold 120, build to 3x12" }
       ]
     }
   ],
