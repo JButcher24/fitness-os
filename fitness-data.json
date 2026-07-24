@@ -19,7 +19,7 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 6,120 steps" }
   ],
-  "today": { "date": "2026-07-21", "checklistDone": ["weigh", "train"] },
+  "today": { "date": "2026-07-24", "checklistDone": ["train", "steps"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
@@ -119,16 +119,36 @@
       ]
     },
     {
-      "id": 7, "date": "2026-07-21", "type": "Full body", "fasted": true, "status": "in-progress",
-      "durationMin": null, "avgHr": null, "kcalBurned": null,
+      "id": 7, "date": "2026-07-24", "type": "Full body", "fasted": true, "status": "complete",
+      "durationMin": 46, "avgHr": 119, "kcalBurned": 513,
       "exercises": [
         { "name": "Dumbbell bench press", "weightKg": 26, "sets": [10, 10, 10], "pb": true, "note": "up from 24; consistent 3x10 first outing at 26 — build to 3x12" },
         { "name": "Cable leg press", "weightKg": 120, "sets": [10, 10, 10], "pb": true, "note": "up from 110; reps ~10/set (from memory) — hold 120, build to 3x12" },
         { "name": "Plate-loaded lat pulldown", "weightKg": 100, "sets": [8, 8, 8], "pb": true, "note": "45→50 kg per side (total plate weight); up from 90 clean 3x12 — bigish +10kg jump, reps dropped to 8. Hold 100, build to 3x12" }
+      ],
+      "cardio": [
+        { "type": "Indoor Walk", "phase": "cool-down", "start": "12:57", "end": "13:07", "durationMin": 11, "distanceM": 509, "kcalBurned": 128, "avgHr": 122, "pacePerKm": "20:56" }
       ]
     }
   ],
   "coachNotes": [
+    {
+      "date": "2026-07-24", "title": "Session #7 — three fasted PBs, but mind the gap",
+      "note": "Fasted midday session, 46 min, avg HR 119, 513 kcal + a treadmill walk. Bench 26 kg 3x10 (PB), leg press 120 kg ~3x10 (PB), pulldown 100 kg 3x8 (PB). Strong lifting on an empty tank. But five days since #6 (19th) — over your 3-day rule. Tighten it back up.",
+      "lines": [
+        "Bench 26 kg 3x10 — PB, up from 24. Hold 26, build to 3x12, then 28.",
+        "Leg press 120 kg ~3x10 — PB, up from 110. From 70 to 120 in four sessions. Hold, build to 3x12.",
+        "Plate pulldown 100 kg 3x8 — PB, a bigish jump from 90. Hold 100, build the reps to 12.",
+        "Row skipped again — it leads next session, no more dropping it.",
+        "Five days between #6 and #7. Your rule is three. Fasted PBs are great, but that gap is what quietly stalls progress — next one in by the 27th."
+      ],
+      "tags": [
+        { "text": "Session #7 complete", "tone": "success" },
+        { "text": "3 fasted PBs · Bench 26 · Leg press 120 · Pulldown 100", "tone": "success" },
+        { "text": "Fasted", "tone": "info" },
+        { "text": "5-day gap — watch it", "tone": "warn" }
+      ]
+    },
     {
       "date": "2026-07-19", "title": "Session #6 — leg press finds its level, bench climbs",
       "note": "48 min, avg HR 121, 550 kcal, bookended by two treadmill walks (~890 kcal on the day). Leg press up from 70 to a clean 3x12 at 110 kg — that machine's finally loaded. Bench 24 kg clean 3x12 — 26 earned. Row 45 3x12, biceps finisher to end. Two days since #5.",
