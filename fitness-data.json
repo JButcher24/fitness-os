@@ -8,7 +8,8 @@
     { "date": "2026-07-15", "weightLb": 259.8, "source": "Apple Health" },
     { "date": "2026-07-18", "weightLb": 259.4, "source": "Apple Health" },
     { "date": "2026-07-20", "weightLb": 259.0, "source": "Apple Health" },
-    { "date": "2026-07-21", "weightLb": 258.4, "source": "Apple Health" }
+    { "date": "2026-07-22", "weightLb": 258.4, "source": "Apple Health" },
+    { "date": "2026-08-04", "weightLb": 262.6, "source": "Apple Health" }
   ],
   "nutritionTargets": { "kcal": 2500, "kcalTolerance": 100, "proteinG": 219, "proteinMinG": 180, "carbsG": 219, "fatG": 83, "waterL": [2.5, 3.5] },
   "dailyChecklist": [
@@ -19,7 +20,7 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 6,120 steps" }
   ],
-  "today": { "date": "2026-07-27", "checklistDone": ["train"] },
+  "today": { "date": "2026-08-04", "checklistDone": ["weigh"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
@@ -131,15 +132,32 @@
       ]
     },
     {
-      "id": 8, "date": "2026-07-27", "type": "Full body", "fasted": true, "status": "in-progress",
+      "id": 8, "date": "2026-07-27", "type": "Full body", "fasted": true, "status": "complete",
       "durationMin": null, "avgHr": null, "kcalBurned": null,
       "exercises": [
         { "name": "Dumbbell bench press", "weightKg": 26, "sets": [10, 10, 10], "note": "2nd session at 26 — still 3x10 (fasted); hold 26, keep chasing 12" },
-        { "name": "Wide-grip cable row", "weightKg": 45, "sets": [12, 12, 12], "note": "clean 3x12, felt moderate — form tidy this time, no scrappy finish. Earned 47.5 next" }
+        { "name": "Wide-grip cable row", "weightKg": 45, "sets": [12, 12, 12], "note": "clean 3x12, felt moderate — form tidy this time, no scrappy finish. Earned 47.5 next" },
+        { "name": "Cable stack lat pulldown", "weightKg": 50, "sets": [10], "note": "pin machine (plate one taken); 1 set logged before the session wrapped — further sets not captured" }
       ]
     }
   ],
   "coachNotes": [
+    {
+      "date": "2026-08-04", "title": "The blip — 262.6, and why it's not what it looks like",
+      "note": "Week+ off, bad food, booze, little training — 262.6 today, up 4.2 from the 258.4 low. But you're STILL 3.4 lb under your 266 start. Progress isn't undone. Most of that 4 lb is water, glycogen and salt, not fat — real fat gain from a bad fortnight is 1-2 lb tops, and it flushes in days. No guilt: normal eating, protein, water, weigh daily, get a session logged. We go again — today.",
+      "lines": [
+        "262.6 up from 258.4 — but your start was 266.0. You're still DOWN net. You have not erased the journey.",
+        "4.2 lb in two weeks of bad eating and alcohol can't be mostly fat — that'd need a ~3,000 kcal daily surplus. It's water, glycogen refill, sodium and gut content. Back on plan it drops in 3-5 days.",
+        "Two weeks off doesn't cost you the muscle you built. It's still there.",
+        "The comeback isn't Monday, it's today: one normal day, hit protein, water up, one session. Weigh every morning and watch the water go.",
+        "You messaged me after a bad patch instead of hiding from it. That — right there — is what keeps people on track. This is the comeback, not the collapse."
+      ],
+      "tags": [
+        { "text": "Back on it", "tone": "brand" },
+        { "text": "262.6 — mostly water", "tone": "info" },
+        { "text": "Still under start weight", "tone": "success" }
+      ]
+    },
     {
       "date": "2026-07-24", "title": "Session #7 — three fasted PBs, but mind the gap",
       "note": "Fasted midday session, 46 min, avg HR 119, 513 kcal + a treadmill walk. Bench 26 kg 3x10 (PB), leg press 120 kg ~3x10 (PB), pulldown 100 kg 3x8 (PB). Strong lifting on an empty tank. But five days since #6 (19th) — over your 3-day rule. Tighten it back up.",
