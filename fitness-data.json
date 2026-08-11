@@ -9,7 +9,8 @@
     { "date": "2026-07-18", "weightLb": 259.4, "source": "Apple Health" },
     { "date": "2026-07-20", "weightLb": 259.0, "source": "Apple Health" },
     { "date": "2026-07-22", "weightLb": 258.4, "source": "Apple Health" },
-    { "date": "2026-08-04", "weightLb": 262.6, "source": "Apple Health" }
+    { "date": "2026-08-04", "weightLb": 262.6, "source": "Apple Health" },
+    { "date": "2026-08-11", "weightLb": 257.0, "source": "Apple Health" }
   ],
   "nutritionTargets": { "kcal": 2500, "kcalTolerance": 100, "proteinG": 219, "proteinMinG": 180, "carbsG": 219, "fatG": 83, "waterL": [2.5, 3.5] },
   "dailyChecklist": [
@@ -20,7 +21,7 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 6,120 steps" }
   ],
-  "today": { "date": "2026-08-04", "checklistDone": ["weigh"] },
+  "today": { "date": "2026-08-11", "checklistDone": ["weigh"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
@@ -142,6 +143,21 @@
     }
   ],
   "coachNotes": [
+    {
+      "date": "2026-08-11", "title": "Told you — 257, a new low. The blip was water.",
+      "note": "A week ago you panicked at 262.6 after a fortnight off. Today: 257.0 — a NEW LOW, below the old 258.4. The 5+ lb 'gain' was water and it flushed, exactly as promised. From a 266 start that's 9 lb down. Never judge off one scary morning — the trend is the truth.",
+      "lines": [
+        "262.6 on 4 Aug → 257.0 today. That 5.6 lb came off in a week because most of it was never fat — water, glycogen, salt.",
+        "257 is a new low, under your old 258.4. You didn't just recover the blip — you're past where you were.",
+        "266 start to 257 today: 9 lb down. Next flag is still 5% at 252.7 — about 4 lb out.",
+        "Bank this lesson hard: one scary number after a bad week is almost never fat. Weigh daily, read the trend, don't panic. You just proved it yourself."
+      ],
+      "tags": [
+        { "text": "NEW LOW · 257.0", "tone": "success" },
+        { "text": "Blip flushed", "tone": "success" },
+        { "text": "9 lb down from start", "tone": "brand" }
+      ]
+    },
     {
       "date": "2026-08-04", "title": "The blip — 262.6, and why it's not what it looks like",
       "note": "Week+ off, bad food, booze, little training — 262.6 today, up 4.2 from the 258.4 low. But you're STILL 3.4 lb under your 266 start. Progress isn't undone. Most of that 4 lb is water, glycogen and salt, not fat — real fat gain from a bad fortnight is 1-2 lb tops, and it flushes in days. No guilt: normal eating, protein, water, weigh daily, get a session logged. We go again — today.",
