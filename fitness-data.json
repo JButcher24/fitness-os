@@ -142,16 +142,36 @@
       ]
     },
     {
-      "id": 9, "date": "2026-08-17", "type": "Full body", "label": "back after a break", "status": "in-progress",
+      "id": 9, "date": "2026-08-17", "type": "Full body", "label": "back after a break", "status": "complete",
       "durationMin": null, "avgHr": null, "kcalBurned": null,
       "exercises": [
         { "name": "Cable leg press", "weightKg": 90, "sets": [12, 12, 12], "note": "first session back after time off; clean 3x12. One leg weaker from deconditioning (no joint pain) — rebuild load carefully, stop on any sharp/joint pain" },
         { "name": "Dumbbell bench press", "weightKg": 24, "sets": [12, 12], "note": "back after break; 2 clean 12s at 24 (old working 26x3x10) — near old level already, 3rd set not reported" },
         { "name": "Plate-loaded lat pulldown", "weightKg": 100, "sets": [10], "note": "free-weight/plate machine (total plate weight); warm-up 80x12 then working 100x10 — back to old working weight and beat the old 3x8" }
+      ],
+      "cardio": [
+        { "type": "Walk", "phase": "warm-up", "durationMin": 15, "note": "untracked (no watch today) — duration by report" },
+        { "type": "Walk", "durationMin": 15, "note": "untracked (no watch today) — duration by report" }
       ]
     }
   ],
   "coachNotes": [
+    {
+      "date": "2026-08-17", "title": "Session #9 — the comeback session (the one that counts)",
+      "note": "Back after a long break, tired and fasted, nearly didn't come — and lifted near your old numbers anyway. Leg press 90x3x12, bench 24 clean 12s (old working 26), plate pulldown back to 100 kg x10 (beat the old 3x8). Two 15-min walks too (no watch, untracked). Muscle memory did exactly what I promised. This is the session that matters — the one you almost skipped.",
+      "lines": [
+        "Leg press 90 kg 3x12 clean — from a 120 best, already close. One leg deconditioned (no joint pain), rebuilding careful.",
+        "Bench 24 kg, two clean 12s — a whisker off your 26 working weight. Muscle memory, not lost strength.",
+        "Plate pulldown 100 kg x10 — back to old weight and past the old 8 reps. Ahead on that one.",
+        "Tired and fasted and you still showed up. That's the rep that changes things — not the PBs, the session you almost talked yourself out of.",
+        "No watch today, so HR and calories untracked — no drama. Weigh tomorrow morning for the fresh start line."
+      ],
+      "tags": [
+        { "text": "Session #9 — back on it", "tone": "brand" },
+        { "text": "Near old numbers already", "tone": "success" },
+        { "text": "Muscle memory", "tone": "info" }
+      ]
+    },
     {
       "date": "2026-08-11", "title": "Told you — 257, a new low. The blip was water.",
       "note": "A week ago you panicked at 262.6 after a fortnight off. Today: 257.0 — a NEW LOW, below the old 258.4. The 5+ lb 'gain' was water and it flushed, exactly as promised. From a 266 start that's 9 lb down. Never judge off one scary morning — the trend is the truth.",
