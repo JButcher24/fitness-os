@@ -145,7 +145,9 @@
       "id": 9, "date": "2026-08-17", "type": "Full body", "label": "back after a break", "status": "in-progress",
       "durationMin": null, "avgHr": null, "kcalBurned": null,
       "exercises": [
-        { "name": "Cable leg press", "weightKg": 90, "sets": [12, 12, 12], "note": "first session back after time off; clean 3x12. One leg weaker from deconditioning (no joint pain) — rebuild load carefully, stop on any sharp/joint pain" }
+        { "name": "Cable leg press", "weightKg": 90, "sets": [12, 12, 12], "note": "first session back after time off; clean 3x12. One leg weaker from deconditioning (no joint pain) — rebuild load carefully, stop on any sharp/joint pain" },
+        { "name": "Dumbbell bench press", "weightKg": 24, "sets": [12, 12], "note": "back after break; 2 clean 12s at 24 (old working 26x3x10) — near old level already, 3rd set not reported" },
+        { "name": "Plate-loaded lat pulldown", "weightKg": 100, "sets": [10], "note": "free-weight/plate machine (total plate weight); warm-up 80x12 then working 100x10 — back to old working weight and beat the old 3x8" }
       ]
     }
   ],
