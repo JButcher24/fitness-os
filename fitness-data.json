@@ -25,7 +25,7 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 6,120 steps" }
   ],
-  "today": { "date": "2026-08-21", "checklistDone": ["weigh"] },
+  "today": { "date": "2026-08-26", "checklistDone": ["train", "steps"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
@@ -156,6 +156,18 @@
       "cardio": [
         { "type": "Walk", "phase": "warm-up", "durationMin": 15, "note": "untracked (no watch today) — duration by report" },
         { "type": "Walk", "durationMin": 15, "note": "untracked (no watch today) — duration by report" }
+      ]
+    },
+    {
+      "id": 10, "date": "2026-08-26", "type": "Upper body", "label": "chill upper day", "status": "complete",
+      "durationMin": null, "avgHr": null, "kcalBurned": null,
+      "exercises": [
+        { "name": "Dumbbell bench press", "weightKg": 26, "sets": [8, 10, 10], "note": "back to 26 kg; 8 then 10/10 as he warmed into it" },
+        { "name": "Plate-loaded lat pulldown", "weightKg": 100, "sets": [10, 8, 10], "note": "free-weight/plate machine (total plate weight); holding 100, building reps" }
+      ],
+      "cardio": [
+        { "type": "Walk", "phase": "warm-up", "durationMin": 15, "note": "untracked — duration by report" },
+        { "type": "Walk", "phase": "cool-down", "durationMin": 15, "note": "untracked — duration by report" }
       ]
     }
   ],
