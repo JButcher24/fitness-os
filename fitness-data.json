@@ -1,6 +1,6 @@
 {
   "profile": { "firstName": "Jamie", "startDate": "2026-06-29", "startWeightLb": 266.0 },
-  "goal": { "primaryGoal": "Visible abs — reach ~10% body fat (abs typically show from ~12%)", "targetBodyFatPct": 10, "targetWeightLb": 210, "weeklyLossPocketLb": [1, 2], "nextMilestoneLb": 252.7 },
+  "goal": { "primaryGoal": "Visible abs — reach ~10% body fat (abs typically show from ~12%)", "targetBodyFatPct": 10, "targetWeightLb": 190, "targetWeightNote": "provisional abs estimate at current muscle; will land ~190–200 lb depending on muscle built — firm up from composition as he leans out", "weeklyLossPocketLb": [1, 2], "nextMilestoneLb": 252.7 },
   "weighIns": [
     { "date": "2026-06-29", "weightLb": 266.0, "note": "Baseline starting weight" },
     { "date": "2026-06-30", "weightLb": 263.6, "source": "smart scale", "bodyFatPct": 34.8, "bmi": 35.7 },
@@ -446,7 +446,9 @@
     { "label": "10% lost · 239.4 lb", "weightLb": 239.4 },
     { "label": "17 stone · 238.0 lb", "weightLb": 238 },
     { "label": "16 stone · 224.0 lb", "weightLb": 224 },
-    { "label": "Goal · 210 lb (15 st)", "weightLb": 210, "goal": true }
+    { "label": "15 stone · 210.0 lb", "weightLb": 210 },
+    { "label": "Under 200 lb", "weightLb": 200 },
+    { "label": "Goal · abs · ~190 lb (~10% body fat)", "weightLb": 190, "goal": true }
   ],
   "planned": { "sessionsPerBlock": 5, "maxDaysBetweenSessions": 3 }
 }
