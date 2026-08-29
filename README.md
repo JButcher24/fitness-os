@@ -31,7 +31,7 @@ Hosted on GitHub Pages: **(URL goes here once Pages is enabled)**
 The JSON follows the core schema (profile, goal, weighIns, nutritionTargets, dailyChecklist, today, trackedLifts, progressionRules, sessions, coachNotes, planned) with these documented extensions, all of which the dashboard renders:
 
 - **`milestones`** — the milestone board on the Weight screen (`label`, `weightLb`, optional `goal: true`). Achieved dates and ETAs are computed, never stored.
-- **`weighIns` composition fields** — optional `source`, `bodyFatPct`, `bmi`, `note` per weigh-in (e.g. a smart-scale reading). The dashboard ignores them for the trend; they record what the scale actually reported.
+- **`weighIns` composition fields** — optional `source`, `bodyFatPct`, `bmi`, `leanMassKg`, `note` per weigh-in (e.g. a smart-scale reading). The dashboard ignores them for the trend; they record what the scale actually reported.
 - **`sessions[].cardio`** — optional array of cardio bouts around a strength session (`type`, `phase`, `start`/`end`, `durationMin`, `distanceM`, `kcalBurned`, `avgHr`, `pacePerKm`, optional `note`). Recorded for the log; surfaced today via the coach note rather than a dedicated tile.
 - **`exerciseLibrary`** — known movements with optional `coachNext` guidance, so lifts without a baseline yet (e.g. a planned exercise) still show on the Strength screen.
 - **`coachNotes` rich fields** — optional `title`, `lines[]`, `tags[{text, tone}]` per note for the timeline view; a plain `note` string still works.
