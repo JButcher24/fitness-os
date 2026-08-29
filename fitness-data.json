@@ -1,6 +1,6 @@
 {
   "profile": { "firstName": "Jamie", "startDate": "2026-06-29", "startWeightLb": 266.0 },
-  "goal": { "targetWeightLb": 210, "weeklyLossPocketLb": [1, 2], "nextMilestoneLb": 252.7 },
+  "goal": { "primaryGoal": "Visible abs — reach ~10% body fat (abs typically show from ~12%)", "targetBodyFatPct": 10, "targetWeightLb": 210, "weeklyLossPocketLb": [1, 2], "nextMilestoneLb": 252.7 },
   "weighIns": [
     { "date": "2026-06-29", "weightLb": 266.0, "note": "Baseline starting weight" },
     { "date": "2026-06-30", "weightLb": 263.6, "source": "smart scale", "bodyFatPct": 34.8, "bmi": 35.7 },
