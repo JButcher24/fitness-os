@@ -18,18 +18,18 @@
     { "date": "2026-08-27", "weightLb": 254.4, "source": "Apple Health" },
     { "date": "2026-08-28", "weightLb": 254.2, "source": "Apple Health" },
     { "date": "2026-08-29", "weightLb": 253.4, "source": "Apple Health" },
-    { "date": "2026-08-30", "weightLb": 252.8, "source": "smart scale", "bodyFatPct": 32.8, "bmi": 34.3, "leanMassKg": 77.11 }
+    { "date": "2026-08-29", "weightLb": 252.8, "source": "smart scale", "bodyFatPct": 32.8, "bmi": 34.3, "leanMassKg": 77.11 }
   ],
-  "nutritionTargets": { "kcal": 2500, "kcalTolerance": 100, "proteinG": 219, "proteinMinG": 180, "carbsG": 219, "fatG": 83, "waterL": [2.5, 3.5] },
+  "nutritionTargets": { "kcal": 2500, "kcalTolerance": 100, "proteinG": 219, "proteinMinG": 200, "carbsG": 219, "fatG": 83, "waterL": [2.5, 3.5] },
   "dailyChecklist": [
     { "id": "weigh", "label": "Morning weigh-in" },
     { "id": "train", "label": "Train (session days)" },
     { "id": "kcal", "label": "Stay ≈ 2,500 kcal" },
     { "id": "protein", "label": "Protein 219 g" },
     { "id": "water", "label": "2.5–3.5 L water" },
-    { "id": "steps", "label": "Move every day — 6,120 steps" }
+    { "id": "steps", "label": "Move every day — 10,000 steps" }
   ],
-  "today": { "date": "2026-08-30", "checklistDone": ["weigh"] },
+  "today": { "date": "2026-08-29", "checklistDone": ["weigh"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
@@ -176,6 +176,22 @@
     }
   ],
   "coachNotes": [
+    {
+      "date": "2026-08-29", "title": "Plan tuned for abs by 30 — steps up, protein up",
+      "note": "Goal locked: visible abs (~10% body fat) before his 30th — about 56 weeks out, needs ~1.1 lb/week of fat loss, doable in-pocket. To buy buffer without risking muscle: step target up to 10,000/day (low-impact, leg-friendly), protein floor up to 200 g (muscle insurance), keep lifting hard, aim ~1.5 lb/week. The real enemy is the long layoff, not the pace.",
+      "lines": [
+        "Target: lose ~55-60 lb of fat (32.8% → ~12%, abs showing). ~1.1 lb/week over 56 weeks — right in the healthy pocket.",
+        "Speed-up levers: more steps (Zone 2, low recovery cost) + honest tracking to 2,500 kcal. Trim calories only if the trend stalls.",
+        "Muscle insurance: protein floor raised 180 → 200 g, keep lifting hard — abs need the muscle underneath.",
+        "Ceiling is ~1% of bodyweight/week (~2.5 lb). Go faster than that and you eat muscle. Aim ~1.5.",
+        "The deadline is beaten by not disappearing for three weeks. Consistency, not crash dieting."
+      ],
+      "tags": [
+        { "text": "Goal: abs by 30", "tone": "brand" },
+        { "text": "Steps → 10,000", "tone": "info" },
+        { "text": "Protein floor → 200 g", "tone": "info" }
+      ]
+    },
     {
       "date": "2026-08-17", "title": "Session #9 — the comeback session (the one that counts)",
       "note": "Back after a long break, tired and fasted, nearly didn't come — and lifted near your old numbers anyway. Leg press 90x3x12, bench 24 clean 12s (old working 26), plate pulldown back to 100 kg x10 (beat the old 3x8). Two 15-min walks too (no watch, untracked). Muscle memory did exactly what I promised. This is the session that matters — the one you almost skipped.",
