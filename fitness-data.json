@@ -30,7 +30,7 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 10,000 steps" }
   ],
-  "today": { "date": "2026-08-30", "checklistDone": ["weigh"] },
+  "today": { "date": "2026-08-30", "checklistDone": ["weigh", "train", "steps"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
@@ -43,6 +43,7 @@
     { "name": "Seated cable row (close grip)", "coachNext": "Retest — that number looks generous next to your wide-grip row.", "flag": "Needs retesting" },
     { "name": "Tricep pushdown", "coachNext": "Baseline set 15 Jul: working weight 40 kg × 12 (hard). Next: one warm-up, then 3×12 at 40 kg near failure. Then climb." },
     { "name": "Cable leg press", "coachNext": "~3×10 at 120 kg on 21 Jul (up from 110 3×12). Hold 120, build to 3×12, then climb. Drive evenly through both heels — left lags. Depth without the hips tucking off the pad." },
+    { "name": "Single-leg press", "coachNext": "Baseline 30 kg × 3×12 per leg on 30 Aug (machine number — track the trend on this machine, not the absolute). Great for the rehab leg: watch it climb and the operated side catch the strong one. Follow physio guidance; stop on any joint pain." },
     { "name": "Leg curl", "coachNext": "Baseline 35 kg × 3×12 on 17 Jul. Slow negatives, squeeze at the top. Build reps then load; balances the quad-dominant leg work." },
     { "name": "Dumbbell curl", "coachNext": "Baseline 7.5 kg (15, 12) on 19 Jul as a finisher. Build reps then load; strict, no swing. Biceps also get worked by every row and pulldown, so this is seasoning." }
   ],
@@ -173,6 +174,17 @@
       "cardio": [
         { "type": "Walk", "phase": "warm-up", "durationMin": 15, "note": "untracked — duration by report" },
         { "type": "Walk", "phase": "cool-down", "durationMin": 15, "note": "untracked — duration by report" }
+      ]
+    },
+    {
+      "id": 11, "date": "2026-08-30", "type": "Legs", "status": "in-progress",
+      "durationMin": null, "avgHr": null, "kcalBurned": null,
+      "exercises": [
+        { "name": "Kettlebell squat", "weightKg": 16, "sets": [12, 12, 12] },
+        { "name": "Single-leg press", "weightKg": 30, "sets": [12, 12, 12], "note": "per leg; 30 kg is the machine number (sled leverage/bodyweight not counted) — track the trend on this machine, not the absolute load. New baseline for the rehab leg." }
+      ],
+      "cardio": [
+        { "type": "Walk", "phase": "warm-up", "durationMin": 15, "note": "untracked — duration by report" }
       ]
     }
   ],
