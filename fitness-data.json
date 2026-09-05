@@ -20,7 +20,7 @@
     { "date": "2026-08-29", "weightLb": 253.4, "source": "Apple Health" },
     { "date": "2026-08-29", "weightLb": 252.8, "source": "smart scale", "bodyFatPct": 32.8, "bmi": 34.3, "leanMassKg": 77.11 },
     { "date": "2026-08-30", "weightLb": 254.4, "source": "Apple Health" },
-    { "date": "2026-08-31", "weightLb": 250.8, "source": "Apple Health" }
+    { "date": "2026-09-05", "weightLb": 250.8, "source": "Apple Health" }
   ],
   "nutritionTargets": { "kcal": 2500, "kcalTolerance": 100, "proteinG": 219, "proteinMinG": 200, "carbsG": 219, "fatG": 83, "waterL": [2.5, 3.5] },
   "dailyChecklist": [
@@ -31,7 +31,7 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 10,000 steps" }
   ],
-  "today": { "date": "2026-08-31", "checklistDone": ["weigh"] },
+  "today": { "date": "2026-09-05", "checklistDone": ["weigh"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
@@ -191,11 +191,11 @@
   ],
   "coachNotes": [
     {
-      "date": "2026-08-31", "title": "Milestone cluster DOWN — 5%, a stone, into the 17s",
+      "date": "2026-09-05", "title": "Milestone cluster DOWN — 5%, a stone, into the 17s",
       "note": "250.8 today — new low, and it ticks the lot: 5% of bodyweight lost (past 252.7), a full stone off (266 → under 252), and into the 17-stone bracket (under 18 st). 15+ lb down from the start. Big moment. Next flag: under 250, 0.8 lb away.",
       "lines": [
-        "5% lost — done. A full stone gone. Under 18 stone, into the 17s. Three milestones in one morning.",
-        "254.4 to 250.8 is partly water dropping, but the average is now sat right on these marks and trending down — they're genuinely yours.",
+        "5% lost — done. A full stone gone. Under 18 stone, into the 17s. Three milestones at once.",
+        "254.4 to 250.8 over several days — real loss, not a water blip. The average is now sat right on these marks and trending down — genuinely yours.",
         "266 start to 250.8 = 15+ lb, ~20% of the way to the abs goal (190 lb).",
         "Next: under 250 — basically tomorrow. Then the 10%-lost and 17-stone flags come into view.",
         "This is what consistency looks like after a rough patch: back on it, tracked, milestones falling."
