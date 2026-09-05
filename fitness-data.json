@@ -18,8 +18,8 @@
     { "date": "2026-08-27", "weightLb": 254.4, "source": "Apple Health" },
     { "date": "2026-08-28", "weightLb": 254.2, "source": "Apple Health" },
     { "date": "2026-08-29", "weightLb": 253.4, "source": "Apple Health" },
-    { "date": "2026-08-29", "weightLb": 252.8, "source": "smart scale", "bodyFatPct": 32.8, "bmi": 34.3, "leanMassKg": 77.11 },
-    { "date": "2026-08-30", "weightLb": 254.4, "source": "Apple Health" },
+    { "date": "2026-08-30", "weightLb": 252.8, "source": "smart scale", "bodyFatPct": 32.8, "bmi": 34.3, "leanMassKg": 77.11 },
+    { "date": "2026-08-31", "weightLb": 254.4, "source": "Apple Health" },
     { "date": "2026-09-05", "weightLb": 250.8, "source": "Apple Health" }
   ],
   "nutritionTargets": { "kcal": 2500, "kcalTolerance": 100, "proteinG": 219, "proteinMinG": 200, "carbsG": 219, "fatG": 83, "waterL": [2.5, 3.5] },
