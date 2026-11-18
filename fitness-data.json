@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": 12, "date": "2026-10-13", "type": "Full body", "label": "back again after ~6 weeks", "status": "in-progress",
+      "id": 12, "date": "2026-10-13", "type": "Full body", "label": "back again after ~6 weeks", "status": "complete",
       "durationMin": null, "avgHr": null, "kcalBurned": null,
       "exercises": [
         { "name": "Cable leg press", "weightKg": 70, "sets": [12, 12, 12, 12], "note": "back after ~6 weeks off; eased in at 70 (90 last comeback, 120 pre-break) — 4x12 clean, rebuild from here" }
