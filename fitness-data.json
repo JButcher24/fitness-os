@@ -201,7 +201,7 @@
       "durationMin": null, "avgHr": null, "kcalBurned": null,
       "exercises": [
         { "name": "Dumbbell bench press", "weightKg": 24, "sets": [12, 5], "note": "restart after layoff; warm-up 20x12, then 24x12 (hard, near failure) and 24x5 — strength is back (24x12), work capacity down from the time off, rebuilds over next sessions" },
-        { "name": "Single-arm dumbbell shoulder press", "weightKg": 10, "sets": [12], "note": "per arm; new exercise, baseline on the restart — overhead work for the delts + core. Reps per arm." }
+        { "name": "Single-arm dumbbell shoulder press", "weightKg": 10, "sets": [12, 11, 10], "note": "per arm; 3 sets of 10-12 reps (per-set reps approximate); new baseline on the restart — overhead delt + core work" }
       ]
     }
   ],
