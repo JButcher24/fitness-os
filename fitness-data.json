@@ -41,6 +41,7 @@
     { "name": "Plate-loaded lat pulldown", "coachNext": "100 kg total 3×8 on 21 Jul (up from 90 3×12) — bigish +10kg jump. Hold 100, build to 3×12, then add smallest plate per side. Log by total plate weight." },
     { "name": "Wide-grip cable row", "coachNext": "Clean 3×12 at 45 kg (moderate) on 27 Jul — owned it, form tidy. Next: 47.5 kg, aim 3×12." },
     { "name": "Cable lateral raise", "coachNext": "3×12 at 5 kg done (15 Jul). Build to 3×15 strict, or nudge to 6–7 kg only if form stays clean — no swinging. Delts grow on reps, not load." },
+    { "name": "Single-arm dumbbell shoulder press", "coachNext": "Baseline 10 kg × 12 per arm on 18 Nov. Strict — don't lean or swing to press it; the core braces. Build reps then load." },
     { "name": "Seated cable row (close grip)", "coachNext": "Retest — that number looks generous next to your wide-grip row.", "flag": "Needs retesting" },
     { "name": "Tricep pushdown", "coachNext": "Baseline set 15 Jul: working weight 40 kg × 12 (hard). Next: one warm-up, then 3×12 at 40 kg near failure. Then climb." },
     { "name": "Cable leg press", "coachNext": "~3×10 at 120 kg on 21 Jul (up from 110 3×12). Hold 120, build to 3×12, then climb. Drive evenly through both heels — left lags. Depth without the hips tucking off the pad." },
@@ -199,7 +200,8 @@
       "id": 13, "date": "2026-11-18", "type": "Full body", "label": "restart — day one", "status": "in-progress",
       "durationMin": null, "avgHr": null, "kcalBurned": null,
       "exercises": [
-        { "name": "Dumbbell bench press", "weightKg": 24, "sets": [12, 5], "note": "restart after layoff; warm-up 20x12, then 24x12 (hard, near failure) and 24x5 — strength is back (24x12), work capacity down from the time off, rebuilds over next sessions" }
+        { "name": "Dumbbell bench press", "weightKg": 24, "sets": [12, 5], "note": "restart after layoff; warm-up 20x12, then 24x12 (hard, near failure) and 24x5 — strength is back (24x12), work capacity down from the time off, rebuilds over next sessions" },
+        { "name": "Single-arm dumbbell shoulder press", "weightKg": 10, "sets": [12], "note": "per arm; new exercise, baseline on the restart — overhead work for the delts + core. Reps per arm." }
       ]
     }
   ],
