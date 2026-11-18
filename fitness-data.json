@@ -43,7 +43,7 @@
     { "name": "Cable lateral raise", "coachNext": "3×12 at 5 kg done (15 Jul). Build to 3×15 strict, or nudge to 6–7 kg only if form stays clean — no swinging. Delts grow on reps, not load." },
     { "name": "Single-arm dumbbell shoulder press", "coachNext": "Baseline 10 kg × 12 per arm on 18 Nov. Strict — don't lean or swing to press it; the core braces. Build reps then load." },
     { "name": "Plate-loaded chest press", "coachNext": "Baseline 20 kg/side (40 kg total) × 8 on 18 Nov. Hold and build reps to 3×12, then add a plate per side. Log by total plate weight, labelled." },
-    { "name": "Seated cable row (close grip)", "coachNext": "Retest — that number looks generous next to your wide-grip row.", "flag": "Needs retesting" },
+    { "name": "Seated cable row (close grip)", "coachNext": "Retested 18 Nov at 30 kg x12 (old 60 kg was wrong/generous). Build reps to 3x12, then nudge the load." },
     { "name": "Tricep pushdown", "coachNext": "Baseline set 15 Jul: working weight 40 kg × 12 (hard). Next: one warm-up, then 3×12 at 40 kg near failure. Then climb." },
     { "name": "Cable leg press", "coachNext": "~3×10 at 120 kg on 21 Jul (up from 110 3×12). Hold 120, build to 3×12, then climb. Drive evenly through both heels — left lags. Depth without the hips tucking off the pad." },
     { "name": "Single-leg press", "coachNext": "Baseline 30 kg × 3×12 per leg on 30 Aug (machine number — track the trend on this machine, not the absolute). Great for the rehab leg: watch it climb and the operated side catch the strong one. Follow physio guidance; stop on any joint pain." },
@@ -198,13 +198,14 @@
       ]
     },
     {
-      "id": 13, "date": "2026-11-18", "type": "Upper body", "label": "restart — day one", "status": "complete",
+      "id": 13, "date": "2026-11-18", "type": "Upper body", "label": "restart — day one", "status": "in-progress",
       "durationMin": null, "avgHr": null, "kcalBurned": null,
       "exercises": [
         { "name": "Dumbbell bench press", "weightKg": 24, "sets": [12, 5], "note": "restart after layoff; warm-up 20x12, then 24x12 (hard, near failure) and 24x5 — strength is back (24x12), work capacity down from the time off, rebuilds over next sessions" },
         { "name": "Single-arm dumbbell shoulder press", "weightKg": 10, "sets": [12, 11, 10], "note": "per arm; 3 sets of 10-12 reps (per-set reps approximate); new baseline on the restart — overhead delt + core work" },
         { "name": "Plate-loaded chest press", "weightKg": 40, "sets": [8], "note": "20 kg/side (40 total) x8, then two sets at 15 kg/side (30 total) x12 and x12; new baseline on the restart. Track by total plate weight, labelled." },
-        { "name": "Cable stack lat pulldown", "weightKg": 45, "sets": [12, 12, 12], "note": "pin/cable machine; comeback weight (was 50 pre-break) — clean 3x12, balanced the day with a proper pull" }
+        { "name": "Cable stack lat pulldown", "weightKg": 45, "sets": [12, 12, 12], "note": "pin/cable machine; comeback weight (was 50 pre-break) — clean 3x12, balanced the day with a proper pull" },
+        { "name": "Seated cable row (close grip)", "weightKg": 30, "sets": [12], "note": "seated cable pulley row; retest — 30 kg x12 (old 60 kg was flagged generous/wrong, this is the honest number)" }
       ]
     }
   ],
