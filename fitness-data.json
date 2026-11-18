@@ -31,7 +31,7 @@
     { "id": "water", "label": "2.5–3.5 L water" },
     { "id": "steps", "label": "Move every day — 10,000 steps" }
   ],
-  "today": { "date": "2026-10-13", "checklistDone": ["train"] },
+  "today": { "date": "2026-11-18", "checklistDone": ["train", "steps"] },
   "trackedLifts": ["Goblet squat to box", "Dumbbell bench press", "Cable stack lat pulldown", "Plate-loaded lat pulldown", "Wide-grip cable row"],
   "progressionRules": { "repTarget": "3x12", "incrementKg": 2.5, "rule": "Hold the weight until all three sets hit 12 clean reps, then add 2.5 kg." },
   "exerciseLibrary": [
@@ -193,6 +193,13 @@
       "durationMin": null, "avgHr": null, "kcalBurned": null,
       "exercises": [
         { "name": "Cable leg press", "weightKg": 70, "sets": [12, 12, 12, 12], "note": "back after ~6 weeks off; eased in at 70 (90 last comeback, 120 pre-break) — 4x12 clean, rebuild from here" }
+      ]
+    },
+    {
+      "id": 13, "date": "2026-11-18", "type": "Full body", "label": "restart — day one", "status": "in-progress",
+      "durationMin": null, "avgHr": null, "kcalBurned": null,
+      "exercises": [
+        { "name": "Dumbbell bench press", "weightKg": 24, "sets": [12, 5], "note": "restart after layoff; warm-up 20x12, then 24x12 (hard, near failure) and 24x5 — strength is back (24x12), work capacity down from the time off, rebuilds over next sessions" }
       ]
     }
   ],
