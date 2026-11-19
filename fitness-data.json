@@ -21,7 +21,7 @@
     { "date": "2026-08-30", "weightLb": 252.8, "source": "smart scale", "bodyFatPct": 32.8, "bmi": 34.3, "leanMassKg": 77.11 },
     { "date": "2026-08-31", "weightLb": 254.4, "source": "Apple Health" },
     { "date": "2026-09-05", "weightLb": 250.8, "source": "Apple Health" },
-    { "date": "2026-11-19", "weightLb": 267.0, "source": "smart scale", "bodyFatPct": 35.6, "bmi": 36.2, "leanMassKg": 78.0, "note": "weight derived from BMI 36.2 / fat-free 172 lb (scale figure cropped in screenshot) — confirm exact. Muscle mass 163.4 lb, visceral fat 18, body water 46.5%. Return after ~10 weeks off." }
+    { "date": "2026-11-19", "weightLb": 267.0, "source": "smart scale", "bodyFatPct": 35.6, "bmi": 36.2, "leanMassKg": 78.0, "note": "267 lb confirmed. Muscle mass 163.4 lb, visceral fat 18, body water 46.5%. Return after ~10 weeks off — back around start weight, but fat-free mass 172 lb (muscle intact, even up a touch)." }
   ],
   "nutritionTargets": { "kcal": 2500, "kcalTolerance": 100, "proteinG": 219, "proteinMinG": 200, "carbsG": 219, "fatG": 83, "waterL": [2.5, 3.5] },
   "dailyChecklist": [
